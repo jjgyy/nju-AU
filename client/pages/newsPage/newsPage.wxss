@@ -17,3 +17,51 @@
 .textContainer {
   margin-top: 200px;
 }
+
+.newsCell {
+  display: flex;
+  flex-flow: column;
+  width: 90%;
+  height: 300rpx;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50rpx;
+  margin-bottom: 50rpx;
+  border-radius: 20rpx;
+  background: whitesmoke;
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+  animation-name: fadeInDown;
+}
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translate(0, 100%);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.newsCell-title{
+  display: flex;
+  padding: 20rpx 0rpx 0rpx 20rpx;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 40rpx;
+}
+.newsCell-subTitle{
+  display: flex;
+  padding: 0rpx 0rpx 0rpx 20rpx;
+  color: #777777;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 28rpx;
+}
+.newsCell-from{
+  display: flex;
+  padding: 0rpx 0rpx 0rpx 20rpx;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 20rpx;
+}
+
+

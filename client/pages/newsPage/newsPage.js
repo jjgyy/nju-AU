@@ -1,6 +1,35 @@
 Page({
   data:{
-    text:"Page newsPage"
+    text:"Page newsPage",
+    newsList:[{
+      id:"sj-000001",
+      date:"201807151647",
+      from:"南大射箭社",
+      title:"南大射箭社招新啦",
+      subTitle:"来加入我们的大家庭吧",
+      cover:""
+    },{
+      id:"sj-000001",
+      date:"201807151647",
+      from:"南大射箭社",
+      title:"南大射箭社招新啦",
+      subTitle:"来加入我们的大家庭吧",
+      cover:""
+    },{
+      id:"sj-000001",
+      date:"201807151647",
+      from:"南大射箭社",
+      title:"南大射箭社招新啦",
+      subTitle:"来加入我们的大家庭吧",
+      cover:""
+    },{
+      id:"sj-000001",
+      date:"201807151647",
+      from:"南大射箭社",
+      title:"南大射箭社招新啦",
+      subTitle:"来加入我们的大家庭吧",
+      cover:""
+    }]
   },
   onLoad:function(options){
     // 页面初始化 options为页面跳转所带来的参数

@@ -1,5 +1,6 @@
-<view class="container">
-  <view class="textContainer">
-    <text class="textStyle">{{text}}</text>
+
+  <view class="newsCell" wx:for="{{newsList}}">
+    <view class="newsCell-title">{{item.title}}</view>
+    <view class="newsCell-subTitle">{{item.subTitle}}</view>
+    <view class="newsCell-from">{{item.from}}</view>
   </view>
-</view>
