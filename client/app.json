@@ -1,5 +1,9 @@
 {
+  "themeColor":"#a941a1",
   "pages":[
+    "pages/newsPage/newsPage",
+    "pages/associationPage/associationPage",
+    "pages/mePage/mePage",
     "pages/index/index",
     "pages/addCgi/addCgi"
   ],
@@ -9,5 +13,25 @@
     "navigationBarBackgroundColor": "#F6F6F6",
     "navigationBarTitleText": "南大社团",
     "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "color": "#bfbfbf",
+    "selectedColor": "#a941a1",
+    "list": [{
+      "pagePath": "pages/newsPage/newsPage",
+      "text": "社团新闻",
+      "iconPath": "icon/tabBar/news-unselected.png",
+      "selectedIconPath": "icon/tabBar/news-selected.png"
+    },{
+      "pagePath": "pages/associationPage/associationPage",
+      "text": "我的社团",
+      "iconPath": "icon/tabBar/association-unselected.png",
+      "selectedIconPath": "icon/tabBar/association-selected.png"
+    },{
+      "pagePath": "pages/mePage/mePage",
+      "text": "个人中心",
+      "iconPath": "icon/tabBar/me-unselected.png",
+      "selectedIconPath": "icon/tabBar/me-selected.png"
+    }]
   }
 }
