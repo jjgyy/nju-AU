@@ -1,3 +1,31 @@
+<view class="page-tab">
+    <view class="tab-cell">
+        发现社团
+    </view>
+    <view class="tab-cell">
+        我的社团
+    </view>
+</view>
+
+<view class="page-view">
+    <swiper class="association-swiper" current="{{currentTab}}" duration="300" bindchange="">
+        <swiper-item wx:for="{{[0,1]}}">
+            <scroll-view scroll-y="true" class="scoll-h">
+                <view data-id="{{item.id}}" class="association-cell" wx:for="{{associationList}}" wx:key="item.id">
+                    {{item.name}}
+                </view>
+            </scroll-view>
+        </swiper-item>
+    </swiper>
+</view>
+
+
+
+
+<!--
+
 <button bindtap="toNewsWritePage">to news write page</button>
 
 <button bindtap="toAssociationCreatePage">to associate create page</button>
+
+-->

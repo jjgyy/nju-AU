@@ -1,0 +1,11 @@
+<div class="input-div">
+  <input type="text" placeholder="请输入社团id" bindinput="id"/>
+
+  <input type="text" placeholder="请输入社团名" bindinput="name"/>
+
+  <input type="text" placeholder="请输入社团缩写" bindinput="name_abbreviate"/>
+
+  <input type="text" placeholder="请输入分类" bindinput="category"/>
+</div>
+
+<button bindtap="submit">提交</button>

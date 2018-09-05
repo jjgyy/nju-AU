@@ -42,4 +42,6 @@ router.get('/getNewsDetail', controllers.getNewsDetail)
 
 router.get('/addAssociation', controllers.addAssociation)
 
+router.get('/getAssociationList', controllers.getAssociationList)
+
 module.exports = router

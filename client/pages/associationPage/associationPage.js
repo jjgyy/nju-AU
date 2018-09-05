@@ -1,6 +1,11 @@
+var qcloud = require('../../vendor/wafer2-client-sdk/index')
+var config = require('../../config')
+var util = require('../../utils/util.js')
+
 Page({
   data:{
-    text:"Page associationPage"
+    associationList:[],
+    currentTab:0,
   },
 
   toNewsWritePage: function () {
@@ -15,9 +20,26 @@ Page({
     })
   },
 
+
   onLoad:function(options){
     // 页面初始化 options为页面跳转所带来的参数
+    var that = this;
+    wx.request({
+      url: `${config.service.host}/weapp/getAssociationList`,
+      success(result) {
+        console.log(result.data);
+        that.setData({
+          associationList: result.data.data
+        })
+      },
+      fail(error) {
+        console.log('request fail', error);
+      }
+    });
+
   },
+
+
   onReady:function(){
     // 页面渲染完成
   },

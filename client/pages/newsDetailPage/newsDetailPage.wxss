@@ -1,0 +1,41 @@
+.titleBlock{
+    display: block;
+    position: relative;
+    height: auto;
+    padding: 10rpx 30rpx;
+    font-size: 38rpx;
+}
+
+.authorBlock{
+    display: block;
+    position: relative;
+    height: auto;
+    padding: 5rpx 30rpx;
+    color: #bbbbbb;
+    font-size: 28rpx;
+}
+.authorBlock text{
+    padding-right: 40rpx;
+}
+
+.imageBlock{
+    position: relative;
+    height: auto;
+    padding: 10rpx 2%;
+}
+.imageBlock image{
+    display: block;
+    width: 100%;
+    border-radius: 10rpx;
+}
+
+.articleBlock{
+    display: block;
+    position: relative;
+    height: auto;
+    padding: 10rpx 30rpx;
+    font-size: 28rpx;
+}
+.articleBlock text{
+    white-space: pre-wrap;
+}
