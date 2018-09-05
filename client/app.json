@@ -2,7 +2,10 @@
   "themeColor":"#a941a1",
   "pages":[
     "pages/newsPage/newsPage",
+    "pages/newsDetailPage/newsDetailPage",
+    "pages/newsWritePage/newsWritePage",
     "pages/associationPage/associationPage",
+    "pages/associationCreatePage/associationCreatePage",
     "pages/mePage/mePage",
     "pages/index/index",
     "pages/addCgi/addCgi"

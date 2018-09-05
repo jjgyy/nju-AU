@@ -35,3 +35,28 @@ CREATE TABLE `cSessionInfo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='会话管理用户信息';
 
 SET FOREIGN_KEY_CHECKS = 1;
+
+
+DROP TABLE IF EXISTS `publicNews`;
+CREATE TABLE `publicNews` (
+  `id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `author` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `author_from` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `article` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `further_info` varchar(1000) COLLATE utf8mb4_unicode_ci,
+  PRIMARY KEY (`id`),
+  KEY `id` (`id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+
+
+DROP TABLE IF EXISTS `association`;
+CREATE TABLE `association` (
+  `id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name_abbreviate` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `class` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id` (`id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci

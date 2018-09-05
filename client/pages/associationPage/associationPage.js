@@ -2,6 +2,19 @@ Page({
   data:{
     text:"Page associationPage"
   },
+
+  toNewsWritePage: function () {
+    wx.navigateTo({
+      url: '../newsWritePage/newsWritePage',
+    })
+  },
+
+  toAssociationCreatePage: function () {
+    wx.navigateTo({
+      url: '../associationCreatePage/associationCreatePage',
+    })
+  },
+
   onLoad:function(options){
     // 页面初始化 options为页面跳转所带来的参数
   },

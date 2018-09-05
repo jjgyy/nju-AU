@@ -8,13 +8,14 @@
   </block>
 </swiper>
 
-<view class="newsCell" wx:for="{{newsList}}">
+
+<view bindtap="toNewsDetailPage" data-id="{{item.id}}" class="newsCell" wx:for="{{newsList}}" wx:key="item.id">
   <view class="newsCell-left">
     <view class="newsCell-left-title">
 			<text>{{item.title}}</text>
     </view>
     <view class="newsCell-left-subInfo">
-			<text>{{item.from}}</text>
+			<text>{{item.author_from}}</text>
 			<text>{{item.date}}</text>
     </view>
   </view>

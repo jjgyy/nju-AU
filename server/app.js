@@ -15,5 +15,6 @@ app.use(bodyParser())
 const router = require('./routes')
 app.use(router.routes())
 
+
 // 启动程序，监听端口
 app.listen(config.port, () => debug(`listening on port ${config.port}`))

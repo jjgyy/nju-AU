@@ -1,0 +1,12 @@
+<div class="input-div">
+    <input type="text" placeholder="请输入标题" bindinput="title" maxlength="50"/>
+
+    <input type="text" placeholder="请输入作者" bindinput="author" maxlength="20"/>
+
+    <input type="text" placeholder="请输入社团" bindinput="author_from" maxlength="20"/>
+
+    <input type="text" placeholder="正文" bindinput="article"/>
+</div>
+
+<button bindtap="publish">发布</button>
+

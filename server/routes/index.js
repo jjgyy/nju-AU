@@ -34,4 +34,12 @@ router.post('/message', controllers.message.post)
 
 router.get('/demo', controllers.demo)
 
+router.get('/addNews', controllers.addNews)
+
+router.get('/getNewsList', controllers.getNewsList)
+
+router.get('/getNewsDetail', controllers.getNewsDetail)
+
+router.get('/addAssociation', controllers.addAssociation)
+
 module.exports = router

@@ -1,5 +1,3 @@
-<view class="container">
-  <view class="textContainer">
-    <text class="textStyle">{{text}}</text>
-  </view>
-</view>
+<button bindtap="toNewsWritePage">to news write page</button>
+
+<button bindtap="toAssociationCreatePage">to associate create page</button>
