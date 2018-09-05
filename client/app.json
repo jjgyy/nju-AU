@@ -13,10 +13,9 @@
   "window":{
     "backgroundColor":"#F6F6F6",
     "backgroundTextStyle":"dark",
-    "navigationBarBackgroundColor": "#FFFFFF",
+    "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTitleText": "南大社团",
-    "navigationBarTextStyle":"black",
-    "enablePullDownRefresh": true
+    "navigationBarTextStyle":"black"
   },
   "tabBar": {
     "color": "#bfbfbf",

@@ -7,7 +7,8 @@ module.exports = async (ctx) => {
   const id = ctx.query.id,
         name = ctx.query.name,
         name_abbreviate = ctx.query.name_abbreviate,
-        category = ctx.query.category;
+        category = ctx.query.category,
+        image_src = ctx.query.image_src;
 
   ctx.state.data = ctx;
 
@@ -17,6 +18,7 @@ module.exports = async (ctx) => {
       name: name,
       name_abbreviate: name_abbreviate,
       category: category,
+      image_src: image_src
     });
   } catch (e) {
     ctx.state = {

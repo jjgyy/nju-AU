@@ -12,3 +12,9 @@
         </view>
     </view>
 </view>
+
+
+
+<button bindtap="toNewsWritePage">to news write page</button>
+
+<button bindtap="toAssociationCreatePage">to associate create page</button>

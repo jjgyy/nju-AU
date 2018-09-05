@@ -24,6 +24,9 @@ Page({
     this.data.category = e.detail.value;
   },
 
+  image_src: function(e){
+    this.data.image_src = e.detail.value;
+  },
 
   submit: function () {
     var that = this;
@@ -33,7 +36,8 @@ Page({
         id: that.data.id,
         name: that.data.name,
         name_abbreviate: that.data.name_abbreviate,
-        category: that.data.category
+        category: that.data.category,
+        image_src: that.data.image_src
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded'

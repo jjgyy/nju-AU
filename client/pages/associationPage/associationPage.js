@@ -7,22 +7,23 @@ Page({
     associationList: [],
     currentTab: 0,
     clientHeight: null,
-    leftTabColor: '#1da5ef',
-    rightTabColor: '#000000'
+    leftTabColor: '#a941a1',
+    rightTabColor: '#cccccc',
+    leftTabLineColor: '#a941a1',
+    rightTabLineColor: 'rgba(0,0,0,0)'
   },
 
-  toNewsWritePage: function () {
-    wx.navigateTo({
-      url: '../newsWritePage/newsWritePage',
+  clickLeftTab: function () {
+    this.setData({
+      currentTab: 0
     })
   },
 
-  toAssociationCreatePage: function () {
-    wx.navigateTo({
-      url: '../associationCreatePage/associationCreatePage',
+  clickRightTab: function () {
+    this.setData({
+      currentTab: 1
     })
   },
-
 
   switchPage: function (e) {
     this.setData({
@@ -35,14 +36,18 @@ Page({
   refreshTab: function () {
     if (this.data.currentTab == 0){
       this.setData({
-        leftTabColor: '#1da5ef',
-        rightTabColor: '#000000'
+        leftTabColor: '#a941a1',
+        rightTabColor: '#cccccc',
+        leftTabLineColor: '#a941a1',
+        rightTabLineColor: 'rgba(0,0,0,0)'
       });
     }
     else{
       this.setData({
-        leftTabColor: '#000000',
-        rightTabColor: '#1da5ef'
+        leftTabColor: '#cccccc',
+        rightTabColor: '#a941a1',
+        leftTabLineColor: 'rgba(0,0,0,0)',
+        rightTabLineColor: '#a941a1'
       });
     }
   },
@@ -55,7 +60,7 @@ Page({
     wx.getSystemInfo({
       success: function (res) {
         that.setData({
-          clientHeight: res.windowHeight * 0.9
+          clientHeight: res.windowHeight * 0.938
         });
       }
     });

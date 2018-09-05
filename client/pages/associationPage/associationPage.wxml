@@ -1,31 +1,47 @@
 <view class="page-tab">
     <view class="tab-cell-left">
-        <text style="color: {{leftTabColor}}">发现社团</text>
+        <text bindtap="clickLeftTab" style="color: {{leftTabColor}}">发现社团</text>
     </view>
     <view class="tab-cell-right">
-        <text style="color: {{rightTabColor}}">我的社团</text>
+        <text bindtap="clickRightTab" style="color: {{rightTabColor}}">我的社团</text>
+    </view>
+</view>
+
+<view class="page-tab-line">
+    <view class="tab-line-left">
+        <text bindtap="clickLeftTab" style="color: {{leftTabLineColor}}">————</text>
+    </view>
+    <view class="tab-line-right">
+        <text bindtap="clickRightTab" style="color: {{rightTabLineColor}}">————</text>
     </view>
 </view>
 
 <swiper current="{{currentTab}}" duration="300" bindchange="switchPage" style="height: {{clientHeight?clientHeight + 'px':'auto'}}">
-    <swiper-item wx:for="{{[0,1]}}">
+
+    <swiper-item>
         <scroll-view scroll-y="true" class="scoll-y">
             <view class="association-container">
                 <view data-id="{{item.id}}" class="association-cell" wx:for="{{associationList}}" wx:key="item.id">
-                    {{item.name}}
+                    <view class="association-image">
+                        <image src="{{item.image_src}}"/>
+                    </view>
+                    <view class="association-info">{{item.name}}</view>
                 </view>
             </view>
         </scroll-view>
     </swiper-item>
+
+    <swiper-item>
+        <scroll-view scroll-y="true" class="scoll-y">
+            <view class="association-container">
+                <view data-id="{{item.id}}" class="association-cell" wx:for="{{associationList}}" wx:key="item.id">
+                    <view class="association-image">
+                        <image src="{{item.image_src}}"/>
+                    </view>
+                    <view class="association-info">{{item.name}}</view>
+                </view>
+            </view>
+        </scroll-view>
+    </swiper-item>
+
 </swiper>
-
-
-
-
-<!--
-
-<button bindtap="toNewsWritePage">to news write page</button>
-
-<button bindtap="toAssociationCreatePage">to associate create page</button>
-
--->
