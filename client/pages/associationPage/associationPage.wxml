@@ -1,23 +1,23 @@
 <view class="page-tab">
-    <view class="tab-cell">
-        发现社团
+    <view class="tab-cell-left">
+        <text style="color: {{leftTabColor}}">发现社团</text>
     </view>
-    <view class="tab-cell">
-        我的社团
+    <view class="tab-cell-right">
+        <text style="color: {{rightTabColor}}">我的社团</text>
     </view>
 </view>
 
-<view class="page-view">
-    <swiper class="association-swiper" current="{{currentTab}}" duration="300" bindchange="">
-        <swiper-item wx:for="{{[0,1]}}">
-            <scroll-view scroll-y="true" class="scoll-h">
+<swiper current="{{currentTab}}" duration="300" bindchange="switchPage" style="height: {{clientHeight?clientHeight + 'px':'auto'}}">
+    <swiper-item wx:for="{{[0,1]}}">
+        <scroll-view scroll-y="true" class="scoll-y">
+            <view class="association-container">
                 <view data-id="{{item.id}}" class="association-cell" wx:for="{{associationList}}" wx:key="item.id">
                     {{item.name}}
                 </view>
-            </scroll-view>
-        </swiper-item>
-    </swiper>
-</view>
+            </view>
+        </scroll-view>
+    </swiper-item>
+</swiper>
 
 
 

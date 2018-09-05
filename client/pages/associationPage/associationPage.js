@@ -4,8 +4,11 @@ var util = require('../../utils/util.js')
 
 Page({
   data:{
-    associationList:[],
-    currentTab:0,
+    associationList: [],
+    currentTab: 0,
+    clientHeight: null,
+    leftTabColor: '#1da5ef',
+    rightTabColor: '#000000'
   },
 
   toNewsWritePage: function () {
@@ -21,9 +24,42 @@ Page({
   },
 
 
+  switchPage: function (e) {
+    this.setData({
+      currentTab: e.detail.current
+    });
+    this.refreshTab();
+  },
+
+
+  refreshTab: function () {
+    if (this.data.currentTab == 0){
+      this.setData({
+        leftTabColor: '#1da5ef',
+        rightTabColor: '#000000'
+      });
+    }
+    else{
+      this.setData({
+        leftTabColor: '#000000',
+        rightTabColor: '#1da5ef'
+      });
+    }
+  },
+
+
   onLoad:function(options){
     // 页面初始化 options为页面跳转所带来的参数
     var that = this;
+
+    wx.getSystemInfo({
+      success: function (res) {
+        that.setData({
+          clientHeight: res.windowHeight * 0.9
+        });
+      }
+    });
+
     wx.request({
       url: `${config.service.host}/weapp/getAssociationList`,
       success(result) {
