@@ -1,14 +1,13 @@
 const {mysql} = require('../qcloud')
 
 module.exports = async (ctx) => {
-  //const {bookid, comment, openid, location, phone} = ctx.request.body
-  //console.log(bookid, comment, openid, location, phone)
 
   const id = ctx.query.id,
         name = ctx.query.name,
-        name_abbreviate = ctx.query.name_abbreviate,
+        name_english = ctx.query.name_english,
         category = ctx.query.category,
-        image_src = ctx.query.image_src;
+        image_src = ctx.query.image_src,
+        intro = ctx.query.intro;
 
   ctx.state.data = ctx;
 
@@ -16,9 +15,10 @@ module.exports = async (ctx) => {
     await mysql('association').insert({
       id: id,
       name: name,
-      name_abbreviate: name_abbreviate,
+      name_english: name_english,
       category: category,
-      image_src: image_src
+      image_src: image_src,
+      intro: intro
     });
   } catch (e) {
     ctx.state = {

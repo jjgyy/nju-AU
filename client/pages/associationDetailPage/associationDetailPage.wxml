@@ -1,0 +1,101 @@
+<view class="association-top-info">
+  <view class="left-image">
+    <image src="{{associationDetail.image_src}}"/>
+  </view>
+
+  <view class="right-info">
+    <view class="name-info">
+      <text>{{associationDetail.name}}</text>
+    </view>
+
+    <view class="english-info">
+      <text>{{associationDetail.name_english}}</text>
+    </view>
+
+    <view class="bottom-info">
+      <view class="bottom-info-left">
+        <view class="association-tags-container">
+          <view class="association-tag">{{associationDetail.category}}</view>
+        </view>
+      </view>
+      <view class="bottom-info-right">
+        <button bindtap="join" disabled="{{hasJoined}}">+ 加入</button>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+
+
+<view class="page-tab">
+  <view class="tab-cell-left">
+    <text bindtap="clickLeftTab" style="color: {{leftTabColor}}">简介</text>
+  </view>
+  <view class="tab-cell-right">
+    <text bindtap="clickRightTab" style="color: {{rightTabColor}}">新闻</text>
+  </view>
+</view>
+
+<view class="page-tab-line">
+  <view class="tab-line-left">
+    <text bindtap="clickLeftTab" style="color: {{leftTabLineColor}}">——</text>
+  </view>
+  <view class="tab-line-right">
+    <text bindtap="clickRightTab" style="color: {{rightTabLineColor}}">——</text>
+  </view>
+</view>
+
+
+
+
+
+<swiper current="{{currentTab}}" duration="300" bindchange="switchPage" style="height: {{clientHeight?clientHeight + 'px':'auto'}}">
+
+
+  <swiper-item>
+    <scroll-view scroll-y="true" class="scoll-y">
+      <view class="page-container">
+
+        <view class="association-intro-title">
+          <text>社团简介</text>
+        </view>
+        <view class="association-intro-container">
+          <text>{{associationDetail.intro}}</text>
+        </view>
+
+        <view class="association-contact-title">
+          <text>公众号</text>
+        </view>
+        <view class="association-contact-container">
+          <view class="association-contact-cell" wx:for="{{associationOfficialList}}" wx:key="*this">
+            <p>{{item.official}}</p>
+            <view bindtap="copy" data-copydata="{{item.official}}" class="copy-btn">复制</view>
+          </view>
+        </view>
+
+        <view class="association-contact-title">
+          <text>QQ群</text>
+        </view>
+        <view class="association-contact-container">
+          <view class="association-contact-cell" wx:for="{{associationQQList}}" wx:key="*this">
+            <p>{{item.qq}}</p>
+            <view bindtap="copy" data-copydata="{{item.qq}}" class="copy-btn">复制</view>
+          </view>
+        </view>
+
+      </view>
+    </scroll-view>
+  </swiper-item>
+
+
+  <swiper-item>
+    <scroll-view scroll-y="true" class="scoll-y">
+      <view class="page-container">
+        <text></text>
+      </view>
+    </scroll-view>
+  </swiper-item>
+
+
+</swiper>

@@ -16,8 +16,8 @@ Page({
     this.data.name = e.detail.value;
   },
 
-  name_abbreviate: function(e){
-    this.data.name_abbreviate = e.detail.value;
+  name_english: function(e){
+    this.data.name_english = e.detail.value;
   },
 
   category: function(e){
@@ -28,6 +28,10 @@ Page({
     this.data.image_src = e.detail.value;
   },
 
+  intro: function(e){
+    this.data.intro = e.detail.value;
+  },
+
   submit: function () {
     var that = this;
     wx.request({
@@ -35,9 +39,10 @@ Page({
       data: {
         id: that.data.id,
         name: that.data.name,
-        name_abbreviate: that.data.name_abbreviate,
+        name_english: that.data.name_english,
         category: that.data.category,
-        image_src: that.data.image_src
+        image_src: that.data.image_src,
+        intro: that.data.intro
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded'

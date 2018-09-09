@@ -1,11 +1,14 @@
 {
   "themeColor":"#a941a1",
+  "themeColor2":"#097aff",
   "pages":[
     "pages/newsPage/newsPage",
     "pages/newsDetailPage/newsDetailPage",
     "pages/newsWritePage/newsWritePage",
     "pages/associationPage/associationPage",
+    "pages/associationDetailPage/associationDetailPage",
     "pages/associationCreatePage/associationCreatePage",
+    "pages/associationAddContactPage/associationAddContactPage",
     "pages/mePage/mePage",
     "pages/index/index",
     "pages/addCgi/addCgi"
@@ -13,6 +16,7 @@
   "window":{
     "backgroundColor":"#F6F6F6",
     "backgroundTextStyle":"dark",
+    "navigationStyle":"default",
     "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTitleText": "南大社团",
     "navigationBarTextStyle":"black"

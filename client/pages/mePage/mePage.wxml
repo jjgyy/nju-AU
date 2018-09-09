@@ -18,3 +18,5 @@
 <button bindtap="toNewsWritePage">to news write page</button>
 
 <button bindtap="toAssociationCreatePage">to associate create page</button>
+
+<button bindtap="toAssociationAddContactPage">to associate add contact page</button>

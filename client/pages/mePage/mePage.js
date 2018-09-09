@@ -22,6 +22,12 @@ Page({
     })
   },
 
+  toAssociationAddContactPage: function () {
+    wx.navigateTo({
+      url: '../associationAddContactPage/associationAddContactPage',
+    })
+  },
+
   // 用户登录示例
   bindGetUserInfo: function () {
     if (this.data.logged) return;

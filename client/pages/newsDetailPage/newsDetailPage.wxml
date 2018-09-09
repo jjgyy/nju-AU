@@ -1,3 +1,6 @@
+<web-view src='https://mp.weixin.qq.com/s/eZHIRCmqZIvQ9T7WWTO-uw'></web-view>
+
+<!--
 <view>
   <view class="titleBlock">
     <text>{{news.title}}</text>
@@ -12,3 +15,4 @@
     <text>{{news.article}}</text>
   </view>
 </view>
+-->

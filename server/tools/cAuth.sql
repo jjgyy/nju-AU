@@ -55,8 +55,33 @@ DROP TABLE IF EXISTS `association`;
 CREATE TABLE `association` (
   `id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name_abbreviate` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name_english` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
   `category` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image_src` varchar(1000) COLLATE utf8mb4_unicode_ci,
+  `intro` varchar(3000) COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`),
   KEY `id` (`id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+
+
+DROP TABLE IF EXISTS `association_qq`;
+CREATE TABLE `association_qq` (
+  `id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `qq` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  KEY `id` (`id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+
+DROP TABLE IF EXISTS `association_official`;
+CREATE TABLE `association_official` (
+  `id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `official` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  KEY `id` (`id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+
+
+DROP TABLE IF EXISTS `association_joiner`;
+CREATE TABLE `association_joiner` (
+  `open_id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `association_id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  KEY `open_id` (`open_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci

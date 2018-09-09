@@ -3,11 +3,13 @@
 
   <input type="text" placeholder="请输入社团名" bindinput="name"/>
 
-  <input type="text" placeholder="请输入社团缩写" bindinput="name_abbreviate"/>
+  <input type="text" placeholder="请输入社团英文名" bindinput="name_english"/>
 
   <input type="text" placeholder="请输入分类" bindinput="category"/>
 
   <input type="text" placeholder="请输入图片网址" bindinput="image_src" maxlength="1000"/>
+
+  <input type="text" placeholder="请输入社团简介" bindinput="intro" maxlength="3000"/>
 </div>
 
 <button bindtap="submit">提交</button>

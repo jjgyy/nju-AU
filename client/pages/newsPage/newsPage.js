@@ -13,7 +13,6 @@ Page({
 
   toNewsDetailPage: function (e) {
     var id = e.currentTarget.dataset.id;
-    console.log(id);
     wx.navigateTo({
       url: '../newsDetailPage/newsDetailPage?' + 'id=' + id,
     })

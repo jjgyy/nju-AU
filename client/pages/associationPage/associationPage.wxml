@@ -16,31 +16,73 @@
     </view>
 </view>
 
+
+
+
+<view class="page__bd">
+</view>
+
+
+
+
 <swiper current="{{currentTab}}" duration="300" bindchange="switchPage" style="height: {{clientHeight?clientHeight + 'px':'auto'}}">
 
     <swiper-item>
         <scroll-view scroll-y="true" class="scoll-y">
-            <view class="association-container">
-                <view data-id="{{item.id}}" class="association-cell" wx:for="{{associationList}}" wx:key="item.id">
-                    <view class="association-image">
-                        <image src="{{item.image_src}}"/>
+
+            <view class="weui-search-bar">
+                <view class="weui-search-bar__form">
+                    <view class="weui-search-bar__box">
+                        <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+                        <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
+                        <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+                            <icon type="clear" size="14"></icon>
+                        </view>
                     </view>
-                    <view class="association-info">{{item.name}}</view>
+                    <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+                        <icon class="weui-icon-search" type="search" size="14"></icon>
+                        <view class="weui-search-bar__text">搜索</view>
+                    </label>
+                </view>
+                <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
+            </view>
+            <view class="weui-cells searchbar-result" wx:if="{{inputVal.length > 0}}">
+                <navigator url="" class="weui-cell" hover-class="weui-cell_active">
+                    <view class="weui-cell__bd">
+                        <view>实时搜索文本</view>
+                    </view>
+                </navigator>
+                <navigator url="" class="weui-cell" hover-class="weui-cell_active">
+                    <view class="weui-cell__bd">
+                        <view>实时搜索文本</view>
+                    </view>
+                </navigator>
+            </view>
+
+            <view class="association-container">
+                <view bindtap="toAssociationDetailPage" data-id="{{item.id}}" class="association-cell" wx:for="{{associationList}}" wx:key="item.id">
+                    <view class="association-name">{{item.name}}</view>
+                    <view class="association-tags-container">
+                        <view class="association-tag">{{item.category}}</view>
+                    </view>
                 </view>
             </view>
+
         </scroll-view>
     </swiper-item>
 
     <swiper-item>
         <scroll-view scroll-y="true" class="scoll-y">
+
             <view class="association-container">
-                <view data-id="{{item.id}}" class="association-cell" wx:for="{{associationList}}" wx:key="item.id">
-                    <view class="association-image">
-                        <image src="{{item.image_src}}"/>
+                <view bindtap="toAssociationDetailPage" data-id="{{item.id}}" class="association-cell" wx:for="{{userAssociationList}}" wx:key="item.id">
+                    <view class="association-name">{{item.name}}</view>
+                    <view class="association-tags-container">
+                        <view class="association-tag">{{item.category}}</view>
                     </view>
-                    <view class="association-info">{{item.name}}</view>
                 </view>
             </view>
+
         </scroll-view>
     </swiper-item>
 

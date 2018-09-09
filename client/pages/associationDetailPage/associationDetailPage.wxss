@@ -1,0 +1,220 @@
+.association-top-info{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 320rpx;
+  border-bottom: 4rpx solid whitesmoke;
+}
+
+.association-top-info .left-image{
+  display: flex;
+  align-items:center;/*垂直居中*/
+  justify-content: center;/*水平居中*/
+  width: 30%;
+}
+
+.association-top-info .left-image image{
+  width: 85%;
+  height: 85%;
+  border-radius: 10rpx;
+}
+
+.association-top-info .right-info{
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+
+.association-top-info .right-info .name-info{
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  height: 60rpx;
+  font-size: 32rpx;
+  font-weight: 500;
+  text-overflow: ellipsis;
+}
+
+.association-top-info .right-info .english-info{
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  height: 70rpx;
+  font-size: 22rpx;
+  color: #a0a0a0;
+}
+
+.association-top-info .right-info .bottom-info{
+  display: flex;
+  flex-direction: row;
+  height: 165rpx;
+}
+
+.association-top-info .right-info .bottom-info .bottom-info-left{
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+
+.association-tags-container{
+  display: flex;
+  flex-flow: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 30%;
+}
+
+.association-tags-container .association-tag{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10rpx 20rpx;
+  border: 0;
+  border-radius: 5rpx;
+  background: #f3f3f3;
+  color: #7d7d7d;
+  font-size: 22rpx;
+  font-weight: 450;
+}
+
+.association-top-info .right-info .bottom-info .bottom-info-right{
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  width: 30%;
+}
+
+.bottom-info-right button{
+  display: block;
+  height: 60rpx;
+  border: none;
+  background: #097aff;
+  color: #ffffff;
+  font-size: 24rpx;
+}
+
+.association-intro-title{
+  width: 100%;
+  padding: 10rpx 40rpx;
+  margin-top: 30rpx;
+  font-size: 32rpx;
+  font-weight: 500;
+}
+.association-intro-container{
+  width: 100%;
+  padding: 10rpx 40rpx;
+  font-size: 26rpx;
+  line-height: 1.8em;
+  text-indent: 2em;
+  letter-spacing: 0.02em;
+  color: #666666;
+  margin-bottom: 40rpx;
+}
+
+.association-contact-title{
+  width: 100%;
+  padding: 10rpx 40rpx;
+  font-size: 32rpx;
+  font-weight: 500;
+}
+.association-contact-container{
+  flex-direction: column;
+  width: 100%;
+  padding: 10rpx 40rpx;
+  font-size: 26rpx;
+  line-height: 1.8em;
+  letter-spacing: 0.02em;
+  color: #666666;
+}
+.association-contact-cell{
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 30rpx;
+  width: 100%;
+}
+.association-contact-cell p{
+  display: block;
+  width: 50%;
+  overflow: hidden;
+}
+.association-contact-cell .copy-btn{
+  display: flex;
+  height: 40rpx;
+  align-items: center;
+  justify-content: center;
+  padding: 5rpx 20rpx;
+  border: 1rpx solid #dddddd;
+  border-radius: 5rpx;
+  background: #f3f3f3;
+  color: #000000;
+  font-size: 22rpx;
+  font-weight: 450;
+}
+
+
+
+.page-container{
+  display: flex;
+  width: 100%;
+  height: auto;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+
+.page-tab{
+  display: flex;
+  flex-flow: row;
+  justify-content: space-around;
+  width: 100%;
+  height: 70rpx;
+  background: white;
+}
+.tab-cell-left{
+  display: flex;
+  flex-flow: row;
+  justify-content: flex-end;
+  align-items:center;/*垂直居中*/
+  width: 40%;
+  font-size: 26rpx;
+  font-weight: 500;
+}
+.tab-cell-right{
+  display: flex;
+  flex-flow: row;
+  justify-content: flex-start;
+  align-items:center;/*垂直居中*/
+  width: 40%;
+  font-size: 26rpx;
+  font-weight: 500;
+}
+.page-tab-line{
+  display: flex;
+  flex-flow: row;
+  justify-content: space-around;
+  width: 100%;
+  height: 5rpx;
+  padding-top: 0;
+  background: white;
+  border-bottom: 20rpx solid whitesmoke;
+}
+.tab-line-left{
+  display: flex;
+  flex-flow: row;
+  justify-content: flex-end;
+  align-items: flex-end;
+  width: 40%;
+  font-size: 26rpx;
+  font-weight: bold;
+}
+.tab-line-right{
+  display: flex;
+  flex-flow: row;
+  justify-content: flex-start;
+  align-items: flex-end;
+  width: 40%;
+  font-size: 26rpx;
+  font-weight: bold;
+}
+.scoll-y{height: 100%;}
