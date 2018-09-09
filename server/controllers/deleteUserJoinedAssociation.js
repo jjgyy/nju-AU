@@ -8,10 +8,9 @@ module.exports = async (ctx, next) => {
           association_id = ctx.query.association_id;
 
     try {
-      await mysql('association_joiner').insert({
-        open_id: open_id,
-        association_id: association_id
-      });
+      await mysql('association_joiner')
+          .where({open_id: open_id, association_id: association_id})
+          .del();
     } catch (e) {
       ctx.state = {
         code: -1,
@@ -24,4 +23,5 @@ module.exports = async (ctx, next) => {
   } else {
     ctx.state.code = -1
   }
+
 }

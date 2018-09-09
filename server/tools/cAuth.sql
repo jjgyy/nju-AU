@@ -85,3 +85,26 @@ CREATE TABLE `association_joiner` (
   `association_id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   KEY `open_id` (`open_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+
+
+DROP TABLE IF EXISTS `association_manager`;
+CREATE TABLE `association_manager` (
+  `open_id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `association_id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `identity` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+
+
+DROP TABLE IF EXISTS `user_identity`;
+CREATE TABLE `user_identity` (
+  `open_id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `association_id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `identity` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+
+
+DROP TABLE IF EXISTS `admin`;
+CREATE TABLE `admin` (
+  `open_id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci

@@ -5,13 +5,22 @@ module.exports = async (ctx, next) => {
   if (ctx.state.$wxInfo.loginState === 1) {
 
     const open_id = ctx.state.$wxInfo.userinfo.openId,
-          association_id = ctx.query.association_id;
+          password = ctx.query.password;
 
     try {
-      await mysql('association_joiner').insert({
-        open_id: open_id,
-        association_id: association_id
-      });
+
+
+      var result = await mysql('admin')
+          .select('password')
+          .where('open_id', open_id)
+          .first();
+
+      if(result.password == password){
+        ctx.state.data = "pass";
+      }else{
+        ctx.state.data = "stop";
+      }
+
     } catch (e) {
       ctx.state = {
         code: -1,
@@ -24,4 +33,5 @@ module.exports = async (ctx, next) => {
   } else {
     ctx.state.code = -1
   }
+
 }

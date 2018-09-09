@@ -9,8 +9,6 @@ module.exports = async (ctx) => {
         image_src = ctx.query.image_src,
         intro = ctx.query.intro;
 
-  ctx.state.data = ctx;
-
   try {
     await mysql('association').insert({
       id: id,

@@ -5,7 +5,7 @@ var util = require('../../utils/util.js')
 Page({
   data:{
     associationList: [],
-    userAssociationList: [],
+    userAssociationList: null,
 
     currentTab: 0,
     clientHeight: null,
@@ -103,16 +103,6 @@ Page({
       }
     });
 
-  },
-
-
-  onReady:function(){
-    // 页面渲染完成
-  },
-  onShow:function(){
-    // 页面显示
-    var that = this;
-
     wx.request({
       url: `${config.service.host}/weapp/getAssociationList`,
       success(result) {
@@ -126,20 +116,34 @@ Page({
       }
     });
 
-    qcloud.request({
-      url: `${config.service.host}/weapp/getUserAssociationList`,
-      login: true,
-      success (result) {
-        console.log('request success', result)
-        that.setData({
-          userAssociationList: result.data.data
-        })
-      },
-      fail (error) {
-        console.log('request fail', error);
-      }
-    });
+  },
 
+
+  onReady:function(){
+    // 页面渲染完成
+  },
+  onShow:function(){
+    // 页面显示
+    var that = this;
+    console.log('onShow');
+    if(that.data.userAssociationList == null || getApp().data.needRefreshJoined){
+      util.showBusy('加载中...');
+
+      qcloud.request({
+        url: `${config.service.host}/weapp/getUserAssociationList`,
+        login: true,
+        success (result) {
+          that.setData({
+            userAssociationList: result.data.data
+          });
+          util.showSuccess('加载成功');
+          getApp().data.needRefreshJoined = false;  // 刷新成功后将全局变量置为false
+        },
+        fail (error) {
+          console.log('request fail', error);
+        }
+      });
+    }
   },
   onHide:function(){
     // 页面隐藏

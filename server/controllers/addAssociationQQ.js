@@ -5,8 +5,6 @@ module.exports = async (ctx) => {
   const id = ctx.query.id,
         qq = ctx.query.qq;
 
-  ctx.state.data = ctx;
-
   try {
     await mysql('association_qq').insert({
       id: id,

@@ -9,7 +9,11 @@
     "pages/associationDetailPage/associationDetailPage",
     "pages/associationCreatePage/associationCreatePage",
     "pages/associationAddContactPage/associationAddContactPage",
+    "pages/associationJoinedPage/associationJoinedPage",
+    "pages/associationManagePage/associationManagePage",
     "pages/mePage/mePage",
+    "pages/adminLoginPage/adminLoginPage",
+    "pages/adminPage/adminPage",
     "pages/index/index",
     "pages/addCgi/addCgi"
   ],

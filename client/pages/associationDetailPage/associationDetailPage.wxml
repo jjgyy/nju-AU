@@ -19,7 +19,7 @@
         </view>
       </view>
       <view class="bottom-info-right">
-        <button bindtap="join" disabled="{{hasJoined}}">+ 加入</button>
+        <button bindtap="join" disabled="{{hasJoined}}">{{joinBtnText}}</button>
       </view>
     </view>
   </view>

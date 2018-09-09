@@ -12,7 +12,6 @@ module.exports = async (ctx) => {
       article = ctx.query.article,
       furtherInfo = '没啥';
 
-  ctx.state.data = ctx;
 
   try {
     await mysql('publicNews').insert({

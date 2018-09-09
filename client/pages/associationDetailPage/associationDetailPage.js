@@ -11,6 +11,8 @@ Page({
 
     hasJoined: false,
 
+    joinBtnText: '+ 加入',
+
     currentTab: 0,
     clientHeight: null,
     leftTabColor: '#0f0f0f',
@@ -33,24 +35,46 @@ Page({
     })
   },
 
+
   join: function () {
-    this.setData({
-      hasJoined: true
-    });
-    qcloud.request({
-      url: `${config.service.host}/weapp/addAssociationJoiner`,
-      data: {
-        association_id: this.data.association_id
-      },
-      login: true,
-      success (result) {
-        console.log('request success', result)
-      },
-      fail (error) {
-        console.log('request fail', error);
-      }
-    })
+    this.openConfirm(this.data.association_id);
+
   },
+  openConfirm: function (id) {
+    var that = this;
+    wx.showModal({
+      title: '确认加入',
+      content: '将此社团加入到我的社团',
+      confirmText: "确认",
+      cancelText: "取消",
+      success: function (res) {
+        if (res.confirm) {
+          that.setData({
+            hasJoined: true,
+            joinBtnText: '已加入'
+          });
+          util.showBusy('正在加入...');
+          qcloud.request({
+            url: `${config.service.host}/weapp/addAssociationJoiner`,
+            data: {
+              association_id: id
+            },
+            login: true,
+            success () {
+              util.showSuccess('加入成功');
+              getApp().data.needRefreshJoined = true; // 有修改后将全局变量置为true
+            },
+            fail (error) {
+              console.log('request fail', error);
+              util.showModel('出错了', error.message);
+            }
+          })
+        }else{
+        }
+      }
+    });
+  },
+
 
   clickLeftTab: function () {
     this.setData({
@@ -100,12 +124,13 @@ Page({
 
     if(options.hasJoined == 'true'){
       this.setData({
-        hasJoined: true
+        hasJoined: true,
+        joinBtnText: '已加入'
       })
-    }
-    else{
+    } else{
       this.setData({
-        hasJoined: false
+        hasJoined: false,
+        joinBtnText: '+ 加入'
       })
     }
 

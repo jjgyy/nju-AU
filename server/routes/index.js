@@ -46,7 +46,7 @@ router.get('/addAssociationQQ', controllers.addAssociationQQ)
 
 router.get('/addAssociationOfficial', controllers.addAssociationOfficial)
 
-router.get('/addAssociationJoiner', validationMiddleware, controllers.addAssociationJoiner)//添加社团参与者（需要认证）
+router.get('/addAssociationJoiner', validationMiddleware, controllers.addAssociationJoiner)
 
 router.get('/getAssociationList', controllers.getAssociationList)
 
@@ -55,5 +55,11 @@ router.get('/getAssociationDetail', controllers.getAssociationDetail)
 router.get('/getAssociationContact', controllers.getAssociationContact)
 
 router.get('/getUserAssociationList', validationMiddleware, controllers.getUserAssociationList)
+
+router.get('/getUserManageList', validationMiddleware, controllers.getUserManageList)
+
+router.get('/deleteUserJoinedAssociation', validationMiddleware, controllers.deleteUserJoinedAssociation)
+
+router.get('/validateAdmin', validationMiddleware, controllers.validateAdmin)
 
 module.exports = router
