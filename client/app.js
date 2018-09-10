@@ -47,19 +47,6 @@ App({
       })
     }
 
-    util.showBusy('加载社团...');
-    qcloud.request({
-      url: `${config.service.host}/weapp/getUserAssociationList`,
-      login: true,
-      success (result) {
-        that.data.joinedAssociationList = result.data.data;
-      },
-      fail (error) {
-        console.log('request fail', error.message);
-      }
-    });
-    util.showSuccess('加载成功');
-
   }
 
 })

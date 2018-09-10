@@ -6,6 +6,12 @@ Page({
   data:{
     manageAssociationList: []
   },
+  toManageOptionsPage: function (e){
+    var id = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '../manageOptionsPage/manageOptionsPage?' + 'id=' + id
+    })
+  },
   onLoad:function(options){
     // 页面初始化 options为页面跳转所带来的参数
     util.showBusy('加载中...');

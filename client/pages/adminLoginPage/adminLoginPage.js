@@ -12,6 +12,7 @@ Page({
   },
 
   validate: function () {
+    util.showBusy('正在认证...');
     var that = this;
     qcloud.request({
       url: `${config.service.host}/weapp/validateAdmin`,

@@ -151,7 +151,6 @@ Page({
         'content-type': 'application/x-www-form-urlencoded'
       },
       success: function(res) {
-        console.log(res.data);
         that.setData({
           associationDetail: res.data.data
         })
@@ -167,7 +166,6 @@ Page({
         'content-type': 'application/x-www-form-urlencoded'
       },
       success: function(res) {
-        console.log(res.data);
         that.setData({
           associationQQList: res.data.data.associationQQList,
           associationOfficialList: res.data.data.associationOfficialList

@@ -42,17 +42,23 @@ router.get('/getNewsDetail', controllers.getNewsDetail)
 
 router.get('/addAssociation', controllers.addAssociation)
 
-router.get('/addAssociationQQ', controllers.addAssociationQQ)
+router.get('/addAssociationQQ', validationMiddleware, controllers.validateManager, controllers.addAssociationQQ)
 
-router.get('/addAssociationOfficial', controllers.addAssociationOfficial)
+router.get('/addAssociationOfficial', validationMiddleware, controllers.validateManager, controllers.addAssociationOfficial)
 
 router.get('/addAssociationJoiner', validationMiddleware, controllers.addAssociationJoiner)
 
 router.get('/getAssociationList', controllers.getAssociationList)
 
+router.get('/getAssociationListByCategory', controllers.getAssociationListByCategory)
+
 router.get('/getAssociationDetail', controllers.getAssociationDetail)
 
 router.get('/getAssociationContact', controllers.getAssociationContact)
+
+router.get('/deleteAssociationOfficial', validationMiddleware, controllers.validateManager, controllers.deleteAssociationOfficial)
+
+router.get('/deleteAssociationQQ', validationMiddleware, controllers.validateManager, controllers.deleteAssociationQQ)
 
 router.get('/getUserAssociationList', validationMiddleware, controllers.getUserAssociationList)
 
@@ -60,6 +66,10 @@ router.get('/getUserManageList', validationMiddleware, controllers.getUserManage
 
 router.get('/deleteUserJoinedAssociation', validationMiddleware, controllers.deleteUserJoinedAssociation)
 
+router.get('/updateAssociationInfo', validationMiddleware, controllers.validateManager, controllers.updateAssociationInfo)
+
 router.get('/validateAdmin', validationMiddleware, controllers.validateAdmin)
+
+router.get('/validateManager', validationMiddleware, controllers.validateManager)
 
 module.exports = router

@@ -15,19 +15,29 @@ Page({
     rightTabLineColor: 'rgba(0,0,0,0)',
 
     inputShowed: false,
-    inputVal: ""
+    inputVal: "",
+    searchResult: []
   },
 
   toAssociationDetailPage: function (e) {
     var id = e.currentTarget.dataset.id;
     var hasJoined = false;
-    for(var i=0, length=this.data.userAssociationList.length; i<length; i++){
-      if(id == this.data.userAssociationList[i].id){
-        hasJoined = true;
+    if(this.data.userAssociationList.length != null) {
+      for (var i = 0, length = this.data.userAssociationList.length; i < length; i++) {
+        if (id == this.data.userAssociationList[i].id) {
+          hasJoined = true;
+        }
       }
     }
     wx.navigateTo({
       url: '../associationDetailPage/associationDetailPage?' + 'id=' + id + '&hasJoined=' + hasJoined
+    })
+  },
+
+  toAssociationCategoryPage: function (e) {
+    var category = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '../associationCategoryPage/associationCategoryPage?' + 'category=' + category + '&joinedAssociationList=' + this.data.userAssociationList
     })
   },
 
@@ -89,7 +99,23 @@ Page({
     this.setData({
       inputVal: e.detail.value
     });
+    var reg = new RegExp(this.data.inputVal);
+    var searchResult = [];
+    for(var i=0, resultLength=0, length=this.data.associationList.length; i<length&&resultLength<4; i++){
+      //如果字符串中不包含目标字符会返回-1
+      if(this.data.associationList[i].name.match(reg)){
+        searchResult.push({
+          id: this.data.associationList[i].id,
+          name: this.data.associationList[i].name
+        });
+        resultLength ++;
+      }
+    }
+    this.setData({
+      searchResult: searchResult
+    });
   },
+
 
   onLoad:function(options){
     // 页面初始化 options为页面跳转所带来的参数
@@ -106,7 +132,6 @@ Page({
     wx.request({
       url: `${config.service.host}/weapp/getAssociationList`,
       success(result) {
-        console.log(result.data);
         that.setData({
           associationList: result.data.data
         })
@@ -125,7 +150,6 @@ Page({
   onShow:function(){
     // 页面显示
     var that = this;
-    console.log('onShow');
     if(that.data.userAssociationList == null || getApp().data.needRefreshJoined){
       util.showBusy('加载中...');
 

@@ -4,7 +4,21 @@ var util = require('../../utils/util.js')
 
 Page({
   data: {
-    joinedAssociationList: [],
+    joinedAssociationList: null,
+  },
+
+  toAssociationDetailPage: function (id) {
+    var hasJoined = false;
+    if(this.data.joinedAssociationList != null) {
+      for (var i = 0, length = this.data.joinedAssociationList.length; i < length; i++) {
+        if (id == this.data.joinedAssociationList[i].id) {
+          hasJoined = true;
+        }
+      }
+    }
+    wx.navigateTo({
+      url: '../associationDetailPage/associationDetailPage?' + 'id=' + id + '&hasJoined=' + hasJoined
+    })
   },
 
   open: function(e){
@@ -22,17 +36,6 @@ Page({
         }
       }
     });
-  },
-  toAssociationDetailPage: function (id) {
-    var hasJoined = false;
-    for(var i=0, length=this.data.joinedAssociationList.length; i<length; i++){
-      if(id == this.data.joinedAssociationList[i].id){
-        hasJoined = true;
-      }
-    }
-    wx.navigateTo({
-      url: '../associationDetailPage/associationDetailPage?' + 'id=' + id + '&hasJoined=' + hasJoined
-    })
   },
   openConfirm: function (id) {
     var that = this;

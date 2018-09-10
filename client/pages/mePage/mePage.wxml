@@ -27,7 +27,7 @@
 
 <view class="weui-cells__title">管理员选项</view>
 <view class="weui-cells weui-cells_after-title">
-    <navigator url="../associationManagePage/associationManagePage" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+    <navigator url="../managePage/managePage" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
         <view class="weui-cell__hd">
             <image src="icon/manageAssociation.svg" style="margin-right: 10px;vertical-align: middle;width:25px; height: 25px;"></image>
         </view>

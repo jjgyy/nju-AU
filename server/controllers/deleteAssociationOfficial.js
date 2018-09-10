@@ -3,14 +3,14 @@ const {mysql} = require('../qcloud')
 module.exports = async (ctx, next) => {
 
   if (ctx.state.$wxInfo.managerState === 1) {
+
     const id = ctx.query.id,
-          qq = ctx.query.qq;
+          official = ctx.query.official;
 
     try {
-      await mysql('association_qq').insert({
-        id: id,
-        qq: qq
-      });
+      await mysql('association_official')
+          .where({id: id, official: official})
+          .del();
     } catch (e) {
       ctx.state = {
         code: -1,

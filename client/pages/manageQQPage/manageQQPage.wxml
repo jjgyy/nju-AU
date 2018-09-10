@@ -1,0 +1,23 @@
+<view class="weui-cells__title">已关联的qq群</view>
+<view class="weui-cells weui-cells_after-title">
+    <view bindtap="open" data-qq="{{item.qq}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for="{{associationQQList}}" wx:key="*this">
+        <view class="weui-cell__bd">{{item.qq}}</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access">选项</view>
+    </view>
+</view>
+
+<view class="weui-cells__title">添加qq群</view>
+<view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+            <view class="weui-label">添加qq群</view>
+        </view>
+        <view class="weui-cell__bd">
+            <input class="weui-input" bindinput="qq" placeholder="请输入qq群号" type="text" maxlength="20"/>
+        </view>
+    </view>
+</view>
+
+<view class="weui-btn-area">
+    <button class="weui-btn" type="primary" bindtap="add">增加</button>
+</view>

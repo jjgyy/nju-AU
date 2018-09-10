@@ -1,0 +1,7 @@
+<view class="weui-cells__title">{{category}}</view>
+<view class="weui-cells weui-cells_after-title">
+    <view bindtap="toAssociationDetailPage" data-id="{{item.id}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for="{{associationList}}" wx:key="item.id">
+        <view class="weui-cell__bd">{{item.name}}</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access">前往</view>
+    </view>
+</view>

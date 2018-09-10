@@ -1,0 +1,13 @@
+<view class="weui-cells__title">社团简介</view>
+<view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell">
+        <view class="weui-cell__bd">
+            <textarea value="{{intro}}" bindblur="intro" class="weui-textarea" placeholder="请输入社团简介" style="height: 11.3em" maxlength="3000"/>
+            <view class="weui-textarea-counter">限3000字</view>
+        </view>
+    </view>
+</view>
+
+<view class="weui-btn-area">
+    <button class="weui-btn" type="primary" bindtap="submit">提交</button>
+</view>

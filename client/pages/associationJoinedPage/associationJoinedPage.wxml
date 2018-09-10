@@ -1,6 +1,6 @@
 <view class="weui-cells__title">我加入的社团</view>
 <view class="weui-cells weui-cells_after-title">
-  <view bindtap="open" data-id="{{item.id}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for="{{joinedAssociationList}}" wx:key="item.id">
+  <view bindtap="open" data-id="{{item.id}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for="{{joinedAssociationList}}" wx:key="*this">
     <view class="weui-cell__bd">{{item.name}}</view>
     <view class="weui-cell__ft weui-cell__ft_in-access">点击管理</view>
   </view>

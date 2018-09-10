@@ -1,0 +1,23 @@
+<view class="weui-cells__title">已关联的微信公众号</view>
+<view class="weui-cells weui-cells_after-title">
+    <view bindtap="open" data-official="{{item.official}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for="{{associationOfficialList}}" wx:key="*this">
+        <view class="weui-cell__bd">{{item.official}}</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access">选项</view>
+    </view>
+</view>
+
+<view class="weui-cells__title">添加微信公众号</view>
+<view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+            <view class="weui-label">添加公众号</view>
+        </view>
+        <view class="weui-cell__bd">
+            <input class="weui-input" bindinput="official" placeholder="请输入公众号名称" type="text" maxlength="40"/>
+        </view>
+    </view>
+</view>
+
+<view class="weui-btn-area">
+    <button class="weui-btn" type="primary" bindtap="add">增加</button>
+</view>

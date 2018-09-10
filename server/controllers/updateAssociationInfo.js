@@ -3,19 +3,22 @@ const {mysql} = require('../qcloud')
 module.exports = async (ctx, next) => {
 
   if (ctx.state.$wxInfo.managerState === 1) {
+
     const id = ctx.query.id,
-          qq = ctx.query.qq;
+          intro = ctx.query.intro;
 
     try {
-      await mysql('association_qq').insert({
-        id: id,
-        qq: qq
-      });
+      await mysql('association')
+          .where('id', id)
+          .update({
+            intro: intro,
+            thisKeyIsSkipped: undefined
+          });
     } catch (e) {
       ctx.state = {
         code: -1,
         data: {
-          msg: e.sqlMessage  //数据库报错信息
+          msg: e.sqlMessage
         }
       }
     }
@@ -23,5 +26,4 @@ module.exports = async (ctx, next) => {
   } else {
     ctx.state.code = -1
   }
-
 }
