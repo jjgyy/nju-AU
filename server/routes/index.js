@@ -40,7 +40,7 @@ router.get('/getNewsList', controllers.getNewsList)
 
 router.get('/getNewsDetail', controllers.getNewsDetail)
 
-router.get('/addAssociation', controllers.addAssociation)
+router.get('/addAuditAssociation', validationMiddleware, controllers.addAuditAssociation)
 
 router.get('/addAssociationQQ', validationMiddleware, controllers.validateManager, controllers.addAssociationQQ)
 
@@ -67,6 +67,16 @@ router.get('/getUserManageList', validationMiddleware, controllers.getUserManage
 router.get('/deleteUserJoinedAssociation', validationMiddleware, controllers.deleteUserJoinedAssociation)
 
 router.get('/updateAssociationInfo', validationMiddleware, controllers.validateManager, controllers.updateAssociationInfo)
+
+router.get('/loginAdmin', validationMiddleware, controllers.validateAdmin, controllers.loginAdmin)
+
+router.get('/addAssociation', validationMiddleware, controllers.validateAdmin, controllers.addAssociation)
+
+router.get('/getAuditAssociationList', validationMiddleware, controllers.validateAdmin, controllers.getAuditAssociationList)
+
+router.get('/getAuditAssociationDetail', validationMiddleware, controllers.validateAdmin, controllers.getAuditAssociationDetail)
+
+router.get('/deleteAuditAssociation', validationMiddleware, controllers.validateAdmin, controllers.deleteAuditAssociation)
 
 router.get('/validateAdmin', validationMiddleware, controllers.validateAdmin)
 

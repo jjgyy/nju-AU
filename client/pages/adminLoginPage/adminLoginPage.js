@@ -15,7 +15,7 @@ Page({
     util.showBusy('正在认证...');
     var that = this;
     qcloud.request({
-      url: `${config.service.host}/weapp/validateAdmin`,
+      url: `${config.service.host}/weapp/loginAdmin`,
       data: {
         password: that.data.password
       },

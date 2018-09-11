@@ -7,7 +7,8 @@ App({
   data:{
     userInfo: {},
     logged: false,
-    needRefreshJoined: true
+    needRefreshJoined: true,
+    categories: ['公益', '体育', '艺术', '文化', '科技', '学术', '其他']
   },
   onLaunch: function () {
     util.showBusy('登录中...');

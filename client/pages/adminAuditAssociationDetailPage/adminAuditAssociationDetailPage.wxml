@@ -1,11 +1,23 @@
-<view class="weui-cells__title">社团信息填写</view>
+<view class="weui-cells__title">管理员必填</view>
+<view class="weui-cells weui-cells_after-title">
+  <view class="weui-cell weui-cell_input">
+    <view class="weui-cell__hd">
+      <view class="weui-label">社团ID</view>
+    </view>
+    <view class="weui-cell__bd">
+      <input class="weui-input" bindinput="id" placeholder="请输入社团ID" type="text" maxlength="20"/>
+    </view>
+  </view>
+</view>
+
+<view class="weui-cells__title">社团信息审核</view>
 <view class="weui-cells weui-cells_after-title">
   <view class="weui-cell weui-cell_input">
     <view class="weui-cell__hd">
       <view class="weui-label">社团名称</view>
     </view>
     <view class="weui-cell__bd">
-      <input class="weui-input" bindinput="name" placeholder="请输入社团名" type="text" maxlength="20"/>
+      <input class="weui-input" bindinput="name" value="{{name}}" placeholder="请输入社团名" type="text" maxlength="20"/>
     </view>
   </view>
   <view class="weui-cell weui-cell_input">
@@ -13,7 +25,7 @@
       <view class="weui-label">社团英文名</view>
     </view>
     <view class="weui-cell__bd">
-      <input class="weui-input" bindinput="name_english" placeholder="请输入社团英文名" type="text" maxlength="100"/>
+      <input class="weui-input" bindinput="name_english" value="{{name_english}}" placeholder="请输入社团英文名" type="text" maxlength="100"/>
     </view>
   </view>
 
@@ -60,5 +72,9 @@
 </view>
 
 <view class="weui-btn-area">
-  <button class="weui-btn" type="primary" bindtap="submit">提交</button>
+  <button class="weui-btn" type="primary" bindtap="submit">审核通过</button>
+</view>
+
+<view class="weui-btn-area">
+  <button class="weui-btn" type="danger" bindtap="delete">删除</button>
 </view>

@@ -19,6 +19,9 @@
     "pages/mePage/mePage",
     "pages/adminLoginPage/adminLoginPage",
     "pages/adminPage/adminPage",
+    "pages/adminAuditAssociationPage/adminAuditAssociationPage",
+    "pages/adminAuditAssociationDetailPage/adminAuditAssociationDetailPage",
+    "pages/morePage/morePage",
     "pages/index/index",
     "pages/addCgi/addCgi"
   ],

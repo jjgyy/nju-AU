@@ -7,16 +7,20 @@
 }
 
 .association-top-info .left-image{
-  display: flex;
-  align-items:center;/*垂直居中*/
-  justify-content: center;/*水平居中*/
-  width: 30%;
+  width: 26%;
+  margin: 2% 2%;
+  border-radius: 10rpx;
+  overflow: hidden;
+  background: whitesmoke;
+  background-origin:border-box;                /*从content区域开始显示背景*/
+  background-position:50% 50%;              /*图片上下左右居中*/
+  background-size: cover;                  /*保持图像本身的宽高比例，将图片缩放到宽度或高度正好适应定义背景的区域*/
+  background-repeat:no-repeat;
 }
 
 .association-top-info .left-image image{
   width: 85%;
   height: 85%;
-  border-radius: 10rpx;
 }
 
 .association-top-info .right-info{

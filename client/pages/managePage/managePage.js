@@ -12,6 +12,24 @@ Page({
       url: '../manageOptionsPage/manageOptionsPage?' + 'id=' + id
     })
   },
+
+  openConfirm: function () {
+    wx.showModal({
+      title: '申请入驻',
+      content: '如果已成立的社团没有出现在社团列表，请进入填写入驻信息表',
+      confirmText: "确认",
+      cancelText: "取消",
+      success: function (res) {
+        if (res.confirm) {
+          wx.navigateTo({
+            url: '../associationCreatePage/associationCreatePage'
+          })
+        }else{
+        }
+      }
+    });
+  },
+
   onLoad:function(options){
     // 页面初始化 options为页面跳转所带来的参数
     util.showBusy('加载中...');

@@ -2,14 +2,9 @@ var qcloud = require('../../vendor/wafer2-client-sdk/index')
 var config = require('../../config')
 var util = require('../../utils/util.js')
 
-
 Page({
   data: {
-  },
-  toAdminAuditAssociationPage: function () {
-    wx.navigateTo({
-      url: '../adminAuditAssociationPage/adminAuditAssociationPage'
-    })
+
   },
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数

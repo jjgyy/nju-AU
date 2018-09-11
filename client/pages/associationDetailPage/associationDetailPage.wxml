@@ -1,6 +1,5 @@
 <view class="association-top-info">
-  <view class="left-image">
-    <image src="{{associationDetail.image_src}}"/>
+  <view class="left-image" style="background-image: url({{associationDetail.image_src}})">
   </view>
 
   <view class="right-info">

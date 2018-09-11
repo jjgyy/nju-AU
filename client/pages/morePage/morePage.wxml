@@ -1,0 +1,12 @@
+<view class="weui-cells__title">其他选项</view>
+<view class="weui-cells weui-cells_after-title">
+    <navigator url="../adminLoginPage/adminLoginPage" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__bd">后台管理员</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access">前往</view>
+    </navigator>
+
+    <navigator url="../adminPage/adminPage" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__bd">管理员测试</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access">前往</view>
+    </navigator>
+</view>

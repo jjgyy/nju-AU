@@ -1,49 +1,65 @@
+
 var qcloud = require('../../vendor/wafer2-client-sdk/index')
 var config = require('../../config')
 var util = require('../../utils/util.js')
 
 Page({
   data:{
-    association_id: null,
-
     categories: null,
     categoryIndex: 0,
 
+    audit_id: null,
+
+    id: null,
     name: null,
     name_english: null,
     intro: null,
     imgUrl: null
   },
+
+  id: function(e){
+    this.data.id = e.detail.value;
+  },
+
+  name: function(e){
+    this.data.name = e.detail.value;
+  },
+
+  name_english: function(e){
+    this.data.name_english = e.detail.value;
+  },
+
   intro: function(e){
     this.data.intro = e.detail.value;
   },
 
   submit: function(){
-    this.openConfirm()
+    this.openAddConfirm();
   },
-  openConfirm: function () {
+  openAddConfirm: function () {
     var that = this;
+
     wx.showModal({
-      title: '确认修改',
-      content: '修改社团基本信息',
+      title: '审核通过',
+      content: '确认审核通过',
       confirmText: "确认",
       cancelText: "取消",
       success: function (res) {
         if (res.confirm) {
           util.showBusy('正在提交...');
           qcloud.request({
-            url: `${config.service.host}/weapp/updateAssociationInfo`,
+            url: `${config.service.host}/weapp/addAssociation`,
             data: {
-              id: that.data.association_id,
+              id: that.data.id,
               name: that.data.name,
               name_english: that.data.name_english,
               category: that.data.categories[that.data.categoryIndex],
-              intro: that.data.intro,
-              image_src: that.data.imgUrl
+              image_src: that.data.imgUrl,
+              intro: that.data.intro
             },
             login: true,
             success () {
-              util.showSuccess('修改成功');
+              wx.navigateBack();
             },
             fail (error) {
               console.log('request fail', error);
@@ -51,10 +67,49 @@ Page({
             }
           })
         }else{
-
         }
       }
     });
+  },
+
+  delete: function () {
+    this.openDeleteConfirm();
+  },
+  openDeleteConfirm: function () {
+    var that = this;
+
+    wx.showModal({
+      title: '删除申请',
+      content: '确认删除此申请',
+      confirmText: "确认",
+      cancelText: "取消",
+      success: function (res) {
+        if (res.confirm) {
+          util.showBusy('正在删除...');
+          qcloud.request({
+            url: `${config.service.host}/weapp/deleteAuditAssociation`,
+            data: {
+              id: that.data.audit_id,
+            },
+            login: true,
+            success () {
+              wx.navigateBack();
+            },
+            fail (error) {
+              console.log('request fail', error);
+              util.showModel('出错了', error.message);
+            }
+          })
+        }else{
+        }
+      }
+    });
+  },
+
+  bindCategoryChange: function(e) {
+    this.setData({
+      categoryIndex: e.detail.value
+    })
   },
 
   // 上传图片接口
@@ -95,6 +150,7 @@ Page({
       }
     })
   },
+
   // 预览图片
   previewImg: function () {
     wx.previewImage({
@@ -107,34 +163,35 @@ Page({
     // 页面初始化 options为页面跳转所带来的参数
     util.showBusy('加载中...');
     var that = this;
-    this.setData({
-      association_id: options.id,
+    that.setData({
       categories: getApp().data.categories
     });
-    wx.request({
-      url: `${config.service.host}/weapp/getAssociationDetail`,
+    qcloud.request({
+      url: `${config.service.host}/weapp/getAuditAssociationDetail`,
       data: {
         id: options.id
       },
-      header: {
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      success: function(res) {
+      login: true,
+      success (result) {
         var categoryIndex = 0;
         for(var i=0, length=that.data.categories.length; i<length; i++){
-          if(that.data.categories[i] == res.data.data.category){
+          if(that.data.categories[i] == result.data.data.category){
             categoryIndex = i;
             break;
           }
         }
         that.setData({
-          name: res.data.data.name,
-          name_english: res.data.data.name_english,
+          audit_id: result.data.data.id,
+          name: result.data.data.name,
+          name_english: result.data.data.name_english,
           categoryIndex: categoryIndex,
-          intro: res.data.data.intro,
-          imgUrl: res.data.data.image_src
+          intro: result.data.data.intro,
+          imgUrl: result.data.data.image_src
         });
         util.showSuccess('加载成功');
+      },
+      fail (error) {
+        console.log('request fail', error);
       }
     });
   },

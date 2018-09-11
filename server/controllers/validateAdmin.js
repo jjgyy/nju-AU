@@ -4,30 +4,20 @@ module.exports = async (ctx, next) => {
 
   if (ctx.state.$wxInfo.loginState === 1) {
 
-    const open_id = ctx.state.$wxInfo.userinfo.openId,
-          password = ctx.query.password;
+    const open_id = ctx.state.$wxInfo.userinfo.openId;
 
-    try {
-
-
-      var result = await mysql('admin')
-          .select('password')
-          .where('open_id', open_id)
-          .first();
-
-      if(result.password == password){
-        ctx.state.data = "pass";
-      }else{
-        ctx.state.data = "stop";
+    const adminList = await mysql('admin')
+        .select('open_id');
+    var isAdmin = false;
+    for(var i=0, length=adminList.length; i<length; i++){
+      if(adminList[i].open_id == open_id){
+        isAdmin = true;
+        break;
       }
-
-    } catch (e) {
-      ctx.state = {
-        code: -1,
-        data: {
-          msg: e.sqlMessage  //数据库报错信息
-        }
-      }
+    }
+    if(isAdmin) {
+      ctx.state.$wxInfo.adminState = 1;
+      await next();
     }
 
   } else {
