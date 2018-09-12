@@ -119,3 +119,16 @@ CREATE TABLE `association_audit` (
   `image_src` varchar(1000) COLLATE utf8mb4_unicode_ci,
   `intro` varchar(3000) COLLATE utf8mb4_unicode_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+
+
+DROP TABLE IF EXISTS `article`;
+CREATE TABLE `article` (
+  `id` int(32) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `association_id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `association_name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `url` varchar(1000) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image_src` varchar(1000) COLLATE utf8mb4_unicode_ci,
+  `delete` int(32) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci

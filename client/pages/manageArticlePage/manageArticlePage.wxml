@@ -1,0 +1,7 @@
+<view class="weui-cells__title">新建文章</view>
+<view class="weui-cells weui-cells_after-title">
+  <view bindtap="toManageWriteArticlePage" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+    <view class="weui-cell__bd">新建文章</view>
+    <view class="weui-cell__ft weui-cell__ft_in-access">前往</view>
+  </view>
+</view>
