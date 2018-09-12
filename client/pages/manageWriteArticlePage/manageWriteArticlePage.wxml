@@ -1,5 +1,6 @@
 <view class="weui-cells__title">文章基本信息</view>
 <view class="weui-cells weui-cells_after-title">
+
   <view class="weui-cell weui-cell_input">
     <view class="weui-cell__hd">
       <view class="weui-label">文章标题</view>
@@ -14,7 +15,7 @@
       <view class="weui-label">文章网址</view>
     </view>
     <view class="weui-cell__bd">
-      <input class="weui-input" bindinput="url" value="{{url}}" placeholder="请输入社团公众号文章网址" type="text" maxlength="1000"/>
+      <input class="weui-input" bindinput="url" value="{{url}}" placeholder="请输入公众号文章网址" type="text" maxlength="1000"/>
     </view>
   </view>
 

@@ -221,3 +221,71 @@
   font-weight: bold;
 }
 .scoll-y{height: 100%;}
+
+
+
+.newsCell{
+  display: flex;
+  flex-flow: row;
+  width: 96%;
+  height: 250rpx;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
+  border: 1rpx solid #dddddd;
+  border-radius: 10rpx;
+  background: #f7f7f7;
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+  animation-name: fadeInDown;
+}
+@keyframes fadeInDown{
+  from {opacity: 0;transform: translate(0, 100%);}
+  to {opacity: 1;transform: none;}
+}
+.newsCell-left{
+  display: flex;
+  flex-flow: column;
+  width: 60%;
+  height: 100%;
+}
+.newsCell-left-title{
+  display: flex;
+  width: 100%;
+  height: 70%;
+}
+.newsCell-left-title text{
+  display: block;
+  margin: 18rpx 36rpx;
+  font-size: 34rpx;
+}
+.newsCell-left-subInfo{
+  display: flex;
+  flex-flow: row;
+  width: 100%;
+  height: 30%;
+  padding-left: 35rpx;
+}
+.newsCell-left-subInfo text{
+  margin-right: 25rpx;
+  font-size: 24rpx;
+  color: #7d7d7d;
+}
+.newsCell-right{
+  display: flex;
+  width: 40%;
+  height: 100%;
+}
+.newsCell-right .newsCell-image{
+  display: block;
+  width: 100%;
+  margin: 4% 4%;
+  border-radius: 10rpx;
+  overflow: hidden;
+  background: whitesmoke;
+  background-origin:border-box;                /*从content区域开始显示背景*/
+  background-position:50% 50%;              /*图片上下左右居中*/
+  background-size: cover;                  /*保持图像本身的宽高比例，将图片缩放到宽度或高度正好适应定义背景的区域*/
+  background-repeat:no-repeat;
+}

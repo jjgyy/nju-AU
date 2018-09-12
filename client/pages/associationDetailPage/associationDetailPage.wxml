@@ -32,7 +32,7 @@
     <text bindtap="clickLeftTab" style="color: {{leftTabColor}}">简介</text>
   </view>
   <view class="tab-cell-right">
-    <text bindtap="clickRightTab" style="color: {{rightTabColor}}">新闻</text>
+    <text bindtap="clickRightTab" style="color: {{rightTabColor}}">新闻</text><text style="color: #ff3644;font-size: 20rpx">●</text>
   </view>
 </view>
 
@@ -91,7 +91,22 @@
   <swiper-item>
     <scroll-view scroll-y="true" class="scoll-y">
       <view class="page-container">
-        <text></text>
+
+        <view bindtap="toArticleDetailPage" data-url="{{item.url}}" class="newsCell" wx:for="{{articleList}}" wx:key="item.id">
+          <view class="newsCell-left">
+            <view class="newsCell-left-title">
+              <text>{{item.title}}</text>
+            </view>
+            <view class="newsCell-left-subInfo">
+              <text>{{item.association_name}}</text>
+              <text>{{item.date}}</text>
+            </view>
+          </view>
+          <view class="newsCell-right">
+            <view class="newsCell-image" style="background-image:url({{item.image_src}})"></view>
+          </view>
+        </view>
+
       </view>
     </scroll-view>
   </swiper-item>

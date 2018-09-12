@@ -46,6 +46,8 @@ router.get('/addAssociationQQ', validationMiddleware, controllers.validateManage
 
 router.get('/addAssociationOfficial', validationMiddleware, controllers.validateManager, controllers.addAssociationOfficial)
 
+router.get('/addAssociationArticle', validationMiddleware, controllers.validateManager, controllers.addAssociationArticle)
+
 router.get('/addAssociationJoiner', validationMiddleware, controllers.addAssociationJoiner)
 
 router.get('/getAssociationList', controllers.getAssociationList)
@@ -53,6 +55,10 @@ router.get('/getAssociationList', controllers.getAssociationList)
 router.get('/getAssociationListByCategory', controllers.getAssociationListByCategory)
 
 router.get('/getAssociationDetail', controllers.getAssociationDetail)
+
+router.get('/getAssociationArticleList', controllers.getAssociationArticleList)
+
+router.get('/getAllArticleList', controllers.getAllArticleList)
 
 router.get('/getAssociationContact', controllers.getAssociationContact)
 

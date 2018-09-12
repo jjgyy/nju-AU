@@ -8,6 +8,7 @@ Page({
     associationDetail: {},
     associationQQList: [],
     associationOfficialList: [],
+    articleList: null,
 
     hasJoined: false,
 
@@ -16,9 +17,15 @@ Page({
     currentTab: 0,
     clientHeight: null,
     leftTabColor: '#0f0f0f',
-    rightTabColor: '#cccccc',
+    rightTabColor: '#bbbbbb',
     leftTabLineColor: '#0f0f0f',
     rightTabLineColor: 'rgba(0,0,0,0)'
+  },
+
+  toArticleDetailPage: function (e) {
+    wx.navigateTo({
+      url: '../articleDetailPage/articleDetailPage?' + 'url=' + e.currentTarget.dataset.url,
+    })
   },
 
   copy: function (e) {
@@ -100,14 +107,14 @@ Page({
     if (this.data.currentTab == 0){
       this.setData({
         leftTabColor: '#0f0f0f',
-        rightTabColor: '#cccccc',
+        rightTabColor: '#bbbbbb',
         leftTabLineColor: '#0f0f0f',
         rightTabLineColor: 'rgba(0,0,0,0)'
       });
     }
     else{
       this.setData({
-        leftTabColor: '#cccccc',
+        leftTabColor: '#bbbbbb',
         rightTabColor: '#0f0f0f',
         leftTabLineColor: 'rgba(0,0,0,0)',
         rightTabLineColor: '#0f0f0f'
@@ -170,6 +177,22 @@ Page({
           associationQQList: res.data.data.associationQQList,
           associationOfficialList: res.data.data.associationOfficialList
         })
+      }
+    });
+
+    wx.request({
+      url: `${config.service.host}/weapp/getAssociationArticleList`,
+      data: {
+        association_id: that.data.association_id
+      },
+      success (res) {
+        that.setData({
+          articleList: res.data.data
+        });
+      },
+      fail (error) {
+        console.log('request fail', error);
+        util.showModel('出错了', error.message);
       }
     })
 

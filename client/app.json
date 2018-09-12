@@ -5,6 +5,7 @@
     "pages/newsPage/newsPage",
     "pages/newsDetailPage/newsDetailPage",
     "pages/newsWritePage/newsWritePage",
+    "pages/articleDetailPage/articleDetailPage",
     "pages/associationPage/associationPage",
     "pages/associationCategoryPage/associationCategoryPage",
     "pages/associationDetailPage/associationDetailPage",

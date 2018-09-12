@@ -9,17 +9,17 @@
 </swiper>
 
 
-<view bindtap="toNewsDetailPage" data-id="{{item.id}}" class="newsCell" wx:for="{{newsList}}" wx:key="item.id">
-  <view class="newsCell-left">
-    <view class="newsCell-left-title">
-			<text>{{item.title}}</text>
+<view bindtap="toArticleDetailPage" data-url="{{item.url}}" class="newsCell" wx:for="{{articleList}}" wx:key="item.id">
+    <view class="newsCell-left">
+        <view class="newsCell-left-title">
+            <text>{{item.title}}</text>
+        </view>
+        <view class="newsCell-left-subInfo">
+            <text>{{item.association_name}}</text>
+            <text>{{item.date}}</text>
+        </view>
     </view>
-    <view class="newsCell-left-subInfo">
-			<text>{{item.author_from}}</text>
-			<text>{{item.date}}</text>
+    <view class="newsCell-right">
+        <view class="newsCell-image" style="background-image:url({{item.image_src}})"></view>
     </view>
-  </view>
-  <view class="newsCell-right">
-    <image src="./example.png"/>
-  </view>
 </view>
