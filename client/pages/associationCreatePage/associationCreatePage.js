@@ -51,7 +51,8 @@ Page({
             },
             login: true,
             success () {
-              util.showSuccess('提交成功，等待审核');
+              wx.navigateBack();
+              util.showSuccess('成功，等待审核');
             },
             fail (error) {
               console.log('request fail', error);

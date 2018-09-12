@@ -10,15 +10,15 @@ Page({
 
     audit_id: null,
 
-    id: null,
+    open_id: null,
     name: null,
     name_english: null,
     intro: null,
     imgUrl: null
   },
 
-  id: function(e){
-    this.data.id = e.detail.value;
+  open_id: function(e){
+    this.data.open_id = e.detail.value;
   },
 
   name: function(e){
@@ -50,7 +50,6 @@ Page({
           qcloud.request({
             url: `${config.service.host}/weapp/addAssociation`,
             data: {
-              id: that.data.id,
               name: that.data.name,
               name_english: that.data.name_english,
               category: that.data.categories[that.data.categoryIndex],
@@ -59,13 +58,30 @@ Page({
             },
             login: true,
             success () {
-              wx.navigateBack();
+              qcloud.request({
+                url: `${config.service.host}/weapp/addAssociationChief`,
+                data: {
+                  open_id: that.data.open_id,
+                  association_id: result.data.data[0]
+                },
+                login: true,
+                success () {
+                  wx.navigateBack();
+                  util.showSuccess('提交成功');
+                },
+                fail (error) {
+                  console.log('request fail', error);
+                  util.showModel('出错了', error.message);
+                }
+              });
+
             },
             fail (error) {
               console.log('request fail', error);
               util.showModel('出错了', error.message);
             }
-          })
+          });
+
         }else{
         }
       }
@@ -94,6 +110,7 @@ Page({
             login: true,
             success () {
               wx.navigateBack();
+              util.showSuccess('删除成功');
             },
             fail (error) {
               console.log('request fail', error);
@@ -182,6 +199,7 @@ Page({
         }
         that.setData({
           audit_id: result.data.data.id,
+          open_id: result.data.data.open_id,
           name: result.data.data.name,
           name_english: result.data.data.name_english,
           categoryIndex: categoryIndex,

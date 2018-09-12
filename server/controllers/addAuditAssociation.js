@@ -4,7 +4,8 @@ module.exports = async (ctx) => {
 
   if (ctx.state.$wxInfo.loginState === 1) {
 
-    const name = ctx.query.name,
+    const open_id = ctx.state.$wxInfo.userinfo.openId,
+          name = ctx.query.name,
           name_english = ctx.query.name_english,
           category = ctx.query.category,
           image_src = ctx.query.image_src,
@@ -12,6 +13,7 @@ module.exports = async (ctx) => {
 
     try {
       await mysql('association_audit').insert({
+        open_id: open_id,
         name: name,
         name_english: name_english,
         category: category,

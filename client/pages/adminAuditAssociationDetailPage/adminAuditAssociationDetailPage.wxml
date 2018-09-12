@@ -1,11 +1,11 @@
-<view class="weui-cells__title">管理员必填</view>
+<view class="weui-cells__title">申请人（默认社团主席）</view>
 <view class="weui-cells weui-cells_after-title">
   <view class="weui-cell weui-cell_input">
     <view class="weui-cell__hd">
-      <view class="weui-label">社团ID</view>
+      <view class="weui-label">申请人ID</view>
     </view>
     <view class="weui-cell__bd">
-      <input class="weui-input" bindinput="id" placeholder="请输入社团ID" type="text" maxlength="20"/>
+      <input class="weui-input" bindinput="open_id" value="{{open_id}}" placeholder="请输入申请人ID" type="text" maxlength="100"/>
     </view>
   </view>
 </view>

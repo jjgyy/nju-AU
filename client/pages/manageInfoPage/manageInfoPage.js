@@ -43,6 +43,7 @@ Page({
             },
             login: true,
             success () {
+              wx.navigateBack();
               util.showSuccess('修改成功');
             },
             fail (error) {

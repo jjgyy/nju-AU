@@ -19,12 +19,6 @@
 
 
 
-<view class="page__bd">
-</view>
-
-
-
-
 <swiper current="{{currentTab}}" duration="300" bindchange="switchPage" style="height: {{clientHeight?clientHeight + 'px':'auto'}}">
 
     <swiper-item>
@@ -59,7 +53,7 @@
             <view class="weui-cells weui-cells_after-title">
                 <view bindtap="toAssociationCategoryPage" data-id="公益" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
                     <view class="weui-cell__hd">
-                        <image src="icon/commonweal.svg" style="margin-right: 10px;vertical-align: middle;width:25px; height: 25px;"></image>
+                        <image src="icon/公益.svg" style="margin-right: 10px;vertical-align: middle;width:25px; height: 25px;"></image>
                     </view>
                     <view class="weui-cell__bd">公益</view>
                     <view class="weui-cell__ft weui-cell__ft_in-access">查看</view>
@@ -67,23 +61,47 @@
 
                 <view bindtap="toAssociationCategoryPage" data-id="体育" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
                     <view class="weui-cell__hd">
-                        <image src="icon/sports.svg" style="margin-right: 10px;vertical-align: middle;width:25px; height: 25px;"></image>
+                        <image src="icon/体育.svg" style="margin-right: 10px;vertical-align: middle;width:25px; height: 25px;"></image>
                     </view>
                     <view class="weui-cell__bd">体育</view>
                     <view class="weui-cell__ft weui-cell__ft_in-access">查看</view>
                 </view>
 
+                <view bindtap="toAssociationCategoryPage" data-id="艺术" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                    <view class="weui-cell__hd">
+                        <image src="icon/艺术.svg" style="margin-right: 10px;vertical-align: middle;width:25px; height: 25px;"></image>
+                    </view>
+                    <view class="weui-cell__bd">艺术</view>
+                    <view class="weui-cell__ft weui-cell__ft_in-access">查看</view>
+                </view>
+
                 <view bindtap="toAssociationCategoryPage" data-id="文化" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
                     <view class="weui-cell__hd">
-                        <image src="icon/culture.svg" style="margin-right: 10px;vertical-align: middle;width:25px; height: 25px;"></image>
+                        <image src="icon/文化.svg" style="margin-right: 10px;vertical-align: middle;width:25px; height: 25px;"></image>
                     </view>
                     <view class="weui-cell__bd">文化</view>
                     <view class="weui-cell__ft weui-cell__ft_in-access">查看</view>
                 </view>
 
+                <view bindtap="toAssociationCategoryPage" data-id="科技" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                    <view class="weui-cell__hd">
+                        <image src="icon/科技.svg" style="margin-right: 10px;vertical-align: middle;width:25px; height: 25px;"></image>
+                    </view>
+                    <view class="weui-cell__bd">科技</view>
+                    <view class="weui-cell__ft weui-cell__ft_in-access">查看</view>
+                </view>
+
+                <view bindtap="toAssociationCategoryPage" data-id="学术" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                    <view class="weui-cell__hd">
+                        <image src="icon/学术.svg" style="margin-right: 10px;vertical-align: middle;width:25px; height: 25px;"></image>
+                    </view>
+                    <view class="weui-cell__bd">学术</view>
+                    <view class="weui-cell__ft weui-cell__ft_in-access">查看</view>
+                </view>
+
                 <view bindtap="toAssociationCategoryPage" data-id="其他" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
                     <view class="weui-cell__hd">
-                        <image src="icon/other.svg" style="margin-right: 10px;vertical-align: middle;width:25px; height: 25px;"></image>
+                        <image src="icon/其他.svg" style="margin-right: 10px;vertical-align: middle;width:25px; height: 25px;"></image>
                     </view>
                     <view class="weui-cell__bd">其他</view>
                     <view class="weui-cell__ft weui-cell__ft_in-access">查看</view>
@@ -95,7 +113,10 @@
                 <view bindtap="toAssociationDetailPage" data-id="{{item.id}}" class="association-cell" wx:for="{{associationList}}" wx:key="*this">
                     <view class="association-name">{{item.name}}</view>
                     <view class="association-tags-container">
-                        <view class="association-tag">{{item.category}}</view>
+                        <view class="association-tag">
+                            <image src="icon/{{item.category}}.svg" style="margin-right: 10rpx;vertical-align: middle;width:30rpx; height: 30rpx;" />
+                            {{item.category}}
+                        </view>
                     </view>
                 </view>
             </view>
@@ -111,7 +132,10 @@
                 <view bindtap="toAssociationDetailPage" data-id="{{item.id}}" class="association-cell" wx:for="{{userAssociationList}}" wx:key="*this">
                     <view class="association-name">{{item.name}}</view>
                     <view class="association-tags-container">
-                        <view class="association-tag">{{item.category}}</view>
+                        <view class="association-tag">
+                            <image src="icon/{{item.category}}.svg" style="margin-right: 10rpx;vertical-align: middle;width:30rpx; height: 30rpx;" />
+                            {{item.category}}
+                        </view>
                     </view>
                 </view>
             </view>

@@ -72,6 +72,8 @@ router.get('/loginAdmin', validationMiddleware, controllers.validateAdmin, contr
 
 router.get('/addAssociation', validationMiddleware, controllers.validateAdmin, controllers.addAssociation)
 
+router.get('/addAssociationChief', validationMiddleware, controllers.validateAdmin, controllers.addAssociationChief)
+
 router.get('/getAuditAssociationList', validationMiddleware, controllers.validateAdmin, controllers.getAuditAssociationList)
 
 router.get('/getAuditAssociationDetail', validationMiddleware, controllers.validateAdmin, controllers.getAuditAssociationDetail)
