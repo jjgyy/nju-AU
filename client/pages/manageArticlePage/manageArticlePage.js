@@ -32,13 +32,13 @@ Page({
           if (res.tapIndex == 0){
             that.toArticleDetailPage(url);
           } else {
-            that.openConfirm(id);
+            that.openDeleteConfirm(id);
           }
         }
       }
     });
   },
-  openDeleteConfirm: function (qq) {
+  openDeleteConfirm: function (id) {
     var that = this;
     wx.showModal({
       title: '确认删除',
@@ -49,10 +49,10 @@ Page({
         if (res.confirm) {
           util.showBusy('正在删除...');
           qcloud.request({
-            url: `${config.service.host}/weapp/deleteAssociationQQ`,
+            url: `${config.service.host}/weapp/deleteAssociationArticle`,
             data: {
               id: that.data.association_id,
-              qq: qq
+              article_id: id
             },
             login: true,
             success () {
@@ -66,6 +66,27 @@ Page({
         }else{
 
         }
+      }
+    });
+  },
+  refresh: function(){
+    util.showBusy('加载中...');
+    var that = this;
+
+    wx.request({
+      url: `${config.service.host}/weapp/getAssociationArticleList`,
+      data: {
+        association_id: that.data.association_id
+      },
+      success (res) {
+        that.setData({
+          articleList: res.data.data
+        });
+        util.showSuccess('加载成功');
+      },
+      fail (error) {
+        console.log('request fail', error);
+        util.showModel('出错了', error.message);
       }
     });
   },

@@ -66,6 +66,8 @@ router.get('/deleteAssociationOfficial', validationMiddleware, controllers.valid
 
 router.get('/deleteAssociationQQ', validationMiddleware, controllers.validateManager, controllers.deleteAssociationQQ)
 
+router.get('/deleteAssociationArticle', validationMiddleware, controllers.validateManager, controllers.deleteAssociationArticle)
+
 router.get('/getUserAssociationList', validationMiddleware, controllers.getUserAssociationList)
 
 router.get('/getUserManageList', validationMiddleware, controllers.getUserManageList)

@@ -21,6 +21,7 @@
     "pages/manageArticlePage/manageArticlePage",
     "pages/manageWriteAnnouncePage/manageWriteAnnouncePage",
     "pages/manageWriteArticlePage/manageWriteArticlePage",
+    "pages/manageStaffPage/manageStaffPage",
     "pages/mePage/mePage",
     "pages/adminLoginPage/adminLoginPage",
     "pages/adminPage/adminPage",

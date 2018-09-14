@@ -23,4 +23,14 @@
     height: 360rpx;
 }
 
+.fly_from_bottom{
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+    animation-name: fadeInDown;
+}
+@keyframes fadeInDown{
+    from {opacity: 0;transform: translate(0, 100%);}
+    to {opacity: 1;transform: none;}
+}
+
 
