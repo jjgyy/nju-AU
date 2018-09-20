@@ -9,17 +9,103 @@ Page({
 
     bindGetUserInfo: function (e) {
         if (e.detail.userInfo) {
-
             //用户按了允许授权按钮
+
+            util.showBusy('正在登录...');
+
+            const session = qcloud.Session.get();
+
+            if (session) {
+                // 第二次登录
+                // 或者本地已经有登录态
+                // 可使用本函数更新登录态
+                qcloud.loginWithCode({
+                    success: res => {
+                        getApp().data.userInfo = res;
+                        getApp().data.logged = true;
+                        //授权成功后，跳转进入小程序首页
+                        wx.switchTab({
+                            url: '../newsPage/newsPage'
+                        });
+                    },
+                    fail: err => {
+                        console.log('session可能已经过期, 重新请求session');
+                        console.error(err);
+
+                        qcloud.login({
+                            success: res => {
+                                getApp().data.userInfo = res;
+                                getApp().data.logged = true;
+                                //授权成功后，跳转进入小程序首页
+                                wx.switchTab({
+                                    url: '../newsPage/newsPage'
+                                });
+                            },
+                            fail: err => {
+                                console.error(err);
+                                util.showModel('登录错误', err.message)
+                            }
+                        });
+
+                    }
+                });
+            } else {
+                // 首次登录
+                qcloud.login({
+                    success: res => {
+                        getApp().data.userInfo = res;
+                        getApp().data.logged = true;
+                        //授权成功后，跳转进入小程序首页
+                        wx.switchTab({
+                            url: '../newsPage/newsPage'
+                        });
+                    },
+                    fail: err => {
+                        console.error(err);
+                        util.showModel('登录错误', err.message)
+                    }
+                })
+            }
+            /*
             var that = this;
             console.log(e.detail.userInfo);
             getApp().data.userInfo = e.detail.userInfo;
             getApp().data.logged = true;
 
-            //授权成功后，跳转进入小程序首页
-            wx.switchTab({
-                url: '../newsPage/newsPage'
-            });
+            const session = qcloud.Session.get();
+
+            if (session) {
+                // 第二次登录
+                // 或者本地已经有登录态
+                // 可使用本函数更新登录态
+                qcloud.loginWithCode({
+                    success: res => {
+                        that.setData({
+                            userInfo: res,
+                            logged: true
+                        });
+                    },
+                    fail: err => {
+                        console.error(err);
+                        util.showModel('登录错误', err.message)
+                    }
+                })
+            } else {
+                // 首次登录
+                qcloud.login({
+                    success: res => {
+                        that.setData({
+                            userInfo: res,
+                            logged: true
+                        });
+                    },
+                    fail: err => {
+                        console.error(err);
+                        util.showModel('登录错误', err.message)
+                    }
+                })
+            }
+            */
 
         } else {
             //用户按了拒绝按钮
@@ -29,9 +115,7 @@ Page({
                 showCancel:false,
                 confirmText:'返回授权',
                 success:function(res){
-                    if (res.confirm) {
-                        console.log('用户点击了“返回授权”')
-                    }
+
                 }
             })
         }
@@ -39,21 +123,13 @@ Page({
 
 
     onLoad: function (options) {
-        // 页面初始化 options为页面跳转所带来的参数
-
-        var that = this;
         // 查看是否授权
         if (getApp().data.logged) {
 
-            wx.getUserInfo({
-                success: function (res) {
-                    getApp().data.userInfo = res.userInfo;
-                    //用户已经授权过
-                    wx.switchTab({
-                        url: '../newsPage/newsPage'
-                    })
-                }
-            });
+            //用户已经授权过
+            wx.switchTab({
+                url: '../newsPage/newsPage'
+            })
 
         }
 

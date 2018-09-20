@@ -2,7 +2,7 @@
   autoplay="true" interval="8000" duration="1000">
   <block wx:for="{{posterTexts}}">
     <swiper-item>
-      <image class="topPoster-image" src="{{posterImage[index]}}"/>
+      <image src="{{posterImage[index]}}"/>
 			<view>“{{item}}”</view>
     </swiper-item>
   </block>
@@ -22,4 +22,10 @@
     <view class="newsCell-right">
         <view class="newsCell-image" style="background-image:url({{item.image_src}})"></view>
     </view>
+</view>
+
+
+
+<view class="refresh" bindtap="refresh">
+    <image src="./icon/refresh.svg" style="width: 60rpx; height: 60rpx;"/>
 </view>

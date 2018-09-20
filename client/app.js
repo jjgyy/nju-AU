@@ -12,13 +12,13 @@ App({
   },
   onLaunch: function () {
 
+      qcloud.setLoginUrl(config.service.loginUrl);
+
     /**
       var that = this;
     if (that.data.logged) { return; }
 
     util.showBusy('登录中...');
-
-    qcloud.setLoginUrl(config.service.loginUrl);
 
     const session = qcloud.Session.get();
 

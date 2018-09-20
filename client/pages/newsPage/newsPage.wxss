@@ -78,11 +78,28 @@ page {
   margin: 4% 4%;
   border-radius: 10rpx;
   overflow: hidden;
-  background: whitesmoke;
+  background-color: whitesmoke;
   background-origin:border-box;                /*从content区域开始显示背景*/
   background-position:50% 50%;              /*图片上下左右居中*/
   background-size: cover;                  /*保持图像本身的宽高比例，将图片缩放到宽度或高度正好适应定义背景的区域*/
   background-repeat:no-repeat;
+}
+
+
+.refresh {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50rpx;
+  right: 50rpx;
+  bottom: 50rpx;
+  background-color: rgba(0,0,0,0.7);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 60%;
 }
 
 /*
