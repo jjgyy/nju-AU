@@ -83,6 +83,13 @@ Page({
 
   onLoad:function(options){
     // 页面初始化 options为页面跳转所带来的参数
+      if (getApp().data.logged) {
+          this.setData({
+              userInfo: getApp().data.userInfo,
+              logged: getApp().data.logged
+          });
+      }
+      /**
     var that = this;
 
     if(getApp().data.logged){
@@ -92,7 +99,7 @@ Page({
       })
     }
     else{
-      const session = qcloud.Session.get()
+      const session = qcloud.Session.get();
 
       if (session) {
         // 第二次登录
@@ -127,7 +134,10 @@ Page({
           }
         })
       }
-    }
+    }*/
+
+
+
     /*
     const session = qcloud.Session.get()
 

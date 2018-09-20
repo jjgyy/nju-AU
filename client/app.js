@@ -11,12 +11,16 @@ App({
     categories: ['公益', '体育', '艺术', '文化', '科技', '学术', '其他']
   },
   onLaunch: function () {
+
+    /**
+      var that = this;
+    if (that.data.logged) { return; }
+
     util.showBusy('登录中...');
-    var that = this;
 
-    qcloud.setLoginUrl(config.service.loginUrl)
+    qcloud.setLoginUrl(config.service.loginUrl);
 
-    const session = qcloud.Session.get()
+    const session = qcloud.Session.get();
 
     if (session) {
       // 第二次登录
@@ -47,7 +51,8 @@ App({
         }
       })
     }
+     */
 
   }
 
-})
+});

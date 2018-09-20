@@ -1,7 +1,6 @@
 {
-  "themeColor":"#a941a1",
-  "themeColor2":"#097aff",
   "pages":[
+    "pages/loginPage/loginPage",
     "pages/newsPage/newsPage",
     "pages/newsDetailPage/newsDetailPage",
     "pages/newsWritePage/newsWritePage",
