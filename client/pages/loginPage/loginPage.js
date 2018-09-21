@@ -66,46 +66,6 @@ Page({
                     }
                 })
             }
-            /*
-            var that = this;
-            console.log(e.detail.userInfo);
-            getApp().data.userInfo = e.detail.userInfo;
-            getApp().data.logged = true;
-
-            const session = qcloud.Session.get();
-
-            if (session) {
-                // 第二次登录
-                // 或者本地已经有登录态
-                // 可使用本函数更新登录态
-                qcloud.loginWithCode({
-                    success: res => {
-                        that.setData({
-                            userInfo: res,
-                            logged: true
-                        });
-                    },
-                    fail: err => {
-                        console.error(err);
-                        util.showModel('登录错误', err.message)
-                    }
-                })
-            } else {
-                // 首次登录
-                qcloud.login({
-                    success: res => {
-                        that.setData({
-                            userInfo: res,
-                            logged: true
-                        });
-                    },
-                    fail: err => {
-                        console.error(err);
-                        util.showModel('登录错误', err.message)
-                    }
-                })
-            }
-            */
 
         } else {
             //用户按了拒绝按钮
@@ -114,7 +74,7 @@ Page({
                 content:'您点击了拒绝授权，将无法进入小程序，请授权之后再进入',
                 showCancel:false,
                 confirmText:'返回授权',
-                success:function(res){
+                success:function(res) {
 
                 }
             })

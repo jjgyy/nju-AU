@@ -26,6 +26,10 @@
     "pages/adminPage/adminPage",
     "pages/adminAuditAssociationPage/adminAuditAssociationPage",
     "pages/adminAuditAssociationDetailPage/adminAuditAssociationDetailPage",
+    "pages/adminAssociationPage/adminAssociationPage",
+    "pages/adminAssociationOptionsPage/adminAssociationOptionsPage",
+    "pages/adminAssociationManagerPage/adminAssociationManagerPage",
+    "pages/adminUserSearchPage/adminUserSearchPage",
     "pages/morePage/morePage",
     "pages/index/index",
     "pages/addCgi/addCgi"

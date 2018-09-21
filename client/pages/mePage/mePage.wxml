@@ -7,8 +7,11 @@
             background-size="cover"
         ></image>
         <view>
-            <button class="userinfo-nickname" wx:if="{{!logged}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">登录</button>
-            <text class="userinfo-nickname" wx:else>{{userInfo.nickName}}</text>
+            <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+            <view class="userinfo-openId">
+                <text>用户ID: {{userInfo.openId}}</text>
+                <view bindtap="copy" class="copy-btn">复制</view>
+            </view>
         </view>
     </view>
 </view>

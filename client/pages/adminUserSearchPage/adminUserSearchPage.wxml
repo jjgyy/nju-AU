@@ -1,0 +1,25 @@
+<view class="weui-cells__title">查询用户ID</view>
+<view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_input weui-cell_vcode">
+        <view class="weui-cell__hd">
+            <view class="weui-label">微信昵称</view>
+        </view>
+        <view class="weui-cell__bd">
+            <input bindinput="nick_name" class="weui-input" placeholder="请输入昵称" />
+        </view>
+        <view class="weui-cell__ft">
+            <view bindtap="search" class="weui-vcode-btn">搜索ID</view>
+        </view>
+    </view>
+</view>
+
+<view class="weui-cells__title">用户列表</view>
+<view class="weui-cells weui-cells_after-title">
+    <view bindtap="open" data-id="{{item.open_id}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for="{{userList}}" wx:key="*this">
+        <view class="weui-cell__hd">
+            <image src="{{item.user_info.avatarUrl}}" style="margin-right:10px;vertical-align:middle;width:50rpx;height:50rpx;border-radius:25rpx"></image>
+        </view>
+        <view class="weui-cell__bd" style="font-size: 24rpx">{{item.user_info.nickName}} : {{item.open_id}}</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access">选项</view>
+    </view>
+</view>

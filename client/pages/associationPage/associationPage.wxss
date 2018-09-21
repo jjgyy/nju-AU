@@ -52,8 +52,8 @@ page {
     animation-name: fadeInDown;
 }
 @keyframes fadeInDown{
-  from {opacity: 0;transform: translate(0, 100%);}
-  to {opacity: 1;transform: none;}
+    from {opacity: 0;transform: translate(0, 100%);}
+    to {opacity: 1;transform: none;}
 }
 
 
@@ -88,66 +88,72 @@ page {
     font-weight: 450;
 }
 
-.page-tab{
-  display: flex;
-  flex-flow: row;
-  justify-content: space-around;
-  width: 100%;
-  height: 70rpx;
-  background: white;
+.page-tab-container{
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    border-bottom: 1rpx solid #dddddd;
 }
 
+.page-tab{
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+    width: 100%;
+    height: 70rpx;
+    background: white;
+}
 
 .tab-cell-left{
-  display: flex;
-  flex-flow: row;
-  justify-content: flex-end;
-  align-items:center;/*垂直居中*/
-  width: 40%;
-  font-size: 32rpx;
-  font-weight: bold;
+    display: flex;
+    flex-flow: row;
+    justify-content: flex-end;
+    align-items:center;/*垂直居中*/
+    width: 40%;
+    font-size: 32rpx;
+    font-weight: bold;
 }
 
 .tab-cell-right{
-  display: flex;
-  flex-flow: row;
-  justify-content: flex-start;
-  align-items:center;/*垂直居中*/
-  width: 40%;
-  font-size: 32rpx;
-  font-weight: bold;
+    display: flex;
+    flex-flow: row;
+    justify-content: flex-start;
+    align-items:center;/*垂直居中*/
+    width: 40%;
+    font-size: 32rpx;
+    font-weight: bold;
 }
 
 .page-tab-line{
-  display: flex;
-  flex-flow: row;
-  justify-content: space-around;
-  width: 100%;
-  height: 10rpx;
-  padding-top: 5rpx;
-  background: white;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+    width: 100%;
+    height: 10rpx;
+    padding-top: 5rpx;
+    background: white;
 }
 
 
 .tab-line-left{
-  display: flex;
-  flex-flow: row;
-  justify-content: flex-end;
-  align-items: flex-end;
-  width: 40%;
-  font-size: 32rpx;
-  font-weight: bold;
+    display: flex;
+    flex-flow: row;
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: 40%;
+    font-size: 32rpx;
+    font-weight: bold;
 }
 
 
 .tab-line-right{
-  display: flex;
-  flex-flow: row;
-  justify-content: flex-start;
-  align-items: flex-end;
-  width: 40%;
-  font-size: 32rpx;
-  font-weight: bold;
+    display: flex;
+    flex-flow: row;
+    justify-content: flex-start;
+    align-items: flex-end;
+    width: 40%;
+    font-size: 32rpx;
+    font-weight: bold;
 }
 
 

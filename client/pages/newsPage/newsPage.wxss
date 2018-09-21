@@ -100,6 +100,21 @@ page {
   background-position: center;
   background-repeat: no-repeat;
   background-size: 60%;
+  transition: .5s;
+}
+.refresh_hover {
+  right: 40rpx;
+  bottom: 40rpx;
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 60rpx;
+  transform:rotate(360deg);
+}
+
+.refresh image {
+  width: 60rpx;
+  height: 60rpx;
+  opacity:0.8;
 }
 
 /*

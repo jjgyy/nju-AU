@@ -176,7 +176,7 @@
     display: flex;
     flex-flow: row;
     justify-content: flex-end;
-    align-items:center;/*垂直居中*/
+    align-items:center;
     width: 40%;
     font-size: 26rpx;
     font-weight: 500;
@@ -185,7 +185,7 @@
     display: flex;
     flex-flow: row;
     justify-content: flex-start;
-    align-items:center;/*垂直居中*/
+    align-items:center;
     width: 40%;
     font-size: 26rpx;
     font-weight: 500;

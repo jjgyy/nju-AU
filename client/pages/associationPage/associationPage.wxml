@@ -1,18 +1,20 @@
-<view class="page-tab">
-    <view class="tab-cell-left">
-        <text bindtap="clickLeftTab" style="color: {{leftTabColor}}">发现社团</text>
+<view class="page-tab-container">
+    <view class="page-tab">
+        <view class="tab-cell-left">
+            <text bindtap="clickLeftTab" style="color: {{leftTabColor}}">发现社团</text>
+        </view>
+        <view class="tab-cell-right">
+            <text bindtap="clickRightTab" style="color: {{rightTabColor}}">我的社团</text>
+        </view>
     </view>
-    <view class="tab-cell-right">
-        <text bindtap="clickRightTab" style="color: {{rightTabColor}}">我的社团</text>
-    </view>
-</view>
 
-<view class="page-tab-line">
-    <view class="tab-line-left">
-        <text bindtap="clickLeftTab" style="color: {{leftTabLineColor}}">————</text>
-    </view>
-    <view class="tab-line-right">
-        <text bindtap="clickRightTab" style="color: {{rightTabLineColor}}">————</text>
+    <view class="page-tab-line">
+        <view class="tab-line-left">
+            <text bindtap="clickLeftTab" style="color: {{leftTabLineColor}}">————</text>
+        </view>
+        <view class="tab-line-right">
+            <text bindtap="clickRightTab" style="color: {{rightTabLineColor}}">————</text>
+        </view>
     </view>
 </view>
 
@@ -24,7 +26,7 @@
     <swiper-item>
         <scroll-view scroll-y="true" class="scoll-y">
 
-            <view class="weui-search-bar">
+            <view class="weui-search-bar" style="margin-top: 80rpx">
                 <view class="weui-search-bar__form">
                     <view class="weui-search-bar__box">
                         <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
@@ -126,7 +128,9 @@
 
     <swiper-item>
         <scroll-view scroll-y="true" class="scoll-y">
-            <view class="weui-cells__title">我的社团</view>
+            <view class="weui-cells__title" style="margin-top: 100rpx">
+                我的社团
+            </view>
 
             <view class="association-container">
                 <view bindtap="toAssociationDetailPage" data-id="{{item.id}}" class="association-cell" wx:for="{{userAssociationList}}" wx:key="*this">

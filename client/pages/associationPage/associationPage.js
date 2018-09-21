@@ -124,7 +124,7 @@ Page({
         wx.getSystemInfo({
             success: function (res) {
                 that.setData({
-                    clientHeight: res.windowHeight * 0.925
+                    clientHeight: res.windowHeight
                 });
             }
         });

@@ -27,11 +27,35 @@ page {
 }
 
 .userinfo-nickname {
+    display: block;
+    width: 100%;
     font-size: 32rpx;
     color: #007AFF;
-    background-color: white; 
 }
-
 .userinfo-nickname::after {
   border: none;
+}
+
+.userinfo-openId {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10rpx;
+    width: 100%;
+    font-size: 24rpx;
+    color: #aaaaaa;
+}
+.copy-btn{
+    display: flex;
+    height: 24rpx;
+    width: auto;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10rpx;
+    padding: 5rpx 10rpx;
+    border: 1rpx solid #888888;
+    border-radius: 5rpx;
+    background: #f3f3f3;
+    color: #888888;
+    font-size: 22rpx;
+    font-weight: 450;
 }

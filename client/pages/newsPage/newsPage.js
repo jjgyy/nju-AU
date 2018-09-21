@@ -21,7 +21,10 @@ Page({
 
     refresh: function () {
         if (!this.data.canRefresh) {
-            util.showSuccess('刷新太频繁啦...');
+            wx.showLoading({
+                title: '刷新太频繁啦'
+            });
+            setTimeout(() => {wx.hideLoading()}, 500);
             return;
         }
         var that = this;
@@ -36,7 +39,9 @@ Page({
             })
         }, 10000);
 
-        util.showBusy('刷新中...');
+        wx.showLoading({
+            title: '刷新中...'
+        });
 
         wx.request({
             url: `${config.service.host}/weapp/getAllArticleList`,
@@ -54,7 +59,6 @@ Page({
     },
 
     onLoad:function(options){
-        // 页面初始化 options为页面跳转所带来的参数
         var that = this;
 
         wx.request({

@@ -28,20 +28,20 @@
 
 
 <view class="page-tab">
-  <view class="tab-cell-left">
-    <text bindtap="clickLeftTab" style="color: {{leftTabColor}}">简介</text>
+  <view bindtap="clickLeftTab" class="tab-cell-left">
+    <text style="color: {{leftTabColor}}">简介</text>
   </view>
-  <view class="tab-cell-right">
-    <text bindtap="clickRightTab" style="color: {{rightTabColor}}">新闻</text><text style="color: #ff3644;font-size: 20rpx">●</text>
+  <view bindtap="clickRightTab" class="tab-cell-right">
+    <text style="color: {{rightTabColor}}">新闻</text><text style="color: #ff3644;font-size: 20rpx">●</text>
   </view>
 </view>
 
 <view class="page-tab-line">
-  <view class="tab-line-left">
-    <text bindtap="clickLeftTab" style="color: {{leftTabLineColor}}">——</text>
+  <view bindtap="clickLeftTab" class="tab-line-left">
+    <text style="color: {{leftTabLineColor}}">——</text>
   </view>
-  <view class="tab-line-right">
-    <text bindtap="clickRightTab" style="color: {{rightTabLineColor}}">——</text>
+  <view bindtap="clickRightTab" class="tab-line-right">
+    <text style="color: {{rightTabLineColor}}">——</text>
   </view>
 </view>
 

@@ -34,14 +34,7 @@ Page({
     copy: function (e) {
         var copydata = e.currentTarget.dataset.copydata;
         wx.setClipboardData({
-            data: copydata,
-            success: function(res) {
-                wx.getClipboardData({
-                    success: function(res) {
-                        console.log(res.data)
-                    }
-                })
-            }
+            data: copydata
         })
     },
 
