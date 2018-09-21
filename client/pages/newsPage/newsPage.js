@@ -8,7 +8,9 @@ Page({
         posterTexts:["一柒一会，我们收获了什么","创投干货：对话投资人"],
         posterImage:["./poster1.jpeg","./poster2.jpg"],
 
-        articleList: null
+        articleList: null,
+
+        canRefresh: true
     },
 
     toArticleDetailPage: function (e) {
@@ -18,7 +20,23 @@ Page({
     },
 
     refresh: function () {
+        if (!this.data.canRefresh) {
+            util.showSuccess('刷新太频繁啦...');
+            return;
+        }
         var that = this;
+
+        this.setData({
+            canRefresh: false
+        });
+
+        setTimeout(function () {
+            that.setData({
+                canRefresh: true
+            })
+        }, 10000);
+
+        util.showBusy('刷新中...');
 
         wx.request({
             url: `${config.service.host}/weapp/getAllArticleList`,
@@ -26,6 +44,7 @@ Page({
                 that.setData({
                     articleList: res.data.data
                 });
+                util.showSuccess('刷新成功');
             },
             fail (error) {
                 console.log('request fail', error);
