@@ -13,8 +13,8 @@
     </view>
 </view>
 
-<view class="weui-cells__title">用户列表</view>
-<view class="weui-cells weui-cells_after-title">
+<view class="weui-cells__title" wx:if="{{userList}}">用户列表</view>
+<view class="weui-cells weui-cells_after-title" wx:if="{{userList}}">
     <view bindtap="open" data-id="{{item.open_id}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for="{{userList}}" wx:key="*this">
         <view class="weui-cell__hd">
             <image src="{{item.user_info.avatarUrl}}" style="margin-right:10px;vertical-align:middle;width:50rpx;height:50rpx;border-radius:25rpx"></image>

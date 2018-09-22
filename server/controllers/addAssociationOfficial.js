@@ -24,4 +24,4 @@ module.exports = async (ctx, next) => {
     ctx.state.code = -1
   }
 
-}
+};

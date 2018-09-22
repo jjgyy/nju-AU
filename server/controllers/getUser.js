@@ -6,7 +6,7 @@ module.exports = async (ctx) => {
 
     try {
         ctx.body = await mysql('cSessionInfo')
-            .select('user_info')
+            .select('open_id', 'user_info')
             .where('open_id', open_id);
 
     } catch (e) {

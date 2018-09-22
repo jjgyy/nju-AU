@@ -26,7 +26,6 @@ Page({
                 for (var i=0, len=userList.length; i<len; i++) {
                     userList[i].user_info = JSON.parse(userList[i].user_info);
                 }
-                console.log(userList);
                 that.setData({
                     userList: userList
                 });

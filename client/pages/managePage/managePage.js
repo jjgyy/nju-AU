@@ -7,9 +7,10 @@ Page({
     manageAssociationList: []
   },
   toManageOptionsPage: function (e){
-    var id = e.currentTarget.dataset.id;
+    var id = e.currentTarget.dataset.id,
+        name = e.currentTarget.dataset.name;
     wx.navigateTo({
-      url: '../manageOptionsPage/manageOptionsPage?' + 'id=' + id
+      url: '../manageOptionsPage/manageOptionsPage?' + 'id=' + id + '&name=' + name
     })
   },
 

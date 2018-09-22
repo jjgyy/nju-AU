@@ -48,6 +48,8 @@ router.get('/addAssociationOfficial', validationMiddleware, controllers.validate
 
 router.get('/addAssociationArticle', validationMiddleware, controllers.validateManager, controllers.addAssociationArticle);
 
+router.get('/addAssociationNormalManager', validationMiddleware, controllers.validateManager, controllers.addAssociationNormalManager);
+
 router.get('/addAssociationJoiner', validationMiddleware, controllers.addAssociationJoiner);
 
 router.get('/getAssociationList', controllers.getAssociationList);
@@ -70,6 +72,8 @@ router.get('/deleteAssociationQQ', validationMiddleware, controllers.validateMan
 
 router.get('/deleteAssociationArticle', validationMiddleware, controllers.validateManager, controllers.deleteAssociationArticle);
 
+router.get('/deleteAssociationNormalManager', validationMiddleware, controllers.validateManager, controllers.deleteAssociationNormalManager);
+
 router.get('/getUserAssociationList', validationMiddleware, controllers.getUserAssociationList);
 
 router.get('/getUserManageList', validationMiddleware, controllers.getUserManageList);
@@ -77,6 +81,8 @@ router.get('/getUserManageList', validationMiddleware, controllers.getUserManage
 router.get('/deleteUserJoinedAssociation', validationMiddleware, controllers.deleteUserJoinedAssociation);
 
 router.get('/updateAssociationInfo', validationMiddleware, controllers.validateManager, controllers.updateAssociationInfo);
+
+router.get('/updateAssociationChief', validationMiddleware, controllers.validateChief, controllers.updateAssociationChief);
 
 router.get('/loginAdmin', validationMiddleware, controllers.validateAdmin, controllers.loginAdmin);
 
@@ -89,6 +95,12 @@ router.get('/getAuditAssociationList', validationMiddleware, controllers.validat
 router.get('/getAuditAssociationDetail', validationMiddleware, controllers.validateAdmin, controllers.getAuditAssociationDetail);
 
 router.get('/deleteAuditAssociation', validationMiddleware, controllers.validateAdmin, controllers.deleteAuditAssociation);
+
+router.get('/addAssociationNormalManagerByAdmin', validationMiddleware, controllers.validateAdmin, controllers.addAssociationNormalManager);
+
+router.get('/deleteAssociationNormalManagerByAdmin', validationMiddleware, controllers.validateAdmin, controllers.deleteAssociationNormalManager);
+
+router.get('/updateAssociationChiefByAdmin', validationMiddleware, controllers.validateAdmin, controllers.updateAssociationChief);
 
 router.get('/getUser', controllers.getUser);
 

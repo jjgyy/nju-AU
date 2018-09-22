@@ -34,4 +34,4 @@ module.exports = async (ctx, next) => {
   } else {
     ctx.state.code = -1
   }
-}
+};

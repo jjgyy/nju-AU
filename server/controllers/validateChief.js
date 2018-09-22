@@ -1,4 +1,4 @@
-const {mysql} = require('../qcloud')
+const {mysql} = require('../qcloud');
 
 module.exports = async (ctx, next) => {
 
@@ -8,14 +8,15 @@ module.exports = async (ctx, next) => {
               id = ctx.query.id;
 
         const res = await mysql('association_manager')
-            .count('open_id as isManager')
+            .count('open_id as isChief')
             .where({
                 association_id: id,
-                open_id: open_id
+                open_id: open_id,
+                identity: 'chief'
             });
 
-        if(res[0].isManager) {
-            ctx.state.$wxInfo.managerState = 1;
+        if(res[0].isChief) {
+            ctx.state.$wxInfo.chiefState = 1;
             await next();
         }
 
@@ -24,3 +25,4 @@ module.exports = async (ctx, next) => {
     }
 
 };
+

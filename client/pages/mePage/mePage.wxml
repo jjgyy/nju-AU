@@ -1,21 +1,18 @@
-<view class="container">
-    <!-- 用户登录 -->
-    <view class="userinfo">
-        <image
+<!-- 用户登录 -->
+<view class="userinfo">
+    <image
             class="userinfo-avatar"
             src="{{logged ? userInfo.avatarUrl : './user-unlogin.png'}}"
             background-size="cover"
-        ></image>
-        <view>
-            <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-            <view class="userinfo-openId">
-                <text>用户ID: {{userInfo.openId}}</text>
-                <view bindtap="copy" class="copy-btn">复制</view>
-            </view>
+    ></image>
+    <view>
+        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+        <view class="userinfo-openId">
+            <text>用户ID: {{userInfo.openId}}</text>
+            <view bindtap="copy" class="copy-btn">复制</view>
         </view>
     </view>
 </view>
-
 
 <view class="weui-cells__title">我的社团</view>
 <view class="weui-cells weui-cells_after-title">

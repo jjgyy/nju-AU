@@ -1,0 +1,54 @@
+.userinfo {
+    margin-top: 40rpx;
+    height: 140rpx;
+    width: 100%;
+    background: #FFF;
+    border: 1px solid rgba(0, 0, 0, .1);
+    border-left: none;
+    border-right: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    transition: all 300ms ease;
+}
+
+.userinfo-avatar {
+    width: 100rpx;
+    height: 100rpx;
+    margin: 20rpx;
+    border-radius: 50%;
+}
+
+.userinfo-nickname {
+    display: block;
+    width: 100%;
+    font-size: 32rpx;
+    color: #007AFF;
+}
+.userinfo-nickname::after {
+    border: none;
+}
+
+.userinfo-openId {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10rpx;
+    width: 100%;
+    font-size: 24rpx;
+    color: #aaaaaa;
+}
+.copy-btn{
+    display: flex;
+    height: 24rpx;
+    width: auto;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10rpx;
+    padding: 5rpx 10rpx;
+    border: 1rpx solid #888888;
+    border-radius: 5rpx;
+    background: #f3f3f3;
+    color: #999999;
+    font-size: 22rpx;
+    font-weight: 450;
+}

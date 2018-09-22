@@ -1,3 +1,7 @@
+<view class="association_name">
+  <text>{{association_name}}</text>
+</view>
+
 <view class="weui-cells__title">信息修改</view>
 <view class="weui-cells weui-cells_after-title">
   <view bindtap="toManageInfoPage" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
@@ -43,7 +47,7 @@
 
 <view class="weui-cells__title">人员管理</view>
 <view class="weui-cells weui-cells_after-title">
-  <view bindtap="toManageAnnouncePage" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+  <view bindtap="toManageStaffPage" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
     <view class="weui-cell__hd">
       <image src="icon/manager.svg" style="margin-right: 10px;vertical-align: middle;width:25px; height: 25px;"></image>
     </view>

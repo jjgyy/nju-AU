@@ -55,7 +55,7 @@ page {
     border: 1rpx solid #888888;
     border-radius: 5rpx;
     background: #f3f3f3;
-    color: #888888;
+    color: #999999;
     font-size: 22rpx;
     font-weight: 450;
 }
