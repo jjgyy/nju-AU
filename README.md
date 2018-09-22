@@ -6,6 +6,7 @@
 ## 代码  
 [微信小程序api官方文档](https://developers.weixin.qq.com/miniprogram/dev/api/)  
 [Koa.js](https://www.npmjs.com/package/koa)  
+[Knex.js](https://knexjs.org/)  
 
 
 ## 感想  
