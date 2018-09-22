@@ -52,7 +52,7 @@
       "selectedIconPath": "icon/tabBar/news-selected.png"
     },{
       "pagePath": "pages/associationPage/associationPage",
-      "text": "我的社团",
+      "text": "发现",
       "iconPath": "icon/tabBar/association-unselected.png",
       "selectedIconPath": "icon/tabBar/association-selected.png"
     },{

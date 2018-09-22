@@ -207,7 +207,7 @@ Page({
 
 
     translateIdentity: function (identity) {
-        return (identity === 'chief') ? '管理组组长' : '普通组员';
+        return (identity === 'chief') ? '管理组组长' : '普通管理员';
     },
 
     onLoad: function (options) {
