@@ -46,8 +46,12 @@ Page({
         wx.request({
             url: `${config.service.host}/weapp/getAllArticleList`,
             success (res) {
+                var articleList = res.data.data;
+                for (var i=0, len=articleList.length; i<len; i++) {
+                    articleList[i].date = articleList[i].date.substr(0, 10);
+                }
                 that.setData({
-                    articleList: res.data.data
+                    articleList: articleList
                 });
                 util.showSuccess('刷新成功');
             },
@@ -64,8 +68,12 @@ Page({
         wx.request({
             url: `${config.service.host}/weapp/getAllArticleList`,
             success (res) {
+                var articleList = res.data.data;
+                for (var i=0, len=articleList.length; i<len; i++) {
+                    articleList[i].date = articleList[i].date.substr(0, 10);
+                }
                 that.setData({
-                    articleList: res.data.data
+                    articleList: articleList
                 });
             },
             fail (error) {
