@@ -32,6 +32,8 @@ router.get('/message', controllers.message.get);
 // POST 用来处理微信转发过来的客服消息
 router.post('/message', controllers.message.post);
 
+
+//无需验证
 router.get('/demo', controllers.demo);
 
 router.get('/addNews', controllers.addNews);
@@ -40,7 +42,43 @@ router.get('/getNewsList', controllers.getNewsList);
 
 router.get('/getNewsDetail', controllers.getNewsDetail);
 
+router.get('/getAssociationListByCategory', controllers.getAssociationListByCategory);
+
+router.get('/getAssociationDetail', controllers.getAssociationDetail);
+
+router.get('/getAssociationList', controllers.getAssociationList);
+
+router.get('/getAssociationManagerList', controllers.getAssociationManagerList);
+
+router.get('/getAssociationArticleList', controllers.getAssociationArticleList);
+
+router.get('/getAssociationMomentList', controllers.getAssociationMomentList);
+
+router.get('/getAllArticleList', controllers.getAllArticleList);
+
+router.get('/getAllMomentList', controllers.getAllMomentList);
+
+router.get('/getAssociationContact', controllers.getAssociationContact);
+
+router.get('/getUser', controllers.getUser);
+
+router.get('/searchUser', controllers.searchUser);
+
+
+//仅验证登录态
 router.get('/addAuditAssociation', validationMiddleware, controllers.addAuditAssociation);
+
+router.get('/addAssociationJoiner', validationMiddleware, controllers.addAssociationJoiner);
+
+router.get('/getUserAssociationList', validationMiddleware, controllers.getUserAssociationList);
+
+router.get('/getUserManageList', validationMiddleware, controllers.getUserManageList);
+
+router.get('/deleteUserJoinedAssociation', validationMiddleware, controllers.deleteUserJoinedAssociation);
+
+
+//验证社团普通管理员
+router.get('/validateManager', validationMiddleware, controllers.validateManager);
 
 router.get('/addAssociationQQ', validationMiddleware, controllers.validateManager, controllers.addAssociationQQ);
 
@@ -50,22 +88,6 @@ router.get('/addAssociationArticle', validationMiddleware, controllers.validateM
 
 router.get('/addAssociationNormalManager', validationMiddleware, controllers.validateManager, controllers.addAssociationNormalManager);
 
-router.get('/addAssociationJoiner', validationMiddleware, controllers.addAssociationJoiner);
-
-router.get('/getAssociationList', controllers.getAssociationList);
-
-router.get('/getAssociationListByCategory', controllers.getAssociationListByCategory);
-
-router.get('/getAssociationDetail', controllers.getAssociationDetail);
-
-router.get('/getAssociationManagerList', controllers.getAssociationManagerList);
-
-router.get('/getAssociationArticleList', controllers.getAssociationArticleList);
-
-router.get('/getAllArticleList', controllers.getAllArticleList);
-
-router.get('/getAssociationContact', controllers.getAssociationContact);
-
 router.get('/deleteAssociationOfficial', validationMiddleware, controllers.validateManager, controllers.deleteAssociationOfficial);
 
 router.get('/deleteAssociationQQ', validationMiddleware, controllers.validateManager, controllers.deleteAssociationQQ);
@@ -74,15 +96,17 @@ router.get('/deleteAssociationArticle', validationMiddleware, controllers.valida
 
 router.get('/deleteAssociationNormalManager', validationMiddleware, controllers.validateManager, controllers.deleteAssociationNormalManager);
 
-router.get('/getUserAssociationList', validationMiddleware, controllers.getUserAssociationList);
-
-router.get('/getUserManageList', validationMiddleware, controllers.getUserManageList);
-
-router.get('/deleteUserJoinedAssociation', validationMiddleware, controllers.deleteUserJoinedAssociation);
-
 router.get('/updateAssociationInfo', validationMiddleware, controllers.validateManager, controllers.updateAssociationInfo);
 
+router.get('/addAssociationMoment', validationMiddleware, controllers.validateManager, controllers.addAssociationMoment);
+
+
+//验证社团主席（管理组长）
 router.get('/updateAssociationChief', validationMiddleware, controllers.validateChief, controllers.updateAssociationChief);
+
+
+//验证系统最高管理员
+router.get('/validateAdmin', validationMiddleware, controllers.validateAdmin);
 
 router.get('/loginAdmin', validationMiddleware, controllers.validateAdmin, controllers.loginAdmin);
 
@@ -102,12 +126,6 @@ router.get('/deleteAssociationNormalManagerByAdmin', validationMiddleware, contr
 
 router.get('/updateAssociationChiefByAdmin', validationMiddleware, controllers.validateAdmin, controllers.updateAssociationChief);
 
-router.get('/getUser', controllers.getUser);
 
-router.get('/searchUser', controllers.searchUser);
-
-router.get('/validateAdmin', validationMiddleware, controllers.validateAdmin);
-
-router.get('/validateManager', validationMiddleware, controllers.validateManager);
 
 module.exports = router;

@@ -1,0 +1,16 @@
+<view class="weui-cells__title">新建动态</view>
+<view class="weui-cells weui-cells_after-title">
+    <view bindtap="toManageWriteMomentPage" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__bd">新建动态</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access">前往</view>
+    </view>
+</view>
+
+
+<view class="weui-cells__title">动态列表</view>
+<view class="weui-cells weui-cells_after-title">
+    <view bindtap="open" data-id="{{item.moment_id}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for="{{momentList}}" wx:key="*this">
+        <view class="weui-cell__bd"></view>
+        <view class="weui-cell__ft weui-cell__ft_in-access">选项</view>
+    </view>
+</view>

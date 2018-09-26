@@ -18,9 +18,9 @@ Page({
             url: '../manageQQPage/manageQQPage?' + 'id=' + this.data.association_id
         })
     },
-    toManageAnnouncePage: function (){
+    toManageMomentPage: function (){
         wx.navigateTo({
-            url: '../manageAnnouncePage/manageAnnouncePage?' + 'id=' + this.data.association_id
+            url: '../manageMomentPage/manageMomentPage?' + 'id=' + this.data.association_id
         })
     },
     toManageArticlePage: function (){

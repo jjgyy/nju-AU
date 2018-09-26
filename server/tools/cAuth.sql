@@ -132,3 +132,14 @@ CREATE TABLE `article` (
   `image_src` varchar(1000) COLLATE utf8mb4_unicode_ci,
   `delete` int(32) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+
+
+DROP TABLE IF EXISTS `moment`;
+CREATE TABLE `moment` (
+  `moment_id` int(32) AUTO_INCREMENT NOT NULL,
+  `association_id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `association_name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `content` varchar(400) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `delete` tinyint(1) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci

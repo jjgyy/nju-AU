@@ -1,4 +1,4 @@
-const {mysql} = require('../qcloud')
+const {mysql} = require('../qcloud');
 
 module.exports = async (ctx) => {
   if (ctx.state.$wxInfo.managerState === 1) {
@@ -33,4 +33,4 @@ module.exports = async (ctx) => {
     }
 
   }
-}
+};
