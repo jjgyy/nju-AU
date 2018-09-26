@@ -33,7 +33,6 @@ Page({
 
     onLoad:function(options){
         // 页面初始化 options为页面跳转所带来的参数
-        util.showBusy('加载中...');
         var that = this;
 
         wx.request({
@@ -45,7 +44,6 @@ Page({
                 that.setData({
                     manageAssociationList: result.data.data
                 });
-                util.showSuccess('加载成功');
             },
             fail (error) {
                 console.log('request fail', error);

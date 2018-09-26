@@ -23,17 +23,51 @@
 
 <swiper current="{{currentTab}}" duration="300" bindchange="switchPage" style="height: {{clientHeight?clientHeight + 'px':'auto'}}">
 
+
     <swiper-item>
         <scroll-view scroll-y="true" class="scoll-y">
-            <view>
 
+            <view style="margin-top: 105rpx">
+                <view class="weui-cells" wx:for="{{momentList}}" wx:for-item="moment" wx:for-index="momentIndex" wx:key="*this" style="margin-top: 20rpx">
+                    <view class="weui-cell">
+
+                        <view class="moment-cell__left" style="margin-right: 20rpx">
+                            <text>{{moment.association_name}}</text>
+                        </view>
+
+                        <view class="weui-cell__bd">
+
+                            <view>
+                                <text>{{moment.content}}</text>
+                            </view>
+
+                            <view class="weui-uploader">
+                                <view class="weui-uploader__bd">
+                                    <view class="weui-uploader__files">
+                                        <block wx:for="{{moment.image_list}}" wx:key="*this">
+                                            <view class="weui-uploader__file" bindtap="previewImage" id="{{item}}" data-index="{{momentIndex}}">
+                                                <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                                            </view>
+                                        </block>
+                                    </view>
+                                </view>
+                            </view>
+
+                            <view class="moment__sub">
+                                <text>{{moment.date}}</text>
+                            </view>
+
+                        </view>
+                    </view>
+                </view>
             </view>
+
         </scroll-view>
     </swiper-item>
 
+
     <swiper-item>
         <scroll-view scroll-y="true" class="scoll-y">
-
 
             <view class="weui-search-bar" style="margin-top: 80rpx">
                 <view class="weui-search-bar__form">
@@ -137,5 +171,6 @@
 
         </scroll-view>
     </swiper-item>
+
 
 </swiper>

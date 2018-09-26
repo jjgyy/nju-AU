@@ -11,7 +11,7 @@ Page({
         var hasJoined = false;
         if(this.data.joinedAssociationList != null) {
             for (var i = 0, length = this.data.joinedAssociationList.length; i < length; i++) {
-                if (id == this.data.joinedAssociationList[i].id) {
+                if (id === this.data.joinedAssociationList[i].id) {
                     hasJoined = true;
                 }
             }

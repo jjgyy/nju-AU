@@ -6,7 +6,7 @@ Page({
     data:{
         associationList: [],
         userAssociationList: null,
-        momentList: null,
+        momentList: [],
 
         needGetAssociations: true,
 
@@ -27,7 +27,7 @@ Page({
         var hasJoined = false;
         if(this.data.userAssociationList.length != null) {
             for (var i = 0, length = this.data.userAssociationList.length; i < length; i++) {
-                if (id == this.data.userAssociationList[i].id) {
+                if (id === this.data.userAssociationList[i].id) {
                     hasJoined = true;
                 }
             }
@@ -177,6 +177,16 @@ Page({
     },
 
 
+    previewImage: function(e){
+        var that = this;
+        console.log(that.data.momentList[e.currentTarget.dataset.index]);
+        wx.previewImage({
+            current: e.currentTarget.id, // 当前显示图片的http链接
+            urls: that.data.momentList[e.currentTarget.dataset.index].image_list // 需要预览的图片http链接列表
+        })
+    },
+
+
     onLoad:function(options){
         // 页面初始化 options为页面跳转所带来的参数
         var that = this;
@@ -192,9 +202,15 @@ Page({
         wx.request({
             url: `${config.service.host}/weapp/getAllMomentList`,
             success(result) {
+                var momentList = result.data;
+                for (var i=0, len=momentList.length; i<len; i++) {
+                    momentList[i].image_list = JSON.parse(momentList[i].image_list);
+                    momentList[i].date = momentList[i].date.substr(0, 10);
+                }
                 that.setData({
-                    momentList: result.data.data
-                })
+                    momentList: momentList
+                });
+                console.log(momentList);
             },
             fail(error) {
                 console.log('request fail', error);
@@ -217,7 +233,6 @@ Page({
                 mask: true
             });
              */
-
             wx.request({
                 url: `${config.service.host}/weapp/getUserAssociationList`,
                 data: {
@@ -228,15 +243,13 @@ Page({
                     that.setData({
                         userAssociationList: result.data.data
                     });
-
-                    getApp().data.needRefreshJoined = false;  // 刷新成功后将全局变量置为false
-
+                    // 刷新成功后将全局变量置为false
+                    getApp().data.needRefreshJoined = false;
                     /**
                     setTimeout(() => {
                         wx.hideLoading();
                     }, 0);
                      */
-
                 },
                 fail (error) {
                     console.log('request fail', error);

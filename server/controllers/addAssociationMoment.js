@@ -5,7 +5,8 @@ module.exports = async (ctx) => {
 
         const association_id = ctx.query.id,
               category = ctx.query.category,
-              content = ctx.query.content;
+              content = ctx.query.content,
+              image_list = ctx.query.image_list
 
         const association_name = await mysql('association')
             .select('name')
@@ -17,7 +18,8 @@ module.exports = async (ctx) => {
                 association_id: association_id,
                 association_name: association_name.name,
                 category: category,
-                content: content
+                content: content,
+                image_list: image_list
             });
         } catch (e) {
             ctx.state = {
