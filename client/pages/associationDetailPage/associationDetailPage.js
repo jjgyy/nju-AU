@@ -12,7 +12,7 @@ Page({
 
         hasJoined: false,
 
-        joinBtnText: '+ 加入',
+        joinBtnText: '+ 关注',
 
         needGetArticles: true,
 
@@ -53,17 +53,16 @@ Page({
                 if (res.confirm) {
                     that.setData({
                         hasJoined: true,
-                        joinBtnText: '已加入'
+                        joinBtnText: '已关注'
                     });
-                    util.showBusy('正在加入...');
-                    qcloud.request({
+                    wx.request({
                         url: `${config.service.host}/weapp/addAssociationJoiner`,
                         data: {
-                            association_id: id
+                            association_id: id,
+                            open_id: getApp().data.userInfo.openId
                         },
                         login: true,
                         success () {
-                            util.showSuccess('加入成功');
                             getApp().data.needRefreshJoined = true; // 有修改后将全局变量置为true
                         },
                         fail (error) {
@@ -150,12 +149,12 @@ Page({
         if(options.hasJoined === 'true'){
             this.setData({
                 hasJoined: true,
-                joinBtnText: '已加入'
+                joinBtnText: '已关注'
             })
         } else{
             this.setData({
                 hasJoined: false,
-                joinBtnText: '+ 加入'
+                joinBtnText: '+ 关注'
             })
         }
 

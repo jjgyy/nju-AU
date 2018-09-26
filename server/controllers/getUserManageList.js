@@ -2,9 +2,8 @@ const {mysql} = require('../qcloud')
 
 module.exports = async (ctx, next) => {
 
-  if (ctx.state.$wxInfo.loginState === 1) {
 
-    const open_id = ctx.state.$wxInfo.userinfo.openId;
+    const open_id = ctx.query.open_id;
 
     try {
       const manageAssociationList = await mysql('association_manager')
@@ -21,7 +20,4 @@ module.exports = async (ctx, next) => {
       }
     }
 
-  } else {
-    ctx.state.code = -1
-  }
-}
+};

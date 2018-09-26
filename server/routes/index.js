@@ -60,6 +60,14 @@ router.get('/getAllMomentList', controllers.getAllMomentList);
 
 router.get('/getAssociationContact', controllers.getAssociationContact);
 
+router.get('/getUserAssociationList', controllers.getUserAssociationList);
+
+router.get('/getUserManageList', controllers.getUserManageList);
+
+router.get('/deleteUserJoinedAssociation', controllers.deleteUserJoinedAssociation);
+
+router.get('/addAssociationJoiner', controllers.addAssociationJoiner);
+
 router.get('/getUser', controllers.getUser);
 
 router.get('/searchUser', controllers.searchUser);
@@ -67,14 +75,6 @@ router.get('/searchUser', controllers.searchUser);
 
 //仅验证登录态
 router.get('/addAuditAssociation', validationMiddleware, controllers.addAuditAssociation);
-
-router.get('/addAssociationJoiner', validationMiddleware, controllers.addAssociationJoiner);
-
-router.get('/getUserAssociationList', validationMiddleware, controllers.getUserAssociationList);
-
-router.get('/getUserManageList', validationMiddleware, controllers.getUserManageList);
-
-router.get('/deleteUserJoinedAssociation', validationMiddleware, controllers.deleteUserJoinedAssociation);
 
 
 //验证社团普通管理员

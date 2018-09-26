@@ -6,6 +6,9 @@ Page({
     data:{
         associationList: [],
         userAssociationList: null,
+        momentList: null,
+
+        needGetAssociations: true,
 
         currentTab: 0,
         clientHeight: null,
@@ -50,7 +53,8 @@ Page({
     clickRightTab: function () {
         this.setData({
             currentTab: 1
-        })
+        });
+        this.lazyGetAssociation();
     },
 
     switchPage: function (e) {
@@ -58,10 +62,11 @@ Page({
             currentTab: e.detail.current
         });
         this.refreshTab();
+        this.lazyGetAssociation();
     },
 
     refreshTab: function () {
-        if (this.data.currentTab == 0){
+        if (this.data.currentTab === 0){
             this.setData({
                 leftTabColor: '#097aff',
                 rightTabColor: '#cccccc',
@@ -117,6 +122,61 @@ Page({
     },
 
 
+    lazyGetAssociation: function () {
+        var that = this;
+
+        if(that.data.userAssociationList == null || getApp().data.needRefreshJoined) {
+            /**
+            wx.showLoading({
+                title: '加载中...',
+                mask: true
+            });
+             */
+
+            wx.request({
+                url: `${config.service.host}/weapp/getUserAssociationList`,
+                data: {
+                    open_id: getApp().data.userInfo.openId
+                },
+                success (result) {
+
+                    that.setData({
+                        userAssociationList: result.data.data
+                    });
+
+                    getApp().data.needRefreshJoined = false;  // 刷新成功后将全局变量置为false
+
+                    /**
+                    setTimeout(() => {
+                        wx.hideLoading();
+                    }, 0);
+                     */
+
+                },
+                fail (error) {
+                    console.log('request fail', error);
+                }
+            });
+        }
+
+        if (this.data.needGetAssociations) {
+            wx.request({
+                url: `${config.service.host}/weapp/getAssociationList`,
+                success(result) {
+                    that.setData({
+                        associationList: result.data.data,
+                        needGetAssociations: false
+                    })
+                },
+                fail(error) {
+                    console.log('request fail', error);
+                }
+            });
+        }
+
+    },
+
+
     onLoad:function(options){
         // 页面初始化 options为页面跳转所带来的参数
         var that = this;
@@ -130,10 +190,10 @@ Page({
         });
 
         wx.request({
-            url: `${config.service.host}/weapp/getAssociationList`,
+            url: `${config.service.host}/weapp/getAllMomentList`,
             success(result) {
                 that.setData({
-                    associationList: result.data.data
+                    momentList: result.data.data
                 })
             },
             fail(error) {
@@ -145,20 +205,24 @@ Page({
 
 
     onReady:function(){
-        // 页面渲染完成
+
     },
     onShow:function(){
-        // 页面显示
         var that = this;
-        if(that.data.userAssociationList == null || getApp().data.needRefreshJoined){
+
+        if( (that.data.currentTab === 1) && (this.data.userAssociationList == null || getApp().data.needRefreshJoined) ) {
+            /**
             wx.showLoading({
                 title: '加载中...',
                 mask: true
             });
+             */
 
-            qcloud.request({
+            wx.request({
                 url: `${config.service.host}/weapp/getUserAssociationList`,
-                login: true,
+                data: {
+                    open_id: getApp().data.userInfo.openId
+                },
                 success (result) {
 
                     that.setData({
@@ -167,9 +231,11 @@ Page({
 
                     getApp().data.needRefreshJoined = false;  // 刷新成功后将全局变量置为false
 
+                    /**
                     setTimeout(() => {
                         wx.hideLoading();
                     }, 0);
+                     */
 
                 },
                 fail (error) {
@@ -177,12 +243,13 @@ Page({
                 }
             });
         }
+
     },
     onHide:function(){
-        // 页面隐藏
+
     },
     onUnload:function(){
-        // 页面关闭
+
     }
 
 

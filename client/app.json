@@ -44,10 +44,10 @@
   },
   "tabBar": {
     "color": "#bfbfbf",
-    "selectedColor": "#a941a1",
+    "selectedColor": "#097aff",
     "list": [{
       "pagePath": "pages/newsPage/newsPage",
-      "text": "社团新闻",
+      "text": "好文",
       "iconPath": "icon/tabBar/news-unselected.png",
       "selectedIconPath": "icon/tabBar/news-selected.png"
     },{
@@ -57,7 +57,7 @@
       "selectedIconPath": "icon/tabBar/association-selected.png"
     },{
       "pagePath": "pages/mePage/mePage",
-      "text": "个人中心",
+      "text": "我",
       "iconPath": "icon/tabBar/me-unselected.png",
       "selectedIconPath": "icon/tabBar/me-selected.png"
     }]

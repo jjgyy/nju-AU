@@ -1,19 +1,19 @@
 <view class="page-tab-container">
     <view class="page-tab">
         <view class="tab-cell-left">
-            <text bindtap="clickLeftTab" style="color: {{leftTabColor}}">发现社团</text>
+            <text bindtap="clickLeftTab" style="color: {{leftTabColor}}">发现</text>
         </view>
         <view class="tab-cell-right">
-            <text bindtap="clickRightTab" style="color: {{rightTabColor}}">我的社团</text>
+            <text bindtap="clickRightTab" style="color: {{rightTabColor}}">寻觅</text>
         </view>
     </view>
 
     <view class="page-tab-line">
         <view class="tab-line-left">
-            <text bindtap="clickLeftTab" style="color: {{leftTabLineColor}}">————</text>
+            <text bindtap="clickLeftTab" style="color: {{leftTabLineColor}}">——</text>
         </view>
         <view class="tab-line-right">
-            <text bindtap="clickRightTab" style="color: {{rightTabLineColor}}">————</text>
+            <text bindtap="clickRightTab" style="color: {{rightTabLineColor}}">——</text>
         </view>
     </view>
 </view>
@@ -25,6 +25,15 @@
 
     <swiper-item>
         <scroll-view scroll-y="true" class="scoll-y">
+            <view>
+
+            </view>
+        </scroll-view>
+    </swiper-item>
+
+    <swiper-item>
+        <scroll-view scroll-y="true" class="scoll-y">
+
 
             <view class="weui-search-bar" style="margin-top: 80rpx">
                 <view class="weui-search-bar__form">
@@ -110,26 +119,8 @@
                 </view>
             </view>
 
-            <view class="weui-cells__title">推荐</view>
-            <view class="association-container">
-                <view bindtap="toAssociationDetailPage" data-id="{{item.id}}" class="association-cell" wx:for="{{associationList}}" wx:key="*this">
-                    <view class="association-name">{{item.name}}</view>
-                    <view class="association-tags-container">
-                        <view class="association-tag">
-                            <image src="icon/{{item.category}}.svg" style="margin-right: 10rpx;vertical-align: middle;width:30rpx; height: 30rpx;" />
-                            {{item.category}}
-                        </view>
-                    </view>
-                </view>
-            </view>
-
-        </scroll-view>
-    </swiper-item>
-
-    <swiper-item>
-        <scroll-view scroll-y="true" class="scoll-y">
-            <view class="weui-cells__title" style="margin-top: 100rpx">
-                我的社团
+            <view class="weui-cells__title">
+                我的关注
             </view>
 
             <view class="association-container">
