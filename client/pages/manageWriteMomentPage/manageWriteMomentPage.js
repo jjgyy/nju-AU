@@ -70,13 +70,31 @@ Page({
         var that = this;
         wx.chooseImage({
             count: 4,
-            sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+            sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
             sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
             success: function (res) {
-                // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-                that.setData({
-                    files: that.data.files.concat(res.tempFilePaths)
-                });
+                var filePath = res.tempFilePaths[0];
+
+                // 上传图片
+                wx.uploadFile({
+                    url: config.service.uploadUrl,
+                    filePath: filePath,
+                    name: 'file',
+
+                    success: function(res){
+                        util.showSuccess('上传图片成功');
+                        res = JSON.parse(res.data);
+                        var files = that.data.files;
+                        files.push(res.data.imgUrl);
+                        that.setData({
+                            files: files
+                        });
+                    },
+
+                    fail: function() {
+                        util.showModel('上传图片失败')
+                    }
+                })
             }
         })
 

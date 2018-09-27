@@ -10,6 +10,8 @@ Page({
 
         needGetAssociations: true,
 
+        canRefresh: true,
+
         currentTab: 0,
         clientHeight: null,
         leftTabColor: '#097aff',
@@ -187,6 +189,60 @@ Page({
     },
 
 
+    refresh: function () {
+        if (!this.data.canRefresh) {
+            wx.showLoading({
+                title: '刷新太频繁啦'
+            });
+            setTimeout(() => {wx.hideLoading()}, 500);
+            return;
+        }
+        var that = this;
+
+        this.setData({
+            canRefresh: false
+        });
+
+        setTimeout(function () {
+            that.setData({
+                canRefresh: true
+            })
+        }, 10000);
+
+        wx.showLoading({
+            title: '刷新中...'
+        });
+
+        wx.request({
+            url: `${config.service.host}/weapp/getAllMomentList`,
+            success(result) {
+                var momentList = result.data;
+                for (var i=0, len=momentList.length; i<len; i++) {
+                    momentList[i].image_list = JSON.parse(momentList[i].image_list);
+                    momentList[i].date = momentList[i].date.substr(0, 10);
+                    momentList[i].like = false;
+                }
+                that.setData({
+                    momentList: momentList
+                });
+                util.showSuccess('刷新成功');
+            },
+            fail(error) {
+                console.log('request fail', error);
+            }
+        });
+    },
+
+
+    like: function (e) {
+        var momentList = this.data.momentList;
+        momentList[e.currentTarget.dataset.id].like = true;
+        this.setData({
+            momentList: momentList
+        });
+    },
+
+
     onLoad:function(options){
         // 页面初始化 options为页面跳转所带来的参数
         var that = this;
@@ -206,11 +262,11 @@ Page({
                 for (var i=0, len=momentList.length; i<len; i++) {
                     momentList[i].image_list = JSON.parse(momentList[i].image_list);
                     momentList[i].date = momentList[i].date.substr(0, 10);
+                    momentList[i].like = false;
                 }
                 that.setData({
                     momentList: momentList
                 });
-                console.log(momentList);
             },
             fail(error) {
                 console.log('request fail', error);
@@ -219,14 +275,13 @@ Page({
 
     },
 
-
     onReady:function(){
 
     },
     onShow:function(){
         var that = this;
 
-        if( (that.data.currentTab === 1) && (this.data.userAssociationList == null || getApp().data.needRefreshJoined) ) {
+        if( this.data.userAssociationList == null || getApp().data.needRefreshJoined ) {
             /**
             wx.showLoading({
                 title: '加载中...',

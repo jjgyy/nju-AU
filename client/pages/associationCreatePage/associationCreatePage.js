@@ -82,8 +82,8 @@ Page({
       sizeType: ['compressed'],
       sourceType: ['album', 'camera'],
       success: function(res){
-        util.showBusy('正在上传')
-        var filePath = res.tempFilePaths[0]
+        util.showBusy('正在上传');
+        var filePath = res.tempFilePaths[0];
 
         // 上传图片
         wx.uploadFile({
@@ -92,10 +92,8 @@ Page({
           name: 'file',
 
           success: function(res){
-            util.showSuccess('上传图片成功')
-            console.log(res)
-            res = JSON.parse(res.data)
-            console.log(res)
+            util.showSuccess('上传图片成功');
+            res = JSON.parse(res.data);
             that.setData({
               imgUrl: res.data.imgUrl
             })

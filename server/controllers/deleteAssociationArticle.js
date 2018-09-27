@@ -1,6 +1,6 @@
-const {mysql} = require('../qcloud')
+const {mysql} = require('../qcloud');
 
-module.exports = async (ctx, next) => {
+module.exports = async (ctx) => {
 
   if (ctx.state.$wxInfo.managerState === 1) {
 
@@ -9,7 +9,10 @@ module.exports = async (ctx, next) => {
     try {
       await mysql('article')
           .where('id', article_id)
-          .del();
+          .update({
+              delete: 1,
+              thisKeyIsSkipped: undefined
+          });
     } catch (e) {
       ctx.state = {
         code: -1,
@@ -23,4 +26,4 @@ module.exports = async (ctx, next) => {
     ctx.state.code = -1
   }
 
-}
+};

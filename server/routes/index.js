@@ -94,6 +94,8 @@ router.get('/deleteAssociationQQ', validationMiddleware, controllers.validateMan
 
 router.get('/deleteAssociationArticle', validationMiddleware, controllers.validateManager, controllers.deleteAssociationArticle);
 
+router.get('/deleteAssociationMoment', validationMiddleware, controllers.validateManager, controllers.deleteAssociationMoment);
+
 router.get('/deleteAssociationNormalManager', validationMiddleware, controllers.validateManager, controllers.deleteAssociationNormalManager);
 
 router.get('/updateAssociationInfo', validationMiddleware, controllers.validateManager, controllers.updateAssociationInfo);

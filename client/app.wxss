@@ -36,3 +36,33 @@
 }
 
 
+.refresh {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100rpx;
+    height: 100rpx;
+    border-radius: 50rpx;
+    right: 50rpx;
+    bottom: 50rpx;
+    background-color: rgba(0,0,0,0.7);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 60%;
+    transition: .5s;
+}
+.refresh_hover {
+    right: 40rpx;
+    bottom: 40rpx;
+    width: 120rpx;
+    height: 120rpx;
+    border-radius: 60rpx;
+    transform:rotate(360deg);
+}
+.refresh image {
+    width: 60rpx;
+    height: 60rpx;
+    opacity:0.8;
+}
+

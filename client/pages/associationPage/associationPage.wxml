@@ -1,7 +1,7 @@
 <view class="page-tab-container">
     <view class="page-tab">
         <view class="tab-cell-left">
-            <text bindtap="clickLeftTab" style="color: {{leftTabColor}}">发现</text>
+            <text bindtap="clickLeftTab" style="color: {{leftTabColor}}">动态</text>
         </view>
         <view class="tab-cell-right">
             <text bindtap="clickRightTab" style="color: {{rightTabColor}}">寻觅</text>
@@ -27,17 +27,16 @@
     <swiper-item>
         <scroll-view scroll-y="true" class="scoll-y">
 
-            <view style="margin-top: 105rpx">
-                <view class="weui-cells" wx:for="{{momentList}}" wx:for-item="moment" wx:for-index="momentIndex" wx:key="*this" style="margin-top: 20rpx">
+            <view class="moment__container" style="margin-top: 95rpx">
+                <view class="moment__cell fly_from_bottom" wx:for="{{momentList}}" wx:for-item="moment" wx:for-index="momentIndex" wx:key="{{moment.moment_id}}" style="margin-top: 0;">
                     <view class="weui-cell">
 
-                        <view class="moment-cell__left" style="margin-right: 20rpx">
-                            <text>{{moment.association_name}}</text>
-                        </view>
+                        <view class="weui-cell__bd" style="width: 80%">
+                            <view class="moment__from">
+                                <text bindtap="toAssociationDetailPage" data-id="{{moment.association_id}}">{{moment.association_name}}</text>
+                            </view>
 
-                        <view class="weui-cell__bd">
-
-                            <view>
+                            <view class="moment__content">
                                 <text>{{moment.content}}</text>
                             </view>
 
@@ -55,6 +54,8 @@
 
                             <view class="moment__sub">
                                 <text>{{moment.date}}</text>
+                                <image bindtap="like" data-id="{{momentIndex}}" hidden="{{moment.like}}" src="../../icon/like-before.svg" style="width: 30rpx; height: 30rpx; margin-left: 460rpx;"/>
+                                <image src="../../icon/like-after.svg" hidden="{{!moment.like}}" style="width: 30rpx; height: 30rpx; margin-left: 460rpx;"/>
                             </view>
 
                         </view>
@@ -174,3 +175,9 @@
 
 
 </swiper>
+
+
+
+<view bindtap="refresh" hidden="{{currentTab!==0}}" class="refresh" hover-class="refresh_hover">
+    <image src="../../icon/refresh.svg"/>
+</view>

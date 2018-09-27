@@ -10,7 +10,10 @@
 <view class="weui-cells__title">动态列表</view>
 <view class="weui-cells weui-cells_after-title">
     <view bindtap="open" data-id="{{item.moment_id}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for="{{momentList}}" wx:key="*this">
-        <view class="weui-cell__bd"></view>
+        <view class="weui-cell__hd">
+            <image src="{{item.image_list[0]}}" style="margin-right: 10px;vertical-align:middle;width:80rpx;height:80rpx;border-radius:10rpx"></image>
+        </view>
+        <view class="weui-cell__bd">{{item.content}}</view>
         <view class="weui-cell__ft weui-cell__ft_in-access">选项</view>
     </view>
 </view>

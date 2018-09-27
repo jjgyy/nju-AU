@@ -8,15 +8,15 @@ module.exports = async (ctx) => {
               content = ctx.query.content,
               image_list = ctx.query.image_list
 
-        const association_name = await mysql('association')
-            .select('name')
+        const res = await mysql('association')
+            .select('name', 'image_src')
             .where('id',association_id)
             .first();
 
         try {
             await mysql('moment').insert({
                 association_id: association_id,
-                association_name: association_name.name,
+                association_name: res.name,
                 category: category,
                 content: content,
                 image_list: image_list

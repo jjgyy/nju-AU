@@ -18,8 +18,8 @@
 <view class="weui-cells weui-cells_after-title">
   <view class="weui-cell">
     <view class="weui-cell__bd">
-      <textarea value="{{content}}" bindblur="content" class="weui-textarea" placeholder="请输入社团简介" style="height: 11.3em" maxlength="200"/>
-      <view class="weui-textarea-counter">限200字</view>
+      <textarea value="{{content}}" bindblur="content" class="weui-textarea" placeholder="请输入动态内容" style="height: 11.3em" maxlength="100"/>
+      <view class="weui-textarea-counter">限100字</view>
     </view>
   </view>
 </view>

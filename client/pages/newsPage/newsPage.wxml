@@ -27,5 +27,5 @@
 
 
 <view bindtap="refresh" class="refresh" hover-class="refresh_hover">
-    <image src="./icon/refresh.svg"/>
+    <image src="../../icon/refresh.svg"/>
 </view>
