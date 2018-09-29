@@ -1,7 +1,13 @@
 <view class="weui-cells__title">{{category}}</view>
-<view class="weui-cells weui-cells_after-title">
-    <view bindtap="toAssociationDetailPage" data-id="{{item.id}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for="{{associationList}}" wx:key="item.id">
-        <view class="weui-cell__bd">{{item.name}}</view>
-        <view class="weui-cell__ft weui-cell__ft_in-access">前往</view>
+
+<view class="association_cell_container">
+    <view bindtap="toAssociationDetailPage" data-id="{{item.id}}" class="association-cell fly_from_bottom" hover-class="active" wx:for="{{associationList}}" wx:key="item.id">
+        <view class="association-image-container">
+            <image src="{{item.image_src}}" style="width: 70rpx; height: 100rpx; border-radius: 10rpx" mode="aspectFill" />
+        </view>
+        <view class="association-info-container">
+            <view class="association-name">{{item.name}}</view>
+            <view class="association-name_english">{{item.name_english}}</view>
+        </view>
     </view>
 </view>

@@ -37,7 +37,6 @@ Page({
             cancelText: "取消",
             success: function (res) {
                 if (res.confirm) {
-                    util.showBusy('正在删除...');
                     qcloud.request({
                         url: `${config.service.host}/weapp/deleteAssociationMoment`,
                         data: {

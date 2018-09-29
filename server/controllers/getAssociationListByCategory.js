@@ -4,10 +4,10 @@ module.exports = async (ctx) => {
 
   const category = ctx.query.category;
 
-  const associationList = await mysql('association')
-      .select('id','name')
+    ctx.body = await mysql('association')
+      .select('id','name','name_english','image_src')
       //.limit(size)//分页用的语句
       //.offset(Number(page)*size)
       .where('category', category);
-  ctx.state.data = associationList;
+
 };

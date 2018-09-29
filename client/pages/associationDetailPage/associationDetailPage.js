@@ -126,9 +126,12 @@ Page({
                 association_id: that.data.association_id
             },
             success (res) {
+                var articleList = res.data.data;
+                for (var i=0, len=articleList.length; i<len; i++) {
+                    articleList[i].date = articleList[i].date.substr(0, 10);
+                }
                 that.setData({
-                    articleList: res.data.data,
-                    needGetArticles: false
+                    articleList: articleList
                 });
             },
             fail (error) {
@@ -161,7 +164,7 @@ Page({
         wx.getSystemInfo({
             success: function (res) {
                 that.setData({
-                    clientHeight: res.windowHeight * 0.65
+                    clientHeight: res.windowHeight
                 });
             }
         });

@@ -15,7 +15,7 @@ Page({
         currentTab: 0,
         clientHeight: null,
         leftTabColor: '#097aff',
-        rightTabColor: '#cccccc',
+        rightTabColor: '#bbbbbb',
         leftTabLineColor: '#097aff',
         rightTabLineColor: 'rgba(0,0,0,0)',
 
@@ -71,14 +71,14 @@ Page({
         if (this.data.currentTab === 0){
             this.setData({
                 leftTabColor: '#097aff',
-                rightTabColor: '#cccccc',
+                rightTabColor: '#bbbbbb',
                 leftTabLineColor: '#097aff',
                 rightTabLineColor: 'rgba(0,0,0,0)'
             });
         }
         else{
             this.setData({
-                leftTabColor: '#cccccc',
+                leftTabColor: '#bbbbbb',
                 rightTabColor: '#097aff',
                 leftTabLineColor: 'rgba(0,0,0,0)',
                 rightTabLineColor: '#097aff'

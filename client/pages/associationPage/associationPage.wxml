@@ -27,7 +27,7 @@
     <swiper-item>
         <scroll-view scroll-y="true" class="scoll-y">
 
-            <view class="moment__container" style="margin-top: 95rpx">
+            <view class="moment__container" style="margin-top: 85rpx">
                 <view class="moment__cell fly_from_bottom" wx:for="{{momentList}}" wx:for-item="moment" wx:for-index="momentIndex" wx:key="{{moment.moment_id}}" style="margin-top: 0;">
                     <view class="weui-cell">
 
@@ -40,22 +40,22 @@
                                 <text>{{moment.content}}</text>
                             </view>
 
-                            <view class="weui-uploader">
-                                <view class="weui-uploader__bd">
-                                    <view class="weui-uploader__files">
-                                        <block wx:for="{{moment.image_list}}" wx:key="*this">
-                                            <view class="weui-uploader__file" bindtap="previewImage" id="{{item}}" data-index="{{momentIndex}}">
-                                                <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
-                                            </view>
-                                        </block>
+                            <view class="moment__images__container">
+                                <view class="moment__image__cell" wx:for="{{moment.image_list}}" wx:key="*this">
+                                    <view bindtap="previewImage" id="{{item}}" data-index="{{momentIndex}}">
+                                        <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
                                     </view>
                                 </view>
                             </view>
 
                             <view class="moment__sub">
                                 <text>{{moment.date}}</text>
-                                <image bindtap="like" data-id="{{momentIndex}}" hidden="{{moment.like}}" src="../../icon/like-before.svg" style="width: 30rpx; height: 30rpx; margin-left: 460rpx;"/>
-                                <image src="../../icon/like-after.svg" hidden="{{!moment.like}}" style="width: 30rpx; height: 30rpx; margin-left: 460rpx;"/>
+                                <view class="moment__sub__btn__container">
+                                    <view bindtap="like" data-id="{{momentIndex}}" class="moment__sub__btn">
+                                        <image hidden="{{moment.like}}" src="../../icon/like-before.svg" style="width: 30rpx; height: 30rpx"/>
+                                        <image hidden="{{!moment.like}}" src="../../icon/like-after.svg" style="width: 30rpx; height: 30rpx;"/>
+                                    </view>
+                                </view>
                             </view>
 
                         </view>
@@ -158,13 +158,18 @@
                 我的关注
             </view>
 
-            <view class="association-container">
-                <view bindtap="toAssociationDetailPage" data-id="{{item.id}}" class="association-cell" wx:for="{{userAssociationList}}" wx:key="*this">
-                    <view class="association-name">{{item.name}}</view>
-                    <view class="association-tags-container">
-                        <view class="association-tag">
-                            <image src="icon/{{item.category}}.svg" style="margin-right: 10rpx;vertical-align: middle;width:30rpx; height: 30rpx;" />
-                            {{item.category}}
+            <view class="association_cell_container">
+                <view bindtap="toAssociationDetailPage" data-id="{{item.id}}" class="association-cell fly_from_bottom" wx:for="{{userAssociationList}}" wx:key="item.id">
+                    <view class="association-image-container">
+                        <image src="{{item.image_src}}" style="width: 70rpx; height: 100rpx; border-radius: 10rpx" mode="aspectFill" />
+                    </view>
+                    <view class="association-info-container">
+                        <view class="association-name">{{item.name}}</view>
+                        <view class="association-tags-container">
+                            <view class="association-tag">
+                                <image src="icon/{{item.category}}.svg" style="margin-right: 10rpx;vertical-align: middle;width:30rpx; height: 30rpx;" />
+                                {{item.category}}
+                            </view>
                         </view>
                     </view>
                 </view>

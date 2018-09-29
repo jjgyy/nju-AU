@@ -25,6 +25,12 @@
     height: 360rpx;
 }
 
+.scoll-y{
+    height: 100%;
+    background: #f7f7f7;
+    border-left: 1rpx solid #ddd;
+}
+
 .fly_from_bottom{
     animation-duration: 0.5s;
     animation-fill-mode: both;
@@ -64,5 +70,128 @@
     width: 60rpx;
     height: 60rpx;
     opacity:0.8;
+}
+
+
+
+.association_cell_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    height: auto;
+    padding-top: 20rpx;
+    border-bottom: 1rpx solid #ddd;
+}
+.association-cell {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100rpx;
+    padding: 20rpx;
+    background: #fff;
+    border-top: 0.5rpx solid #ddd;
+    overflow: hidden;
+}
+.association-image-container {
+    display: flex;
+    width: 100rpx;
+    height: 100%;
+}
+.association-info-container {
+    display: flex;
+    flex-direction: column;
+    width: 600rpx;
+    height: 100%;
+}
+.association-name {
+    display: flex;
+    width: 100%;
+    height: 50%;
+    color: #414141;
+    font-size: 28rpx;
+    font-weight: 500;
+}
+.association-name_english {
+    display: flex;
+    width: 100%;
+    height: 50%;
+    color: #bbbbbb;
+    font-size: 24rpx;
+    font-weight: 500;
+}
+.association-tags-container {
+    display: flex;
+    flex-flow: row;
+    width: 100%;
+    height: 50%;
+}
+.association-tag {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10rpx 20rpx;
+    border: 0;
+    border-radius: 5rpx;
+    background: #f3f3f3;
+    color: #7d7d7d;
+    font-size: 22rpx;
+    font-weight: 450;
+}
+
+
+
+.newsCell{
+    display: flex;
+    flex-flow: row;
+    width: 100%;
+    height: 250rpx;
+    border-bottom: 1rpx solid #dddddd;
+    background: #fff;
+}
+.newsCell-left{
+    display: flex;
+    flex-flow: column;
+    width: 60%;
+    height: 100%;
+}
+.newsCell-left-title{
+    display: flex;
+    width: 100%;
+    height: 70%;
+}
+.newsCell-left-title text{
+    display: block;
+    margin: 18rpx 36rpx;
+    font-size: 34rpx;
+}
+.newsCell-left-subInfo{
+    display: flex;
+    flex-flow: row;
+    width: 100%;
+    height: 30%;
+    padding-left: 35rpx;
+}
+.newsCell-left-subInfo text{
+    margin-right: 25rpx;
+    font-size: 24rpx;
+    color: #7d7d7d;
+}
+.newsCell-right{
+    display: flex;
+    width: 40%;
+    height: 100%;
+}
+.newsCell-right .newsCell-image{
+    display: block;
+    width: 100%;
+    margin: 4% 4%;
+    border-radius: 10rpx;
+    overflow: hidden;
+    background-color: whitesmoke;
+    background-origin:border-box;                /*从content区域开始显示背景*/
+    background-position:50% 50%;              /*图片上下左右居中*/
+    background-size: cover;                  /*保持图像本身的宽高比例，将图片缩放到宽度或高度正好适应定义背景的区域*/
+    background-repeat:no-repeat;
 }
 

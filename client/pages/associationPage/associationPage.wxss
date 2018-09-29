@@ -17,98 +17,60 @@ page {
 .moment__cell {
     display: flex;
     flex-direction: column;
-    width: 92%;
+    width: 100%;
     height: auto;
-    margin-bottom: 10rpx;
-    border: 1rpx solid #dddddd;
-    border-radius: 10rpx;
+    border-bottom: 1rpx solid #dddddd;
     padding: 10rpx 10rpx;
     background: #fff;
 }
 .moment__from {
     font-size: 34rpx;
-    color: #3b6096;
+    font-weight: 500;
+    color: #4779ba;
+}
+.moment__images__container {
+    display: flex;
+    flex-direction: row;
+    margin-left: 30rpx;
+}
+.moment__image__cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20rpx;
 }
 .moment__content {
     font-size: 30rpx;
-    margin: 10rpx 0;
+    padding-right: 30rpx;
+    margin-top: 10rpx;
+    margin-bottom: 10rpx;
+    margin-left: 30rpx;
     height: auto;
     line-height: 35rpx;
-    overflow: hidden;
-    text-overflow: ellipsis;
     word-wrap: break-word;
 }
 
 .moment__sub {
-    margin-top: 10rpx;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 60rpx;
+    margin-left: 30rpx;
     font-size: 24rpx;
     color: #7d7d7d;
 }
-
-
-.association-container{
+.moment__sub__btn__container {
     display: flex;
-    width: 100%;
-    height: auto;
-    padding-top: 20rpx;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
+    flex-direction: row-reverse;
+    width: 500rpx;
+    height: 100%;
 }
-
-
-.association-cell{
-    display: flex;
-    flex-direction: column;
-    width: 46%;
-    height: 200rpx;
-    margin-left: 2%;
-    margin-right: 1%;
-    margin-bottom: 20rpx;
-    background: #ffffff;
-    border-radius: 10rpx;
-    border: 1rpx solid #dddddd;
-    /*box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, .125);*/
-    overflow: hidden;
-    animation-duration: 0.5s;
-    animation-fill-mode: both;
-    animation-name: fadeInDown;
-}
-@keyframes fadeInDown{
-    from {opacity: 0;transform: translate(0, 100%);}
-    to {opacity: 1;transform: none;}
-}
-
-
-.association-cell .association-name{
-    display: flex;
-    width: 100%;
-    height: 35%;
-    align-items:center;/*垂直居中*/
-    justify-content: center;/*水平居中*/
-    color: #414141;
-    font-size: 28rpx;
-    font-weight: 500;
-}
-
-.association-cell .association-tags-container{
-    display: flex;
-    flex-flow: row;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-}
-.association-cell .association-tags-container .association-tag{
+.moment__sub__btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10rpx 20rpx;
-    border: 0;
-    border-radius: 5rpx;
-    background: #f3f3f3;
-    color: #7d7d7d;
-    font-size: 22rpx;
-    font-weight: 450;
+    width: 60rpx;
+    height: 100%;
 }
 
 
@@ -120,7 +82,6 @@ page {
     z-index: 1;
     border-bottom: 1rpx solid #dddddd;
 }
-
 .page-tab{
     display: flex;
     flex-flow: row;
@@ -129,7 +90,6 @@ page {
     height: 70rpx;
     background: white;
 }
-
 .tab-cell-left{
     display: flex;
     flex-flow: row;
@@ -139,7 +99,6 @@ page {
     font-size: 32rpx;
     font-weight: bold;
 }
-
 .tab-cell-right{
     display: flex;
     flex-flow: row;
@@ -149,7 +108,6 @@ page {
     font-size: 32rpx;
     font-weight: bold;
 }
-
 .page-tab-line{
     display: flex;
     flex-flow: row;
@@ -159,8 +117,6 @@ page {
     padding-top: 5rpx;
     background: white;
 }
-
-
 .tab-line-left{
     display: flex;
     flex-flow: row;
@@ -170,8 +126,6 @@ page {
     font-size: 32rpx;
     font-weight: bold;
 }
-
-
 .tab-line-right{
     display: flex;
     flex-flow: row;
@@ -181,7 +135,3 @@ page {
     font-size: 32rpx;
     font-weight: bold;
 }
-
-
-
-.scoll-y{height: 100%;}

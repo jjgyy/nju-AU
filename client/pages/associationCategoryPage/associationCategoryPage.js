@@ -39,7 +39,7 @@ Page({
       },
       success: function(res) {
         that.setData({
-          associationList: res.data.data
+          associationList: res.data
         })
       }
     });
