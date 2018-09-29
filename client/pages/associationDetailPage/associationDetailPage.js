@@ -14,14 +14,13 @@ Page({
 
         joinBtnText: '+ 关注',
 
+        needGetMoments: true,
         needGetArticles: true,
 
         currentTab: 0,
         clientHeight: null,
-        leftTabColor: '#0f0f0f',
-        rightTabColor: '#bbbbbb',
-        leftTabLineColor: '#0f0f0f',
-        rightTabLineColor: 'rgba(0,0,0,0)'
+        tabWordColor: ['#097aff', '#bbbbbb', '#bbbbbb'],
+        tabLineColor: ['#097aff', 'rgba(0,0,0,0)', 'rgba(0,0,0,0)']
     },
 
     toArticleDetailPage: function (e) {
@@ -77,45 +76,84 @@ Page({
     },
 
 
-    clickLeftTab: function () {
+    clickIntroTab: function () {
         this.setData({
             currentTab: 0
         })
     },
 
-    clickRightTab: function () {
+    clickMomentTab: function () {
         this.setData({
             currentTab: 1
         });
+        this.lazyGetMoments();
+    },
+
+    clickArticleTab: function () {
+        this.setData({
+            currentTab: 2
+        });
         this.lazyGetArticles();
     },
+
 
     switchPage: function (e) {
         this.setData({
             currentTab: e.detail.current
         });
-        this.refreshTab();
-        this.lazyGetArticles();
+
+        switch (this.data.currentTab) {
+            case 0:
+                this.setData({
+                    tabWordColor: ['#097aff', '#bbbbbb', '#bbbbbb'],
+                    tabLineColor: ['#097aff', 'rgba(0,0,0,0)', 'rgba(0,0,0,0)']
+                });
+                break;
+            case 1:
+                this.setData({
+                    tabWordColor: ['#bbbbbb', '#097aff', '#bbbbbb'],
+                    tabLineColor: ['rgba(0,0,0,0)', '#097aff', 'rgba(0,0,0,0)']
+                });
+                this.lazyGetMoments();
+                break;
+            case 2:
+                this.setData({
+                    tabWordColor: ['#bbbbbb', '#bbbbbb', '#097aff'],
+                    tabLineColor: ['rgba(0,0,0,0)', 'rgba(0,0,0,0)', '#097aff']
+                });
+                this.lazyGetArticles();
+                break;
+        }
+
     },
 
-    refreshTab: function () {
-        if (this.data.currentTab === 0){
-            this.setData({
-                leftTabColor: '#0f0f0f',
-                rightTabColor: '#bbbbbb',
-                leftTabLineColor: '#0f0f0f',
-                rightTabLineColor: 'rgba(0,0,0,0)'
-            });
-        }
-        else{
-            this.setData({
-                leftTabColor: '#bbbbbb',
-                rightTabColor: '#0f0f0f',
-                leftTabLineColor: 'rgba(0,0,0,0)',
-                rightTabLineColor: '#0f0f0f'
-            });
-        }
+
+    lazyGetMoments: function () {
+        if (!this.data.needGetMoments) { return; }
+        var that = this;
+        wx.request({
+            url: `${config.service.host}/weapp/getAssociationMomentList`,
+            data: {
+                association_id: that.data.association_id
+            },
+            success(result) {
+                var momentList = result.data;
+                for (var i=0, len=momentList.length; i<len; i++) {
+                    momentList[i].image_list = JSON.parse(momentList[i].image_list);
+                    momentList[i].date = momentList[i].date.substr(0, 10);
+                    momentList[i].like = false;
+                }
+                that.setData({
+                    momentList: momentList,
+                    needGetMoments: false
+                });
+            },
+            fail(error) {
+                console.log('request fail', error);
+            }
+        });
     },
+
 
     lazyGetArticles: function () {
         if (!this.data.needGetArticles) { return; }
@@ -131,7 +169,8 @@ Page({
                     articleList[i].date = articleList[i].date.substr(0, 10);
                 }
                 that.setData({
-                    articleList: articleList
+                    articleList: articleList,
+                    needGetArticles: false
                 });
             },
             fail (error) {
@@ -143,8 +182,8 @@ Page({
 
 
     onLoad:function(options){
-        // 页面初始化 options为页面跳转所带来的参数
         var that = this;
+
         this.setData({
             association_id: options.id
         });

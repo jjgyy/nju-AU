@@ -90,7 +90,7 @@
     height: 100rpx;
     padding: 20rpx;
     background: #fff;
-    border-top: 0.5rpx solid #ddd;
+    border-top: 1rpx solid #ddd;
     overflow: hidden;
 }
 .association-image-container {
@@ -141,7 +141,7 @@
 
 
 
-.newsCell{
+.newsCell {
     display: flex;
     flex-flow: row;
     width: 100%;
@@ -149,13 +149,13 @@
     border-bottom: 1rpx solid #dddddd;
     background: #fff;
 }
-.newsCell-left{
+.newsCell-left {
     display: flex;
     flex-flow: column;
     width: 60%;
     height: 100%;
 }
-.newsCell-left-title{
+.newsCell-left-title {
     display: flex;
     width: 100%;
     height: 70%;
@@ -195,3 +195,68 @@
     background-repeat:no-repeat;
 }
 
+
+.moment__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: auto;
+}
+.moment__cell {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    border-bottom: 1rpx solid #dddddd;
+    padding: 10rpx 10rpx;
+    background: #fff;
+}
+.moment__from {
+    font-size: 34rpx;
+    font-weight: 500;
+    color: #4779ba;
+}
+.moment__images__container {
+    display: flex;
+    flex-direction: row;
+    margin-left: 30rpx;
+}
+.moment__image__cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20rpx;
+}
+.moment__content {
+    font-size: 30rpx;
+    padding-right: 30rpx;
+    margin-top: 10rpx;
+    margin-bottom: 10rpx;
+    margin-left: 30rpx;
+    height: auto;
+    line-height: 35rpx;
+    word-wrap: break-word;
+}
+.moment__sub {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 60rpx;
+    margin-left: 30rpx;
+    font-size: 24rpx;
+    color: #7d7d7d;
+}
+.moment__sub__btn__container {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 500rpx;
+    height: 100%;
+}
+.moment__sub__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60rpx;
+    height: 100%;
+}

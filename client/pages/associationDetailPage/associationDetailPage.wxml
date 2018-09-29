@@ -27,23 +27,29 @@
     </view>
 
 
-
-
-    <view class="page-tab">
-        <view bindtap="clickLeftTab" class="tab-cell-left">
-            <text style="color: {{leftTabColor}}">简介</text>
+    <view class="tab-container">
+        <view class="tab-word-container">
+            <view bindtap="clickIntroTab" class="tab-word">
+                <text style="color: {{tabWordColor[0]}}">简介</text>
+            </view>
+            <view bindtap="clickMomentTab" class="tab-word">
+                <text style="color: {{tabWordColor[1]}}">动态</text>
+            </view>
+            <view bindtap="clickArticleTab" class="tab-word">
+                <text style="color: {{tabWordColor[2]}}">新闻</text>
+            </view>
         </view>
-        <view bindtap="clickRightTab" class="tab-cell-right">
-            <text style="color: {{rightTabColor}}">新闻</text><text style="color: #ff3644;font-size: 20rpx">●</text>
-        </view>
-    </view>
 
-    <view class="page-tab-line">
-        <view bindtap="clickLeftTab" class="tab-line-left">
-            <text style="color: {{leftTabLineColor}}">——</text>
-        </view>
-        <view bindtap="clickRightTab" class="tab-line-right">
-            <text style="color: {{rightTabLineColor}}">——</text>
+        <view class="tab-line-container">
+            <view bindtap="clickIntroTab" class="tab-line">
+                <text style="color: {{tabLineColor[0]}}">——</text>
+            </view>
+            <view bindtap="clickMomentTab" class="tab-line">
+                <text style="color: {{tabLineColor[1]}}">——</text>
+            </view>
+            <view bindtap="clickArticleTab" class="tab-line">
+                <text style="color: {{tabLineColor[2]}}">——</text>
+            </view>
         </view>
     </view>
 
@@ -93,9 +99,53 @@
 
     <swiper-item>
         <scroll-view scroll-y="true" class="scoll-y">
-            <view class="page-container">
 
-                <view bindtap="toArticleDetailPage" data-url="{{item.url}}" class="newsCell fly_from_bottom" style="margin-top: 394rpx" wx:for="{{articleList}}" wx:key="item.id">
+            <view class="moment__container" style="margin-top: 394rpx">
+                <view class="moment__cell fly_from_bottom" wx:for="{{momentList}}" wx:for-item="moment" wx:for-index="momentIndex" wx:key="{{moment.moment_id}}" style="margin-top: 0;">
+                    <view class="weui-cell">
+
+                        <view class="weui-cell__bd" style="width: 80%">
+                            <view class="moment__from">
+                                <text bindtap="toAssociationDetailPage" data-id="{{moment.association_id}}">{{moment.association_name}}</text>
+                            </view>
+
+                            <view class="moment__content">
+                                <text>{{moment.content}}</text>
+                            </view>
+
+                            <view class="moment__images__container">
+                                <view class="moment__image__cell" wx:for="{{moment.image_list}}" wx:key="*this">
+                                    <view bindtap="previewImage" id="{{item}}" data-index="{{momentIndex}}">
+                                        <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                                    </view>
+                                </view>
+                            </view>
+
+                            <view class="moment__sub">
+                                <text>{{moment.date}}</text>
+                                <view class="moment__sub__btn__container">
+                                    <view bindtap="like" data-id="{{momentIndex}}" class="moment__sub__btn">
+                                        <image hidden="{{moment.like}}" src="../../icon/like-before.svg" style="width: 30rpx; height: 30rpx"/>
+                                        <image hidden="{{!moment.like}}" src="../../icon/like-after.svg" style="width: 30rpx; height: 30rpx;"/>
+                                    </view>
+                                </view>
+                            </view>
+
+                        </view>
+                    </view>
+                </view>
+            </view>
+
+        </scroll-view>
+    </swiper-item>
+
+
+    <swiper-item>
+        <scroll-view scroll-y="true" class="scoll-y">
+            <view class="page-container" style="margin-top: 394rpx">
+
+
+                <view bindtap="toArticleDetailPage" data-url="{{item.url}}" class="newsCell fly_from_bottom" wx:for="{{articleList}}" wx:key="item.id">
                     <view class="newsCell-left">
                         <view class="newsCell-left-title">
                             <text>{{item.title}}</text>
