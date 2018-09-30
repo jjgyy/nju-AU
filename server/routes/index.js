@@ -54,9 +54,13 @@ router.get('/getAssociationArticleList', controllers.getAssociationArticleList);
 
 router.get('/getAssociationMomentList', controllers.getAssociationMomentList);
 
+router.get('/getAssociationActivityList', controllers.getAssociationActivityList);
+
 router.get('/getAllArticleList', controllers.getAllArticleList);
 
 router.get('/getAllMomentList', controllers.getAllMomentList);
+
+router.get('/getAllActivityList', controllers.getAllActivityList);
 
 router.get('/getAssociationContact', controllers.getAssociationContact);
 
@@ -101,6 +105,8 @@ router.get('/deleteAssociationNormalManager', validationMiddleware, controllers.
 router.get('/updateAssociationInfo', validationMiddleware, controllers.validateManager, controllers.updateAssociationInfo);
 
 router.get('/addAssociationMoment', validationMiddleware, controllers.validateManager, controllers.addAssociationMoment);
+
+router.get('/addAssociationActivity', validationMiddleware, controllers.validateManager, controllers.addAssociationActivity);
 
 
 //验证社团主席（管理组长）

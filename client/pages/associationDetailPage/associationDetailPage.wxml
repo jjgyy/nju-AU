@@ -59,20 +59,12 @@
 
 <swiper current="{{currentTab}}" duration="300" bindchange="switchPage" style="height: {{clientHeight?clientHeight + 'px':'auto'}}">
 
-
     <swiper-item>
         <scroll-view scroll-y="true" class="scoll-y">
 
             <view class="page-container fly_from_bottom" style="margin-top: 394rpx">
 
-                <view class="association-intro-title">
-                    <text>社团简介</text>
-                </view>
-                <view class="association-intro-container">
-                    <text>{{associationDetail.intro}}</text>
-                </view>
-
-                <view class="association-contact-title">
+                <view class="association-contact-title" style="margin-top: 30rpx;">
                     <text>公众号</text>
                 </view>
                 <view class="association-contact-container">
@@ -90,6 +82,13 @@
                         <p>{{item.qq}}</p>
                         <view bindtap="copy" data-copydata="{{item.qq}}" class="copy-btn">复制</view>
                     </view>
+                </view>
+
+                <view class="association-intro-title">
+                    <text>社团简介</text>
+                </view>
+                <view class="association-intro-container">
+                    <text>{{associationDetail.intro}}</text>
                 </view>
 
             </view>
@@ -124,9 +123,9 @@
                             <view class="moment__sub">
                                 <text>{{moment.date}}</text>
                                 <view class="moment__sub__btn__container">
-                                    <view bindtap="like" data-id="{{momentIndex}}" class="moment__sub__btn">
-                                        <image hidden="{{moment.like}}" src="../../icon/like-before.svg" style="width: 30rpx; height: 30rpx"/>
-                                        <image hidden="{{!moment.like}}" src="../../icon/like-after.svg" style="width: 30rpx; height: 30rpx;"/>
+                                    <view bindtap="like" data-id="{{moment.moment_id}}" class="moment__sub__btn">
+                                        <image hidden="{{likeDic[moment.moment_id]}}" src="../../icon/like-before.svg" style="width: 30rpx; height: 30rpx"/>
+                                        <image hidden="{{!likeDic[moment.moment_id]}}" src="../../icon/like-after.svg" style="width: 30rpx; height: 30rpx;"/>
                                     </view>
                                 </view>
                             </view>
@@ -145,7 +144,7 @@
             <view class="page-container" style="margin-top: 394rpx">
 
 
-                <view bindtap="toArticleDetailPage" data-url="{{item.url}}" class="newsCell fly_from_bottom" wx:for="{{articleList}}" wx:key="item.id">
+                <view data-url="{{item.url}}" class="newsCell fly_from_bottom" wx:for="{{articleList}}" wx:key="item.id">
                     <view class="newsCell-left">
                         <view class="newsCell-left-title">
                             <text>{{item.title}}</text>

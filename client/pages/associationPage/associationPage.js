@@ -7,17 +7,20 @@ Page({
         associationList: [],
         userAssociationList: null,
         momentList: [],
+        activityList: [],
+
+        likeDic: {},
 
         needGetAssociations: true,
+        needGetActivities: true,
+        needGetMoments: true,
 
         canRefresh: true,
 
         currentTab: 0,
         clientHeight: null,
-        leftTabColor: '#097aff',
-        rightTabColor: '#bbbbbb',
-        leftTabLineColor: '#097aff',
-        rightTabLineColor: 'rgba(0,0,0,0)',
+        tabWordColor: ['#097aff', '#bbbbbb', '#bbbbbb'],
+        tabLineColor: ['#097aff', 'rgba(0,0,0,0)', 'rgba(0,0,0,0)'],
 
         inputShowed: false,
         inputVal: "",
@@ -46,25 +49,56 @@ Page({
         })
     },
 
-    clickLeftTab: function () {
+    clickActivityTab: function () {
         this.setData({
             currentTab: 0
-        })
+        });
+        this.lazyLoad();
     },
 
-    clickRightTab: function () {
+    clickMomentTab: function () {
         this.setData({
             currentTab: 1
         });
-        this.lazyGetAssociation();
+        this.lazyLoad();
     },
+
+
+    clickSearchTab: function () {
+        this.setData({
+            currentTab: 2
+        });
+        this.lazyLoad();
+    },
+
 
     switchPage: function (e) {
         this.setData({
             currentTab: e.detail.current
         });
-        this.refreshTab();
-        this.lazyGetAssociation();
+
+        switch (this.data.currentTab) {
+            case 0:
+                this.setData({
+                    tabWordColor: ['#097aff', '#bbbbbb', '#bbbbbb'],
+                    tabLineColor: ['#097aff', 'rgba(0,0,0,0)', 'rgba(0,0,0,0)']
+                });
+                break;
+            case 1:
+                this.setData({
+                    tabWordColor: ['#bbbbbb', '#097aff', '#bbbbbb'],
+                    tabLineColor: ['rgba(0,0,0,0)', '#097aff', 'rgba(0,0,0,0)']
+                });
+                break;
+            case 2:
+                this.setData({
+                    tabWordColor: ['#bbbbbb', '#bbbbbb', '#097aff'],
+                    tabLineColor: ['rgba(0,0,0,0)', 'rgba(0,0,0,0)', '#097aff']
+                });
+                break;
+        }
+
+        this.lazyLoad();
     },
 
     refreshTab: function () {
@@ -123,59 +157,84 @@ Page({
         });
     },
 
+    lazyLoad: function () {
+        switch (this.data.currentTab) {
+            case 0:
+                this.lazyGetActivities();
+                break;
+            case 1:
+                this.lazyGetMoments();
+                break;
+            case 2:
+                this.lazyGetAssociations();
+                break;
+        }
+    },
 
-    lazyGetAssociation: function () {
+
+    lazyGetActivities: function () {
+        if (!this.data.needGetActivities) { return; }
         var that = this;
 
-        if(that.data.userAssociationList == null || getApp().data.needRefreshJoined) {
-            /**
-            wx.showLoading({
-                title: '加载中...',
-                mask: true
-            });
-             */
+        wx.request({
+            url: `${config.service.host}/weapp/getAllActivityList`,
+            success (result) {
 
-            wx.request({
-                url: `${config.service.host}/weapp/getUserAssociationList`,
-                data: {
-                    open_id: getApp().data.userInfo.openId
-                },
-                success (result) {
+                that.setData({
+                    activityList: result.data,
+                    needGetActivities: false
+                });
 
-                    that.setData({
-                        userAssociationList: result.data.data
-                    });
+                console.log(that.data.activityList);
 
-                    getApp().data.needRefreshJoined = false;  // 刷新成功后将全局变量置为false
+            },
+            fail (error) {
+                console.log('request fail', error);
+            }
+        });
+    },
 
-                    /**
-                    setTimeout(() => {
-                        wx.hideLoading();
-                    }, 0);
-                     */
+    lazyGetMoments: function () {
+        if (!this.data.needGetMoments) { return; }
+        var that = this;
 
-                },
-                fail (error) {
-                    console.log('request fail', error);
+        wx.request({
+            url: `${config.service.host}/weapp/getAllMomentList`,
+            success(result) {
+                var momentList = result.data;
+                for (var i=0, len=momentList.length; i<len; i++) {
+                    momentList[i].image_list = JSON.parse(momentList[i].image_list);
+                    momentList[i].date = momentList[i].date.substr(0, 10);
                 }
-            });
-        }
+                that.setData({
+                    momentList: momentList
+                });
+            },
+            fail(error) {
+                console.log('request fail', error);
+            }
+        });
+    },
 
-        if (this.data.needGetAssociations) {
-            wx.request({
-                url: `${config.service.host}/weapp/getAssociationList`,
-                success(result) {
-                    that.setData({
-                        associationList: result.data.data,
-                        needGetAssociations: false
-                    })
-                },
-                fail(error) {
-                    console.log('request fail', error);
-                }
-            });
-        }
 
+    lazyGetAssociations: function () {
+        if (!this.data.needGetAssociations) { return; }
+        var that = this;
+
+        wx.request({
+            url: `${config.service.host}/weapp/getAssociationList`,
+            success(result) {
+                that.setData({
+                    associationList: result.data.data,
+                    needGetAssociations: false
+                })
+            },
+            fail(error) {
+                console.log('request fail', error);
+            }
+        });
+
+        console.log(this.data.associationList)
     },
 
 
@@ -220,7 +279,6 @@ Page({
                 for (var i=0, len=momentList.length; i<len; i++) {
                     momentList[i].image_list = JSON.parse(momentList[i].image_list);
                     momentList[i].date = momentList[i].date.substr(0, 10);
-                    momentList[i].like = false;
                 }
                 that.setData({
                     momentList: momentList
@@ -235,11 +293,20 @@ Page({
 
 
     like: function (e) {
-        var momentList = this.data.momentList;
-        momentList[e.currentTarget.dataset.id].like = true;
+
+        var likeWhich = 'likeDic[' + e.currentTarget.dataset.id + ']';
+        //赞过的就取消赞
+        if (this.data.likeDic[e.currentTarget.dataset.id]) {
+            this.setData({
+                [likeWhich]: false
+            });
+            return;
+        }
+        //没赞过的点赞
         this.setData({
-            momentList: momentList
+            [likeWhich]: true
         });
+
     },
 
 
@@ -255,24 +322,7 @@ Page({
             }
         });
 
-        wx.request({
-            url: `${config.service.host}/weapp/getAllMomentList`,
-            success(result) {
-                var momentList = result.data;
-                for (var i=0, len=momentList.length; i<len; i++) {
-                    momentList[i].image_list = JSON.parse(momentList[i].image_list);
-                    momentList[i].date = momentList[i].date.substr(0, 10);
-                    momentList[i].like = false;
-                }
-                that.setData({
-                    momentList: momentList
-                });
-            },
-            fail(error) {
-                console.log('request fail', error);
-            }
-        });
-
+        this.lazyLoad();
     },
 
     onReady:function(){
@@ -282,12 +332,7 @@ Page({
         var that = this;
 
         if( this.data.userAssociationList == null || getApp().data.needRefreshJoined ) {
-            /**
-            wx.showLoading({
-                title: '加载中...',
-                mask: true
-            });
-             */
+
             wx.request({
                 url: `${config.service.host}/weapp/getUserAssociationList`,
                 data: {
@@ -300,11 +345,6 @@ Page({
                     });
                     // 刷新成功后将全局变量置为false
                     getApp().data.needRefreshJoined = false;
-                    /**
-                    setTimeout(() => {
-                        wx.hideLoading();
-                    }, 0);
-                     */
                 },
                 fail (error) {
                     console.log('request fail', error);

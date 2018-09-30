@@ -143,3 +143,19 @@ CREATE TABLE `moment` (
   `content` varchar(400) COLLATE utf8mb4_unicode_ci NOT NULL,
   `delete` tinyint(1) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+
+
+DROP TABLE IF EXISTS `activity`;
+CREATE TABLE `activity` (
+  `activity_id` int(32) AUTO_INCREMENT NOT NULL,
+  `date` varchar(400) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `category` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `association_id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `association_name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `activity_name` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `activity_intro` varchar(3000) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image_src` varchar(1000) COLLATE utf8mb4_unicode_ci,
+  `ticket` tinyint(1) COLLATE utf8mb4_unicode_ci NOT NULL
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `delete` tinyint(1) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci

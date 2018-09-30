@@ -10,6 +10,8 @@ Page({
         associationOfficialList: [],
         articleList: null,
 
+        likeDic: {},
+
         hasJoined: false,
 
         joinBtnText: '+ 关注',
@@ -124,6 +126,24 @@ Page({
                 this.lazyGetArticles();
                 break;
         }
+
+    },
+
+
+    like: function (e) {
+
+        var likeWhich = 'likeDic[' + e.currentTarget.dataset.id + ']';
+        //赞过的就取消赞
+        if (this.data.likeDic[e.currentTarget.dataset.id]) {
+            this.setData({
+                [likeWhich]: false
+            });
+            return;
+        }
+        //没赞过的点赞
+        this.setData({
+            [likeWhich]: true
+        });
 
     },
 

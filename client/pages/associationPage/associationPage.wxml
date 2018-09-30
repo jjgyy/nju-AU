@@ -1,33 +1,55 @@
-<view class="page-tab-container">
-    <view class="page-tab">
-        <view class="tab-cell-left">
-            <text bindtap="clickLeftTab" style="color: {{leftTabColor}}">动态</text>
+<view class="fixed__container">
+
+    <view class="tab-container">
+        <view class="tab-word-container">
+            <view bindtap="clickActivityTab" class="tab-word bg-tab-word">
+                <text style="color: {{tabWordColor[0]}}">活动</text>
+            </view>
+            <view bindtap="clickMomentTab" class="tab-word bg-tab-word">
+                <text style="color: {{tabWordColor[1]}}">动态</text>
+            </view>
+            <view bindtap="clickSearchTab" class="tab-word bg-tab-word">
+                <text style="color: {{tabWordColor[2]}}">寻觅</text>
+            </view>
         </view>
-        <view class="tab-cell-right">
-            <text bindtap="clickRightTab" style="color: {{rightTabColor}}">寻觅</text>
+
+        <view class="tab-line-container">
+            <view bindtap="clickActivityTab" class="tab-line bg-tab-word">
+                <text style="color: {{tabLineColor[0]}}">——</text>
+            </view>
+            <view bindtap="clickMomentTab" class="tab-line bg-tab-word">
+                <text style="color: {{tabLineColor[1]}}">——</text>
+            </view>
+            <view bindtap="clickSearchTab" class="tab-line bg-tab-word">
+                <text style="color: {{tabLineColor[2]}}">——</text>
+            </view>
         </view>
     </view>
 
-    <view class="page-tab-line">
-        <view class="tab-line-left">
-            <text bindtap="clickLeftTab" style="color: {{leftTabLineColor}}">——</text>
-        </view>
-        <view class="tab-line-right">
-            <text bindtap="clickRightTab" style="color: {{rightTabLineColor}}">——</text>
-        </view>
-    </view>
 </view>
+
 
 
 
 
 <swiper current="{{currentTab}}" duration="300" bindchange="switchPage" style="height: {{clientHeight?clientHeight + 'px':'auto'}}">
 
+    <swiper-item>
+        <scroll-view scroll-y="true" class="scoll-y">
+            <view class="activity__container under_tab">
+
+                <view class="activity__cell fly_from_bottom" wx:for="{{activityList}}" wx:key="{{item.activity_id}}" style="margin-top: 0;">
+
+                </view>
+
+            </view>
+        </scroll-view>
+    </swiper-item>
 
     <swiper-item>
         <scroll-view scroll-y="true" class="scoll-y">
 
-            <view class="moment__container" style="margin-top: 85rpx">
+            <view class="moment__container under_tab">
                 <view class="moment__cell fly_from_bottom" wx:for="{{momentList}}" wx:for-item="moment" wx:for-index="momentIndex" wx:key="{{moment.moment_id}}" style="margin-top: 0;">
                     <view class="weui-cell">
 
@@ -51,9 +73,9 @@
                             <view class="moment__sub">
                                 <text>{{moment.date}}</text>
                                 <view class="moment__sub__btn__container">
-                                    <view bindtap="like" data-id="{{momentIndex}}" class="moment__sub__btn">
-                                        <image hidden="{{moment.like}}" src="../../icon/like-before.svg" style="width: 30rpx; height: 30rpx"/>
-                                        <image hidden="{{!moment.like}}" src="../../icon/like-after.svg" style="width: 30rpx; height: 30rpx;"/>
+                                    <view bindtap="like" data-id="{{moment.moment_id}}" class="moment__sub__btn">
+                                        <image hidden="{{likeDic[moment.moment_id]}}" src="../../icon/like-before.svg" style="width: 30rpx; height: 30rpx"/>
+                                        <image hidden="{{!likeDic[moment.moment_id]}}" src="../../icon/like-after.svg" style="width: 30rpx; height: 30rpx;"/>
                                     </view>
                                 </view>
                             </view>
@@ -70,7 +92,7 @@
     <swiper-item>
         <scroll-view scroll-y="true" class="scoll-y">
 
-            <view class="weui-search-bar" style="margin-top: 80rpx">
+            <view class="weui-search-bar under_tab">
                 <view class="weui-search-bar__form">
                     <view class="weui-search-bar__box">
                         <icon class="weui-icon-search_in-box" type="search" size="14"></icon>

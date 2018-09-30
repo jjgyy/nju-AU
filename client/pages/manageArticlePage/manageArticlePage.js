@@ -82,7 +82,6 @@ Page({
         that.setData({
           articleList: res.data.data
         });
-        util.showSuccess('加载成功');
       },
       fail (error) {
         console.log('request fail', error);
@@ -115,7 +114,6 @@ Page({
         that.setData({
           articleList: res.data.data
         });
-        util.showSuccess('加载成功');
       },
       fail (error) {
         console.log('request fail', error);

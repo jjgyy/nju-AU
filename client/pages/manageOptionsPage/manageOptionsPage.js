@@ -28,6 +28,11 @@ Page({
             url: '../manageArticlePage/manageArticlePage?' + 'id=' + this.data.association_id
         })
     },
+    toManageActivityPage: function (){
+        wx.navigateTo({
+            url: '../manageActivityPage/manageActivityPage?' + 'id=' + this.data.association_id
+        })
+    },
     toManageStaffPage: function (){
         wx.navigateTo({
             url: '../manageStaffPage/manageStaffPage?' + 'id=' + this.data.association_id

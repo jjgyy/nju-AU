@@ -1,0 +1,19 @@
+<view class="weui-cells__title">新建活动</view>
+<view class="weui-cells weui-cells_after-title">
+    <view bindtap="toManageWriteActivityPage" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__bd">新建活动</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access">前往</view>
+    </view>
+</view>
+
+
+<view class="weui-cells__title">活动列表</view>
+<view class="weui-cells weui-cells_after-title">
+    <view bindtap="open" data-id="{{item.activity_id}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for="{{activityList}}" wx:key="item.activity_id">
+        <view class="weui-cell__hd">
+            <image src="{{item.image_src}}" style="margin-right:10px;vertical-align:middle;width:80rpx;height:80rpx;border-radius:10rpx"></image>
+        </view>
+        <view class="weui-cell__bd">{{item.activity_name}}</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access">选项</view>
+    </view>
+</view>
