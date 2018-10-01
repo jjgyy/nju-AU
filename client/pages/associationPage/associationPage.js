@@ -27,6 +27,12 @@ Page({
         searchResult: []
     },
 
+    toActivityDetailPage: function (e) {
+        wx.navigateTo({
+            url: '../activityDetailPage/activityDetailPage?' + 'activity_id=' + e.currentTarget.dataset.id
+        })
+    },
+
     toAssociationDetailPage: function (e) {
         var id = e.currentTarget.dataset.id;
         var hasJoined = false;
@@ -184,8 +190,6 @@ Page({
                     activityList: result.data,
                     needGetActivities: false
                 });
-
-                console.log(that.data.activityList);
 
             },
             fail (error) {

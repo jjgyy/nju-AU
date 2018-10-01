@@ -65,6 +65,22 @@
 
         <view class="weui-cell__bd">生成电子入场券</view>
     </view>
+
+    <view hidden="{{!ticket}}" class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+            <view class="weui-label">发放数量</view>
+        </view>
+        <view class="weui-cell__bd">
+            <input class="weui-input" bindinput="ticket_num" value="{{ticket_num}}" placeholder="请输入发放数量" type="number" maxlength="3"/>
+        </view>
+    </view>
+
+    <view bindtap="bindOfflineChange" hidden="{{!ticket}}" class="weui-cell weui-check__label">
+        <checkbox class="weui-check" checked="{{offline}}"/>
+
+        <view class="weui-cell__bd">线下认证后领取</view>
+    </view>
+
 </view>
 
 

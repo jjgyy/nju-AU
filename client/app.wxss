@@ -323,11 +323,54 @@
 }
 
 .activity__cell {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: auto;
+    display: block;
+    width: 96%;
+    height: 320rpx;
+    margin-bottom: 20rpx;
     border-bottom: 1rpx solid #dddddd;
-    padding: 10rpx 10rpx;
-    background: #fff;
+    border-radius: 10rpx;
+    overflow: hidden;
+    background-color: #fff;
+    background-origin:border-box;                /*从content区域开始显示背景*/
+    background-position:50% 50%;              /*图片上下左右居中*/
+    background-size: cover;                  /*保持图像本身的宽高比例，将图片缩放到宽度或高度正好适应定义背景的区域*/
+    background-repeat:no-repeat;
+}
+.activity__from {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    width: auto;
+    height: 40rpx;
+    padding: 0 14rpx;
+    border-bottom-right-radius: 10rpx;
+    background: #cb4147;
+    color: #fff;
+    font-size: 22rpx;
+    font-weight: 400;
+}
+.activity__name {
+    position: absolute;
+    display: flex;
+    margin-top: 270rpx;
+    width: auto;
+    height: 40rpx;
+    padding: 0 14rpx;
+    color: #fff;
+    font-size: 32rpx;
+    font-weight: 500;
+}
+.activity__ticket {
+    position: absolute;
+    display: flex;
+    margin-top: 276rpx;
+    margin-left: 670rpx;
+    width: auto;
+    height: 40rpx;
+    padding: 2rpx 14rpx;
+    border-bottom-right-radius: 10rpx;
+    background: #cb4147;
+    color: #fff;
+    font-size: 28rpx;
+    font-weight: 500;
 }

@@ -16,7 +16,9 @@ Page({
         activity_intro: null,
 
         imgUrl: null,
-        ticket: false
+        ticket: false,
+        ticket_num: 0,
+        offline: false
     },
 
     activity_name: function(e){
@@ -25,6 +27,10 @@ Page({
 
     activity_intro: function(e){
         this.data.activity_intro = e.detail.value;
+    },
+
+    ticket_num: function(e){
+        this.data.ticket_num = e.detail.value;
     },
 
     bindDateChange: function (e) {
@@ -45,6 +51,11 @@ Page({
     bindTicketChange: function(e) {
         this.setData({
             ticket: !this.data.ticket
+        });
+    },
+    bindOfflineChange: function(e) {
+        this.setData({
+            offline: !this.data.offline
         });
     },
 
@@ -108,7 +119,6 @@ Page({
             confirmText: "确认",
             cancelText: "取消",
             success: function (res) {
-                console.log(that.data);
                 if (res.confirm) {
                     util.showBusy('正在创建...');
                     qcloud.request({
@@ -121,7 +131,9 @@ Page({
                             activity_name: that.data.activity_name,
                             activity_intro: that.data.activity_intro,
                             image_src: that.data.imgUrl,
-                            ticket: Number(that.data.ticket)
+                            ticket: Number(that.data.ticket),
+                            ticket_num: that.data.ticket_num,
+                            offline: Number(that.data.offline)
                         },
                         login: true,
                         success (res) {
@@ -151,7 +163,6 @@ Page({
             date_start: date.getFullYear() + '-' + (date.getMonth()+1) + '-'+date.getDate(),
             date_end: (date.getFullYear() + 1) + '-' + 12 + '-' + 31
         });
-        console.log(this.data.date_start);
     },
     onReady: function () {
 

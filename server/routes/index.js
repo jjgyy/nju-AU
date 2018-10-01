@@ -62,6 +62,8 @@ router.get('/getAllMomentList', controllers.getAllMomentList);
 
 router.get('/getAllActivityList', controllers.getAllActivityList);
 
+router.get('/getActivityDetail', controllers.getActivityDetail);
+
 router.get('/getAssociationContact', controllers.getAssociationContact);
 
 router.get('/getUserAssociationList', controllers.getUserAssociationList);

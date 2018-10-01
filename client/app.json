@@ -11,6 +11,7 @@
     "pages/associationCreatePage/associationCreatePage",
     "pages/associationAddContactPage/associationAddContactPage",
     "pages/associationJoinedPage/associationJoinedPage",
+    "pages/activityDetailPage/activityDetailPage",
     "pages/managePage/managePage",
     "pages/manageOptionsPage/manageOptionsPage",
     "pages/manageInfoPage/manageInfoPage",

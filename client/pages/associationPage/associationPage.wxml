@@ -36,10 +36,20 @@
 
     <swiper-item>
         <scroll-view scroll-y="true" class="scoll-y">
-            <view class="activity__container under_tab">
+            <view class="activity__container" style="margin-top: 90rpx">
 
-                <view class="activity__cell fly_from_bottom" wx:for="{{activityList}}" wx:key="{{item.activity_id}}" style="margin-top: 0;">
+                <view bindtap="toActivityDetailPage" data-id="{{item.activity_id}}" class="activity__cell fly_from_bottom" wx:for="{{activityList}}" wx:key="{{item.activity_id}}" style="background-image: url({{item.image_src}})">
+                    <view class="activity__from">
+                        <text>{{item.association_name}}</text>
+                    </view>
 
+                    <view class="activity__name">
+                        <text>{{item.activity_name}}</text>
+                    </view>
+
+                    <view hidden="{{!item.ticket}}" class="activity__ticket">
+                        <text>票</text>
+                    </view>
                 </view>
 
             </view>
@@ -205,6 +215,6 @@
 
 
 
-<view bindtap="refresh" hidden="{{currentTab!==0}}" class="refresh" hover-class="refresh_hover">
+<view bindtap="refresh" hidden="{{currentTab!==1}}" class="refresh" hover-class="refresh_hover">
     <image src="../../icon/refresh.svg"/>
 </view>
