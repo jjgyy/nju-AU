@@ -1,6 +1,6 @@
-var qcloud = require('../../vendor/wafer2-client-sdk/index')
-var config = require('../../config')
-var util = require('../../utils/util.js')
+var qcloud = require('../../vendor/wafer2-client-sdk/index');
+var config = require('../../config');
+var util = require('../../utils/util.js');
 
 Page({
     data: {
@@ -8,33 +8,9 @@ Page({
         logged: false
     },
 
-    toNewsWritePage: function () {
+    toMeQRcodePage: function () {
         wx.navigateTo({
-            url: '../newsWritePage/newsWritePage',
-        })
-    },
-
-    toAssociationCreatePage: function () {
-        wx.navigateTo({
-            url: '../associationCreatePage/associationCreatePage',
-        })
-    },
-
-    toAssociationAddContactPage: function () {
-        wx.navigateTo({
-            url: '../associationAddContactPage/associationAddContactPage',
-        })
-    },
-
-    toAdminLoginPage: function () {
-        wx.navigateTo({
-            url: '../adminLoginPage/adminLoginPage',
-        })
-    },
-
-    toAdminPage: function () {
-        wx.navigateTo({
-            url: '../adminPage/adminPage',
+            url: '../meQRcodePage/meQRcodePage',
         })
     },
 
@@ -42,6 +18,22 @@ Page({
         var that = this;
         wx.setClipboardData({
             data: that.data.userInfo.openId
+        })
+    },
+
+    scanQR: function () {
+        wx.scanCode({
+            success: (res) => {
+                console.log(res);
+                console.log(res.result);
+                var json = JSON.parse(res.result);
+                switch (json.type) {
+                    case 'association':
+                        wx.navigateTo({
+                            url: '../associationDetailPage/associationDetailPage?' + 'id=' + json.id
+                        });
+                }
+            }
         })
     },
 
@@ -53,6 +45,7 @@ Page({
                 logged: getApp().data.logged
             });
         }
+
     },
     onReady:function(){
         // 页面渲染完成

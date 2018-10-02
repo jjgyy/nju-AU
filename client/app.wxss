@@ -41,6 +41,14 @@
     to {opacity: 1;transform: none;}
 }
 
+.center__box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: auto;
+}
+
 
 .refresh {
     position: fixed;
@@ -368,6 +376,20 @@
     width: auto;
     height: 40rpx;
     padding: 2rpx 14rpx;
+    border-bottom-right-radius: 10rpx;
+    background: #cb4147;
+    color: #fff;
+    font-size: 28rpx;
+    font-weight: 500;
+}
+.activity__no {
+    position: absolute;
+    display: flex;
+    margin-top: 276rpx;
+    margin-left: 614rpx;
+    width: 90rpx;
+    height: 40rpx;
+    padding: 2rpx 10rpx;
     border-bottom-right-radius: 10rpx;
     background: #cb4147;
     color: #fff;

@@ -1,0 +1,19 @@
+<view class="user-info-container">
+    <view class="userinfo">
+        <image
+                class="userinfo-avatar"
+                src="{{logged ? userInfo.avatarUrl : './user-unlogin.png'}}"
+                background-size="cover"
+        ></image>
+        <view>
+            <view class="userinfo-nickname">
+                <text>{{userInfo.nickName}}</text>
+            </view>
+            <view class="userinfo-openId">
+                <text>用户ID: {{userInfo.openId}}</text>
+            </view>
+        </view>
+    </view>
+    <canvas style="width: 200px; height: 200px;" canvas-id="myQrcode"></canvas>
+    <view class="QRcode-notice">请使用小程序"南京大学社团"内置的扫码功能</view>
+</view>

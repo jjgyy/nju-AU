@@ -12,6 +12,8 @@ Page({
         categories: null,
         categoryIndex: 0,
 
+        location: null,
+
         activity_name: null,
         activity_intro: null,
 
@@ -23,6 +25,10 @@ Page({
 
     activity_name: function(e){
         this.data.activity_name = e.detail.value;
+    },
+
+    location: function(e){
+        this.data.location = e.detail.value;
     },
 
     activity_intro: function(e){
@@ -125,6 +131,7 @@ Page({
                         url: `${config.service.host}/weapp/addAssociationActivity`,
                         data: {
                             id: that.data.association_id,//社团id，只能叫id，中间键变量没写好
+                            location: that.data.location,
                             date: that.data.date,
                             time: that.data.time + ':00',
                             category: that.data.categories[that.data.categoryIndex],

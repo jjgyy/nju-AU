@@ -1,8 +1,20 @@
-page {
-    background: #F6F6F6;
+.user-info-container {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: auto;
+}
+
+.QRcode-notice {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    margin-top: 40rpx;
+    font-size: 30rpx;
+    color: #888888;
 }
 
 .userinfo {
@@ -10,9 +22,6 @@ page {
     height: 140rpx;
     width: 100%;
     background: #FFF;
-    border: 1px solid rgba(0, 0, 0, .1);
-    border-left: none;
-    border-right: none;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -41,20 +50,5 @@ page {
     margin-top: 10rpx;
     width: 100%;
     font-size: 24rpx;
-    color: #aaaaaa;
-}
-.copy-btn{
-    display: flex;
-    height: 24rpx;
-    width: auto;
-    align-items: center;
-    justify-content: center;
-    margin-left: 10rpx;
-    padding: 5rpx 10rpx;
-    border: 1rpx solid #888888;
-    border-radius: 5rpx;
-    background: #f3f3f3;
-    color: #999999;
-    font-size: 22rpx;
-    font-weight: 450;
+    color: #696969;
 }

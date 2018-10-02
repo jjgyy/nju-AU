@@ -6,6 +6,7 @@ module.exports = async (ctx) => {
     const association_id = ctx.query.id,
         date = ctx.query.date,
         time = ctx.query.time,
+        location = ctx.query.location,
         category = ctx.query.category,
         activity_name = ctx.query.activity_name,
         activity_intro = ctx.query.activity_intro,
@@ -23,6 +24,7 @@ module.exports = async (ctx) => {
         const ids = await mysql('activity').insert({
             date: date,
             time: time,
+            location: location,
             category: category,
             association_id: association_id,
             association_name: association_name.name,

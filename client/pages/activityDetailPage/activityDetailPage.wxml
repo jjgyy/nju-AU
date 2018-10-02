@@ -1,0 +1,47 @@
+<view class="activity-info-container">
+    <view class="poster-container" style="background-image: url({{activityDetail.image_src}})">
+        <view class="poster-name">{{activityDetail.activity_name}}</view>
+    </view>
+
+    <view class="activity-info-title" style="margin-top: 30rpx">
+        <text>时间</text>
+    </view>
+    <view class="activity-info-time">
+        {{activityDetail.date}} 当天 {{activityDetail.time}}
+    </view>
+
+    <view class="activity-info-title" style="margin-top: 30rpx">
+        <text>地点</text>
+    </view>
+    <view class="activity-info-location">
+        {{activityDetail.location}}
+    </view>
+
+    <view class="activity-info-title" style="margin-top: 50rpx">
+        <text>主办</text>
+    </view>
+    <view class="activity-info-location">
+        {{activityDetail.association_name}}
+    </view>
+
+    <view class="activity-info-title" style="margin-top: 30rpx">
+        <text>活动简介</text>
+    </view>
+    <view class="activity-info-content">
+        <text>{{activityDetail.activity_intro}}</text>
+    </view>
+</view>
+
+<view class="bottom-fixed-container" wx:if="{{activityDetail.ticket && ticketDetail.remain != 0}}">
+    <view class="bottom-info-can">电子入场券剩余 {{ticketDetail.remain}} / {{ticketDetail.total}} 张</view>
+    <view class="bottom-btn" bindtap="openConfirm" hidden="{{ownTicket}}">抢票</view>
+    <view class="bottom-btn-disabled" hidden="{{!ownTicket}}">已拥有</view>
+</view>
+
+<view class="bottom-fixed-container" wx:if="{{activityDetail.ticket && ticketDetail.remain <= 0}}">
+    <view class="bottom-info-cannot">电子票已被抢光</view>
+</view>
+
+<view class="bottom-fixed-container" wx:if="{{!activityDetail.ticket}}">
+    <view class="bottom-info-cannot">本活动无电子票</view>
+</view>

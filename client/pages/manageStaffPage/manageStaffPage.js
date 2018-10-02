@@ -47,6 +47,18 @@ Page({
         })
     },
 
+    scanQR: function () {
+        var that = this;
+        wx.scanCode({
+            success: (res) => {
+                that.setData({
+                    search_id: res.result
+                });
+                that.search();
+            }
+        });
+    },
+
 
     openNormal: function(e){
         var that = this,

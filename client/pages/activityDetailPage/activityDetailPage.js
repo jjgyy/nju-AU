@@ -7,8 +7,88 @@ Page({
         activity_id: null,
 
         activityDetail: null,
-        ticketDetail: null
+        ticketDetail: null,
+
+        ownTicket: false
     },
+
+    openConfirm: function () {
+        var that = this;
+        wx.showModal({
+            title: '确认抢票',
+            content: '将此入场券加入我的入场券',
+            confirmText: "确认",
+            cancelText: "取消",
+            success: function (res) {
+                if (res.confirm) {
+                    that.setData({
+                        ownTicket: true
+                    });
+
+                    wx.request({
+                            url: `${config.service.host}/weapp/grabActivityTicket`,
+                            data: {
+                                activity_id: that.data.activity_id,
+                                open_id: getApp().data.userInfo.openId
+                            },
+                            success(result) {
+                                console.log(result);
+                                if (result.data.msg === 'owned') {
+                                    util.showSuccess('您已拥有!');
+                                }
+                                if (result.data.msg === 'success') {
+                                    util.showSuccess('抢票成功!');
+                                }
+
+                                wx.request({
+                                    url: `${config.service.host}/weapp/getActivityTicketDetail`,
+                                    data: {
+                                        activity_id: that.data.activity_id
+                                    },
+                                    success (result) {
+
+                                        that.setData({
+                                            ticketDetail: result.data
+                                        });
+
+                                    },
+                                    fail (error) {
+                                        console.log('request fail', error);
+                                    }
+                                });
+
+                                wx.request({
+                                    url: `${config.service.host}/weapp/getActivityTicketOwned`,
+                                    data: {
+                                        activity_id: that.data.activity_id,
+                                        open_id: getApp().data.userInfo.openId
+                                    },
+                                    success (result) {
+
+                                        if (result.data === true) {
+                                            that.setData({
+                                                ownTicket: true
+                                            });
+                                        }
+
+                                    },
+                                    fail (error) {
+                                        console.log('request fail', error);
+                                    }
+                                });
+
+                            },
+                            fail(error) {
+                                console.log('request fail', error);
+                            }
+                        });
+
+                }else{
+                }
+            }
+        });
+    },
+
     onLoad: function (options) {
         this.setData({
             activity_id: options.activity_id
@@ -23,18 +103,57 @@ Page({
             },
             success (result) {
 
-                that.setData({
-                    activityDetail: result.data.activityDetail,
-                    ticketDetail: result.data.ticketDetail
-                });
+                result.data.date = result.data.date.substr(0,10);
 
-                console.log(that.data);
+                that.setData({
+                    activityDetail: result.data
+                });
 
             },
             fail (error) {
                 console.log('request fail', error);
             }
         });
+
+        wx.request({
+            url: `${config.service.host}/weapp/getActivityTicketDetail`,
+            data: {
+                activity_id: that.data.activity_id
+            },
+            success (result) {
+
+                that.setData({
+                    ticketDetail: result.data
+                });
+
+            },
+            fail (error) {
+                console.log('request fail', error);
+            }
+        });
+
+
+        wx.request({
+            url: `${config.service.host}/weapp/getActivityTicketOwned`,
+            data: {
+                activity_id: that.data.activity_id,
+                open_id: getApp().data.userInfo.openId
+            },
+            success (result) {
+
+                if (result.data === true) {
+                    that.setData({
+                        ownTicket: true
+                    });
+                }
+
+            },
+            fail (error) {
+                console.log('request fail', error);
+            }
+        });
+
+
     },
     onReady: function () {
 

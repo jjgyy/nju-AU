@@ -24,6 +24,15 @@
 
     <view class="weui-cell weui-cell_input">
         <view class="weui-cell__hd">
+            <view class="weui-label">地点</view>
+        </view>
+        <view class="weui-cell__bd">
+            <input class="weui-input" bindinput="location" value="{{location}}" placeholder="请输入举办地点" type="text" maxlength="200"/>
+        </view>
+    </view>
+
+    <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
             <view class="weui-label">日期</view>
         </view>
         <view class="weui-cell__bd">

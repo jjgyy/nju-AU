@@ -18,6 +18,7 @@
                     <view class="association-tags-container">
                         <view class="association-tag">{{associationDetail.category}}</view>
                     </view>
+                    <image bindtap="toAssociationQRcodePage" data-id="{{association_id}}" src="../../icon/QRcode.svg" style="width: 45rpx; height: 45rpx; margin-left: 20rpx" />
                 </view>
                 <view class="bottom-info-right">
                     <button bindtap="join" disabled="{{hasJoined}}">{{joinBtnText}}</button>

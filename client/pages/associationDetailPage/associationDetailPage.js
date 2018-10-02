@@ -1,6 +1,7 @@
-var qcloud = require('../../vendor/wafer2-client-sdk/index')
-var config = require('../../config')
-var util = require('../../utils/util.js')
+var qcloud = require('../../vendor/wafer2-client-sdk/index');
+var config = require('../../config');
+var util = require('../../utils/util.js');
+import drawQrcode from '../../utils/weapp.qrcode.min.js';
 
 Page({
     data:{
@@ -28,6 +29,12 @@ Page({
     toArticleDetailPage: function (e) {
         wx.navigateTo({
             url: '../articleDetailPage/articleDetailPage?' + 'url=' + e.currentTarget.dataset.url,
+        })
+    },
+
+    toAssociationQRcodePage: function (e) {
+        wx.navigateTo({
+            url: '../associationQRcodePage/associationQRcodePage?' + 'id=' + e.currentTarget.dataset.id,
         })
     },
 

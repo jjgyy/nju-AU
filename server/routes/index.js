@@ -64,6 +64,8 @@ router.get('/getAllActivityList', controllers.getAllActivityList);
 
 router.get('/getActivityDetail', controllers.getActivityDetail);
 
+router.get('/getActivityTicketDetail', controllers.getActivityTicketDetail);
+
 router.get('/getAssociationContact', controllers.getAssociationContact);
 
 router.get('/getUserAssociationList', controllers.getUserAssociationList);
@@ -73,6 +75,12 @@ router.get('/getUserManageList', controllers.getUserManageList);
 router.get('/deleteUserJoinedAssociation', controllers.deleteUserJoinedAssociation);
 
 router.get('/addAssociationJoiner', controllers.addAssociationJoiner);
+
+router.get('/grabActivityTicket', controllers.grabActivityTicket);
+
+router.get('/getActivityTicketOwned', controllers.getActivityTicketOwned);
+
+router.get('/getUserActivityTicketList', controllers.getUserActivityTicketList);
 
 router.get('/getUser', controllers.getUser);
 
