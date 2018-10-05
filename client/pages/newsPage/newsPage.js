@@ -10,6 +10,9 @@ Page({
 
         articleList: null,
 
+        page: 1,
+        canLoadMore: true,
+
         canRefresh: true
     },
 
@@ -20,6 +23,7 @@ Page({
     },
 
     refresh: function () {
+        wx.stopPullDownRefresh();
         if (!this.data.canRefresh) {
             wx.showLoading({
                 title: '刷新太频繁啦'
@@ -51,7 +55,9 @@ Page({
                     articleList[i].date = articleList[i].date.substr(0, 10);
                 }
                 that.setData({
-                    articleList: articleList
+                    articleList: articleList,
+                    page: 1,
+                    canLoadMore: true
                 });
                 util.showSuccess('刷新成功');
             },
@@ -94,5 +100,43 @@ Page({
     },
     onUnload:function(){
         // 页面关闭
+    },
+
+    onPullDownRefresh:function () {
+        this.refresh();
+    },
+
+    onReachBottom:function () {
+        if (!this.data.canLoadMore) { return; }
+
+        var that = this;
+
+        wx.request({
+            url: `${config.service.host}/weapp/getAllArticleList`,
+            data: {
+                page: that.data.page
+            },
+            success (res) {
+                if (res.data.data.length === 0) {
+                    that.setData( {canLoadMore: false} );
+                    return;
+                }
+                var articleList = res.data.data;
+                for (var i=0, len=articleList.length; i<len; i++) {
+                    articleList[i].date = articleList[i].date.substr(0, 10);
+                }
+                that.setData({
+                    articleList: that.data.articleList.concat(articleList),
+                    page: (that.data.page + 1)
+                });
+            },
+            fail (error) {
+                console.log('request fail', error);
+                util.showModel('出错了', error.message);
+            }
+        });
+
     }
+
+
 });

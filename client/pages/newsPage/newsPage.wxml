@@ -25,6 +25,11 @@
 </view>
 
 
+<view class="center__box" hidden="{{!canLoadMore}}">
+    <text style="color: #bbbbbb;font-size: 34rpx;font-weight: 500">上滑加载更多</text>
+</view>
+
+
 
 <view bindtap="refresh" class="refresh" hover-class="refresh_hover">
     <image src="../../icon/refresh.svg"/>

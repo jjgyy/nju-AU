@@ -27,8 +27,6 @@ Page({
                     ticketList: result.data
                 });
 
-                console.log(result);
-
             },
             fail (error) {
                 console.log('request fail', error);

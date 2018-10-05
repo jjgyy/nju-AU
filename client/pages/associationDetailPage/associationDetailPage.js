@@ -208,6 +208,14 @@ Page({
     },
 
 
+    onShareAppMessage: function () {
+        return {
+            title: this.data.associationDetail.association_name,
+            desc: '在南京大学社团小程序中查看',
+            path: 'pages/associationDetailPage/associationDetailPage?id=' + this.data.association_id
+        }
+    },
+
     onLoad:function(options){
         var that = this;
 
