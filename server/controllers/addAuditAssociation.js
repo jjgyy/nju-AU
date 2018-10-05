@@ -2,14 +2,13 @@ const {mysql} = require('../qcloud')
 
 module.exports = async (ctx) => {
 
-  if (ctx.state.$wxInfo.loginState === 1) {
-
-    const open_id = ctx.state.$wxInfo.userinfo.openId,
+    const open_id = ctx.query.open_id,
           name = ctx.query.name,
           name_english = ctx.query.name_english,
           category = ctx.query.category,
           image_src = ctx.query.image_src,
           intro = ctx.query.intro;
+
 
     try {
       await mysql('association_audit').insert({
@@ -28,5 +27,5 @@ module.exports = async (ctx) => {
         }
       }
     }
-  }
-}
+
+};

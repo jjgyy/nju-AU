@@ -19,19 +19,14 @@ Page({
 
         currentTab: 0,
         clientHeight: null,
-        tabWordColor: ['#097aff', '#bbbbbb', '#bbbbbb'],
-        tabLineColor: ['#097aff', 'rgba(0,0,0,0)', 'rgba(0,0,0,0)'],
+        tabWordColor: ['#097aff', '#bbbbbb'],
+        tabLineColor: ['#097aff', 'rgba(0,0,0,0)'],
 
         inputShowed: false,
         inputVal: "",
         searchResult: []
     },
 
-    toActivityDetailPage: function (e) {
-        wx.navigateTo({
-            url: '../activityDetailPage/activityDetailPage?' + 'activity_id=' + e.currentTarget.dataset.id
-        })
-    },
 
     toAssociationDetailPage: function (e) {
         var id = e.currentTarget.dataset.id;
@@ -55,7 +50,8 @@ Page({
         })
     },
 
-    clickActivityTab: function () {
+
+    clickSearchTab: function () {
         this.setData({
             currentTab: 0
         });
@@ -70,14 +66,6 @@ Page({
     },
 
 
-    clickSearchTab: function () {
-        this.setData({
-            currentTab: 2
-        });
-        this.lazyLoad();
-    },
-
-
     switchPage: function (e) {
         this.setData({
             currentTab: e.detail.current
@@ -86,20 +74,14 @@ Page({
         switch (this.data.currentTab) {
             case 0:
                 this.setData({
-                    tabWordColor: ['#097aff', '#bbbbbb', '#bbbbbb'],
-                    tabLineColor: ['#097aff', 'rgba(0,0,0,0)', 'rgba(0,0,0,0)']
+                    tabWordColor: ['#097aff', '#bbbbbb'],
+                    tabLineColor: ['#097aff', 'rgba(0,0,0,0)']
                 });
                 break;
             case 1:
                 this.setData({
-                    tabWordColor: ['#bbbbbb', '#097aff', '#bbbbbb'],
-                    tabLineColor: ['rgba(0,0,0,0)', '#097aff', 'rgba(0,0,0,0)']
-                });
-                break;
-            case 2:
-                this.setData({
-                    tabWordColor: ['#bbbbbb', '#bbbbbb', '#097aff'],
-                    tabLineColor: ['rgba(0,0,0,0)', 'rgba(0,0,0,0)', '#097aff']
+                    tabWordColor: ['#bbbbbb', '#097aff'],
+                    tabLineColor: ['rgba(0,0,0,0)', '#097aff']
                 });
                 break;
         }
@@ -107,24 +89,6 @@ Page({
         this.lazyLoad();
     },
 
-    refreshTab: function () {
-        if (this.data.currentTab === 0){
-            this.setData({
-                leftTabColor: '#097aff',
-                rightTabColor: '#bbbbbb',
-                leftTabLineColor: '#097aff',
-                rightTabLineColor: 'rgba(0,0,0,0)'
-            });
-        }
-        else{
-            this.setData({
-                leftTabColor: '#bbbbbb',
-                rightTabColor: '#097aff',
-                leftTabLineColor: 'rgba(0,0,0,0)',
-                rightTabLineColor: '#097aff'
-            });
-        }
-    },
 
     showInput: function () {
         this.setData({
@@ -166,37 +130,14 @@ Page({
     lazyLoad: function () {
         switch (this.data.currentTab) {
             case 0:
-                this.lazyGetActivities();
+                this.lazyGetAssociations();
                 break;
             case 1:
                 this.lazyGetMoments();
                 break;
-            case 2:
-                this.lazyGetAssociations();
-                break;
         }
     },
 
-
-    lazyGetActivities: function () {
-        if (!this.data.needGetActivities) { return; }
-        var that = this;
-
-        wx.request({
-            url: `${config.service.host}/weapp/getAllActivityList`,
-            success (result) {
-
-                that.setData({
-                    activityList: result.data,
-                    needGetActivities: false
-                });
-
-            },
-            fail (error) {
-                console.log('request fail', error);
-            }
-        });
-    },
 
     lazyGetMoments: function () {
         if (!this.data.needGetMoments) { return; }
@@ -238,7 +179,6 @@ Page({
             }
         });
 
-        console.log(this.data.associationList)
     },
 
 

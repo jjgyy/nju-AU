@@ -86,9 +86,14 @@ router.get('/getUser', controllers.getUser);
 
 router.get('/searchUser', controllers.searchUser);
 
+router.get('/getAuditAssociationList', controllers.getAuditAssociationList);
+
+router.get('/getAuditAssociationDetail', controllers.getAuditAssociationDetail);
+
+router.get('/addAuditAssociation', controllers.addAuditAssociation);
+
 
 //仅验证登录态
-router.get('/addAuditAssociation', validationMiddleware, controllers.addAuditAssociation);
 
 
 //验证社团普通管理员
@@ -131,10 +136,6 @@ router.get('/loginAdmin', validationMiddleware, controllers.validateAdmin, contr
 router.get('/addAssociation', validationMiddleware, controllers.validateAdmin, controllers.addAssociation);
 
 router.get('/addAssociationChief', validationMiddleware, controllers.validateAdmin, controllers.addAssociationChief);
-
-router.get('/getAuditAssociationList', validationMiddleware, controllers.validateAdmin, controllers.getAuditAssociationList);
-
-router.get('/getAuditAssociationDetail', validationMiddleware, controllers.validateAdmin, controllers.getAuditAssociationDetail);
 
 router.get('/deleteAuditAssociation', validationMiddleware, controllers.validateAdmin, controllers.deleteAuditAssociation);
 

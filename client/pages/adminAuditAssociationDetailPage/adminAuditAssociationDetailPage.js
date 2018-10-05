@@ -181,7 +181,7 @@ Page({
     util.showBusy('加载中...');
     var that = this;
     that.setData({
-      categories: getApp().data.categories
+      categories: getApp().data.association_categories
     });
     qcloud.request({
       url: `${config.service.host}/weapp/getAuditAssociationDetail`,

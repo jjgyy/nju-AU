@@ -2,7 +2,7 @@
     <view class="userinfo">
         <image
                 class="userinfo-avatar"
-                src="{{logged ? userInfo.avatarUrl : './user-unlogin.png'}}"
+                src="{{userInfo.avatarUrl}}"
                 background-size="cover"
         ></image>
         <view>

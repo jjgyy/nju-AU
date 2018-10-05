@@ -70,7 +70,6 @@ Page({
     });
   },
   refresh: function(){
-    util.showBusy('加载中...');
     var that = this;
 
     wx.request({

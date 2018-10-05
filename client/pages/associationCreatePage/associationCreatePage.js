@@ -40,17 +40,18 @@ Page({
       success: function (res) {
         if (res.confirm) {
           util.showBusy('正在提交...');
-          qcloud.request({
+          wx.request({
             url: `${config.service.host}/weapp/addAuditAssociation`,
             data: {
+              open_id: getApp().data.userInfo.openId,
               name: that.data.name,
               name_english: that.data.name_english,
               category: that.data.categories[that.data.categoryIndex],
               image_src: that.data.imgUrl,
               intro: that.data.intro
             },
-            login: true,
-            success () {
+            success (res) {
+              console.log(res);
               wx.navigateBack();
               util.showSuccess('成功，等待审核');
             },
