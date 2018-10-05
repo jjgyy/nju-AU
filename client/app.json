@@ -10,7 +10,6 @@
     "pages/associationDetailPage/associationDetailPage",
     "pages/associationCreatePage/associationCreatePage",
     "pages/associationAddContactPage/associationAddContactPage",
-    "pages/associationJoinedPage/associationJoinedPage",
     "pages/associationQRcodePage/associationQRcodePage",
     "pages/activityDetailPage/activityDetailPage",
     "pages/managePage/managePage",
@@ -28,6 +27,7 @@
     "pages/mePage/mePage",
     "pages/meQRcodePage/meQRcodePage",
     "pages/userActivityTicketPage/userActivityTicketPage",
+    "pages/userJoinedPage/userJoinedPage",
     "pages/adminLoginPage/adminLoginPage",
     "pages/adminPage/adminPage",
     "pages/adminAuditAssociationPage/adminAuditAssociationPage",
@@ -54,7 +54,7 @@
     "selectedColor": "#097aff",
     "list": [{
       "pagePath": "pages/newsPage/newsPage",
-      "text": "好文",
+      "text": "阅读",
       "iconPath": "icon/tabBar/news-unselected.png",
       "selectedIconPath": "icon/tabBar/news-selected.png"
     },{

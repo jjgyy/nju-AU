@@ -1,0 +1,13 @@
+<view class="weui-cells__title">我关注的社团</view>
+
+<view class="association_cell_container">
+    <view bindtap="open" data-id="{{item.id}}" class="association-cell fly_from_bottom" wx:for="{{joinedAssociationList}}" wx:key="item.id">
+        <view class="association-image-container">
+            <image src="{{item.image_src}}" style="width: 70rpx; height: 100rpx; border-radius: 10rpx" mode="aspectFill" />
+        </view>
+        <view class="association-info-container">
+            <view class="association-name">{{item.name}}</view>
+            <view class="association-name_english">{{item.name_english}}</view>
+        </view>
+    </view>
+</view>

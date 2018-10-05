@@ -9,21 +9,21 @@
       <image src="icon/info.svg" style="margin-right: 10px;vertical-align: middle;width:25px; height: 25px;"></image>
     </view>
     <view class="weui-cell__bd">基本信息</view>
-    <view class="weui-cell__ft weui-cell__ft_in-access">修改</view>
+    <view class="weui-cell__ft weui-cell__ft_in-access">名称、简介等修改</view>
   </view>
   <view bindtap="toManageWechatPage" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
     <view class="weui-cell__hd">
       <image src="icon/wechat.svg" style="margin-right: 10px;vertical-align: middle;width:25px; height: 25px;"></image>
     </view>
     <view class="weui-cell__bd">关联公众号</view>
-    <view class="weui-cell__ft weui-cell__ft_in-access">修改</view>
+    <view class="weui-cell__ft weui-cell__ft_in-access">微信公众号修改</view>
   </view>
   <view bindtap="toManageQQPage" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
     <view class="weui-cell__hd">
       <image src="icon/qq.svg" style="margin-right: 10px;vertical-align: middle;width:25px; height: 25px;"></image>
     </view>
     <view class="weui-cell__bd">关联QQ群</view>
-    <view class="weui-cell__ft weui-cell__ft_in-access">修改</view>
+    <view class="weui-cell__ft weui-cell__ft_in-access">社团QQ群号修改</view>
   </view>
 </view>
 
@@ -33,10 +33,10 @@
 
   <view bindtap="toManageMomentPage" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
     <view class="weui-cell__hd">
-      <image src="icon/announce.svg" style="margin-right: 10px;vertical-align: middle;width:25px; height: 25px;"></image>
+      <image src="icon/moment.svg" style="margin-right: 10px;vertical-align: middle;width:25px; height: 25px;"></image>
     </view>
-    <view class="weui-cell__bd">动态管理</view>
-    <view class="weui-cell__ft weui-cell__ft_in-access">前往</view>
+    <view class="weui-cell__bd">新鲜事管理</view>
+    <view class="weui-cell__ft weui-cell__ft_in-access">撰写社团新鲜事</view>
   </view>
 
   <view bindtap="toManageArticlePage" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
@@ -44,15 +44,15 @@
       <image src="icon/article.svg" style="margin-right: 10px;vertical-align: middle;width:25px; height: 25px;"></image>
     </view>
     <view class="weui-cell__bd">文章管理</view>
-    <view class="weui-cell__ft weui-cell__ft_in-access">前往</view>
+    <view class="weui-cell__ft weui-cell__ft_in-access">发布公众号文章</view>
   </view>
 
   <view bindtap="toManageActivityPage" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
     <view class="weui-cell__hd">
-      <image src="icon/article.svg" style="margin-right: 10px;vertical-align: middle;width:25px; height: 25px;"></image>
+      <image src="icon/activity.svg" style="margin-right: 10px;vertical-align: middle;width:25px; height: 25px;"></image>
     </view>
     <view class="weui-cell__bd">活动管理</view>
-    <view class="weui-cell__ft weui-cell__ft_in-access">前往</view>
+    <view class="weui-cell__ft weui-cell__ft_in-access">电子入场券、线上宣传</view>
   </view>
 
 </view>
@@ -65,6 +65,6 @@
       <image src="icon/manager.svg" style="margin-right: 10px;vertical-align: middle;width:25px; height: 25px;"></image>
     </view>
     <view class="weui-cell__bd">管理员名单</view>
-    <view class="weui-cell__ft weui-cell__ft_in-access">前往</view>
+    <view class="weui-cell__ft weui-cell__ft_in-access">增删社团管理员</view>
   </view>
 </view>

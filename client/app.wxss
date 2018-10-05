@@ -139,7 +139,6 @@
     justify-content: flex-start;
     width: 100%;
     height: auto;
-    padding-top: 20rpx;
     border-bottom: 1rpx solid #ddd;
 }
 .association-cell {
@@ -223,6 +222,7 @@
     display: block;
     margin: 18rpx 36rpx;
     font-size: 34rpx;
+    font-weight: 400;
 }
 .newsCell-left-subInfo{
     display: flex;
@@ -329,12 +329,11 @@
     width: 100%;
     height: auto;
 }
-
 .activity__cell {
     display: block;
     width: 96%;
     height: 320rpx;
-    margin-bottom: 20rpx;
+    margin: 10rpx 0;
     border-bottom: 1rpx solid #dddddd;
     border-radius: 10rpx;
     overflow: hidden;

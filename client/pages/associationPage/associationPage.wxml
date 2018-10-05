@@ -6,7 +6,7 @@
                 <text style="color: {{tabWordColor[0]}}">寻觅</text>
             </view>
             <view bindtap="clickMomentTab" class="tab-word bg-tab-word">
-                <text style="color: {{tabWordColor[1]}}">动态</text>
+                <text style="color: {{tabWordColor[1]}}">新鲜事</text>
             </view>
         </view>
 
@@ -15,7 +15,7 @@
                 <text style="color: {{tabLineColor[0]}}">——</text>
             </view>
             <view bindtap="clickMomentTab" class="tab-line bg-tab-word">
-                <text style="color: {{tabLineColor[1]}}">——</text>
+                <text style="color: {{tabLineColor[1]}}">———</text>
             </view>
         </view>
     </view>

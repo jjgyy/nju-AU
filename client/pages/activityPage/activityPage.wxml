@@ -15,3 +15,9 @@
     </view>
 
 </view>
+
+
+<view class="center__box">
+    <text hidden="{{!canLoadMore}}" style="color: #ccc;font-size: 34rpx;font-weight: 500;margin: 10rpx 0;">上滑加载更多</text>
+    <text hidden="{{canLoadMore}}" style="color: #ccc;font-size: 34rpx;font-weight: 500;margin: 10rpx 0;">没有更多了</text>
+</view>

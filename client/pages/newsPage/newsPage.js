@@ -1,6 +1,6 @@
-var qcloud = require('../../vendor/wafer2-client-sdk/index')
-var config = require('../../config')
-var util = require('../../utils/util.js')
+var qcloud = require('../../vendor/wafer2-client-sdk/index');
+var config = require('../../config');
+var util = require('../../utils/util.js');
 
 Page({
     data:{
@@ -9,8 +9,8 @@ Page({
         posterImage:["./poster1.jpeg","./poster2.jpg"],
 
         articleList: null,
+        offset: 0,
 
-        page: 1,
         canLoadMore: true,
 
         canRefresh: true
@@ -21,6 +21,23 @@ Page({
             url: '../articleDetailPage/articleDetailPage?' + 'url=' + e.currentTarget.dataset.url,
         })
     },
+
+
+    dateParser: function (timestamp) {
+        var interval = ( Date.parse(new Date()) - Date.parse(timestamp) ) / 1000;
+
+        if (interval < 3600) {
+            return '刚刚';
+        }
+        if ((interval/3600) < 24) {
+            return parseInt(interval/3600) + '小时前';
+        }
+        if ((interval/86400) < 4) {
+            return parseInt(interval/86400) + '天前';
+        }
+        return timestamp.substr(0, 10);
+    },
+
 
     refresh: function () {
         wx.stopPullDownRefresh();
@@ -52,11 +69,11 @@ Page({
             success (res) {
                 var articleList = res.data.data;
                 for (var i=0, len=articleList.length; i<len; i++) {
-                    articleList[i].date = articleList[i].date.substr(0, 10);
+                    articleList[i].date = that.dateParser(articleList[i].date);
                 }
                 that.setData({
                     articleList: articleList,
-                    page: 1,
+                    offset: articleList[articleList.length-1].id,
                     canLoadMore: true
                 });
                 util.showSuccess('刷新成功');
@@ -68,6 +85,7 @@ Page({
         })
     },
 
+
     onLoad:function(options){
         var that = this;
 
@@ -76,10 +94,12 @@ Page({
             success (res) {
                 var articleList = res.data.data;
                 for (var i=0, len=articleList.length; i<len; i++) {
-                    articleList[i].date = articleList[i].date.substr(0, 10);
+                    articleList[i].date = that.dateParser(articleList[i].date);
                 }
+
                 that.setData({
-                    articleList: articleList
+                    articleList: articleList,
+                    offset: articleList[articleList.length-1].id
                 });
             },
             fail (error) {
@@ -114,7 +134,7 @@ Page({
         wx.request({
             url: `${config.service.host}/weapp/getAllArticleList`,
             data: {
-                page: that.data.page
+                offset: that.data.offset
             },
             success (res) {
                 if (res.data.data.length === 0) {
@@ -123,11 +143,11 @@ Page({
                 }
                 var articleList = res.data.data;
                 for (var i=0, len=articleList.length; i<len; i++) {
-                    articleList[i].date = articleList[i].date.substr(0, 10);
+                    articleList[i].date = that.dateParser(articleList[i].date);
                 }
                 that.setData({
                     articleList: that.data.articleList.concat(articleList),
-                    page: (that.data.page + 1)
+                    offset: articleList[articleList.length-1].id
                 });
             },
             fail (error) {

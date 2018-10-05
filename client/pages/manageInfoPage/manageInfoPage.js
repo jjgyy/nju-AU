@@ -125,7 +125,7 @@ Page({
         var that = this;
         this.setData({
             association_id: options.id,
-            categories: getApp().data.categories
+            categories: getApp().data.association_categories
         });
         wx.request({
             url: `${config.service.host}/weapp/getAssociationDetail`,
@@ -138,7 +138,7 @@ Page({
             success: function(res) {
                 var categoryIndex = 0;
                 for(var i=0, length=that.data.categories.length; i<length; i++){
-                    if(that.data.categories[i] == res.data.data.category){
+                    if(that.data.categories[i] === res.data.data.category){
                         categoryIndex = i;
                         break;
                     }

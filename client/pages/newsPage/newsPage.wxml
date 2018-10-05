@@ -15,7 +15,7 @@
             <text>{{item.title}}</text>
         </view>
         <view class="newsCell-left-subInfo">
-            <text>{{item.association_name}}</text>
+            <text style="color: #4779ba;font-weight: 500">{{item.association_name}}</text>
             <text>{{item.date}}</text>
         </view>
     </view>
@@ -25,12 +25,7 @@
 </view>
 
 
-<view class="center__box" hidden="{{!canLoadMore}}">
-    <text style="color: #bbbbbb;font-size: 34rpx;font-weight: 500">上滑加载更多</text>
-</view>
-
-
-
-<view bindtap="refresh" class="refresh" hover-class="refresh_hover">
-    <image src="../../icon/refresh.svg"/>
+<view class="center__box">
+    <text hidden="{{!canLoadMore}}" style="color: #ccc;font-size: 34rpx;font-weight: 500;margin: 20rpx 0;">上滑加载更多</text>
+    <text hidden="{{canLoadMore}}" style="color: #ccc;font-size: 34rpx;font-weight: 500;margin: 20rpx 0;">滑到了世界尽头</text>
 </view>

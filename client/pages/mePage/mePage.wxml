@@ -18,7 +18,7 @@
 
 <view class="weui-cells__title">我的社团生活</view>
 <view class="weui-cells weui-cells_after-title">
-    <navigator url="../associationJoinedPage/associationJoinedPage" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+    <navigator url="../userJoinedPage/userJoinedPage" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
         <view class="weui-cell__hd">
             <image src="icon/myAssociation.svg" style="margin-right: 10px;vertical-align: middle;width:25px; height: 25px;"></image>
         </view>

@@ -8,16 +8,15 @@
 
 <view class="weui-cells__title">添加qq群</view>
 <view class="weui-cells weui-cells_after-title">
-    <view class="weui-cell weui-cell_input">
+    <view class="weui-cell weui-cell_input weui-cell_vcode">
         <view class="weui-cell__hd">
             <view class="weui-label">添加qq群</view>
         </view>
         <view class="weui-cell__bd">
-            <input class="weui-input" bindinput="qq" placeholder="请输入qq群号" type="text" maxlength="20"/>
+            <input bindinput="qq" class="weui-input" placeholder="请输入qq群号" type="text" maxlength="20"/>
+        </view>
+        <view class="weui-cell__ft">
+            <view bindtap="add" class="weui-vcode-btn">添加</view>
         </view>
     </view>
-</view>
-
-<view class="weui-btn-area">
-    <button class="weui-btn" type="primary" bindtap="add">增加</button>
 </view>
