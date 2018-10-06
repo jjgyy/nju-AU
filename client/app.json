@@ -51,10 +51,10 @@
   },
   "tabBar": {
     "color": "#bfbfbf",
-    "selectedColor": "#097aff",
+    "selectedColor": "#000",
     "list": [{
       "pagePath": "pages/newsPage/newsPage",
-      "text": "阅读",
+      "text": "主页",
       "iconPath": "icon/tabBar/news-unselected.png",
       "selectedIconPath": "icon/tabBar/news-selected.png"
     },{
