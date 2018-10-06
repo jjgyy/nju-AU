@@ -14,3 +14,9 @@ page {
 .under_tab {
     margin-top: 76rpx;
 }
+
+.sub__info {
+    margin-left: 40rpx;
+    color: #bbb;
+    font-weight: 500;
+}

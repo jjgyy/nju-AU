@@ -92,6 +92,8 @@ router.get('/getAuditAssociationDetail', controllers.getAuditAssociationDetail);
 
 router.get('/addAuditAssociation', controllers.addAuditAssociation);
 
+router.get('/getUserWhetherJoin', controllers.getUserWhetherJoin);
+
 
 //仅验证登录态
 

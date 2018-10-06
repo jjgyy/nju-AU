@@ -3,11 +3,16 @@
 <view class="association_cell_container">
     <view bindtap="open" data-id="{{item.id}}" class="association-cell fly_from_bottom" wx:for="{{joinedAssociationList}}" wx:key="item.id">
         <view class="association-image-container">
-            <image src="{{item.image_src}}" style="width: 70rpx; height: 100rpx; border-radius: 10rpx" mode="aspectFill" />
+            <image src="{{item.image_src}}" style="width: 70rpx;height: 100rpx;border-radius: 10rpx" mode="aspectFill" />
         </view>
         <view class="association-info-container">
             <view class="association-name">{{item.name}}</view>
-            <view class="association-name_english">{{item.name_english}}</view>
+            <view class="association-tags-container">
+                <view class="association-tag">
+                    <image src="../../icon/associationCategories/{{item.category}}.svg" style="margin-right: 10rpx;vertical-align: middle;width:30rpx; height: 30rpx;" />
+                    {{item.category}}
+                </view>
+            </view>
         </view>
     </view>
 </view>

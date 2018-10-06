@@ -7,17 +7,9 @@ Page({
         joinedAssociationList: null,
     },
 
-    toAssociationDetailPage: function (id) {
-        var hasJoined = false;
-        if(this.data.joinedAssociationList != null) {
-            for (var i = 0, length = this.data.joinedAssociationList.length; i < length; i++) {
-                if (id === this.data.joinedAssociationList[i].id) {
-                    hasJoined = true;
-                }
-            }
-        }
+    toAssociationDetailPage: function (association_id) {
         wx.navigateTo({
-            url: '../associationDetailPage/associationDetailPage?' + 'id=' + id + '&hasJoined=' + hasJoined
+            url: '../associationDetailPage/associationDetailPage?' + 'id=' + association_id
         })
     },
 

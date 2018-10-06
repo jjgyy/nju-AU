@@ -7,7 +7,12 @@
         </view>
         <view class="association-info-container">
             <view class="association-name">{{item.name}}</view>
-            <view class="association-name_english">{{item.name_english}}</view>
+            <view class="association-tags-container">
+                <view class="association-tag">
+                    <image src="../../icon/associationCategories/{{item.category}}.svg" style="margin-right: 10rpx;vertical-align: middle;width:30rpx; height: 30rpx;" />
+                    {{item.category}}
+                </view>
+            </view>
         </view>
     </view>
 </view>

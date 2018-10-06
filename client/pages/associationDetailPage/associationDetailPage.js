@@ -223,18 +223,6 @@ Page({
             association_id: options.id
         });
 
-        if(options.hasJoined === 'true'){
-            this.setData({
-                hasJoined: true,
-                joinBtnText: '已关注'
-            })
-        } else{
-            this.setData({
-                hasJoined: false,
-                joinBtnText: '+ 关注'
-            })
-        }
-
         wx.getSystemInfo({
             success: function (res) {
                 that.setData({
@@ -271,6 +259,25 @@ Page({
                     associationQQList: res.data.data.associationQQList,
                     associationOfficialList: res.data.data.associationOfficialList
                 })
+            }
+        });
+
+        wx.request({
+            url: `${config.service.host}/weapp/getUserWhetherJoin`,
+            data: {
+                open_id: getApp().data.userInfo.openId,
+                association_id: that.data.association_id
+            },
+            header: {
+                'content-type': 'application/x-www-form-urlencoded'
+            },
+            success: function(res) {
+                if (res.data === true) {
+                    that.setData({
+                        hasJoined: true,
+                        joinBtnText: '已关注'
+                    })
+                }
             }
         });
 
