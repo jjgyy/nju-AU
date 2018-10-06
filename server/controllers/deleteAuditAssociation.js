@@ -1,13 +1,13 @@
-const {mysql} = require('../qcloud')
+const {mysql} = require('../qcloud');
 
-module.exports = async (ctx, next) => {
+module.exports = async (ctx) => {
 
   if (ctx.state.$wxInfo.adminState === 1) {
     const id = ctx.query.id;
 
     try {
 
-      ctx.state.data = await mysql('association_audit')
+      await mysql('association_audit')
           .where('id', id)
           .del();
 
@@ -15,7 +15,7 @@ module.exports = async (ctx, next) => {
       ctx.state = {
         code: -1,
         data: {
-          msg: e.sqlMessage  //数据库报错信息
+          msg: e.sqlMessage
         }
       }
     }
@@ -23,4 +23,4 @@ module.exports = async (ctx, next) => {
   } else {
     ctx.state.code = -1
   }
-}
+};

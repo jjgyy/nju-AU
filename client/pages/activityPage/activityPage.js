@@ -18,7 +18,6 @@ Page({
     },
 
     refresh: function () {
-        wx.stopPullDownRefresh();
         if (!this.data.canRefresh) {
             wx.showLoading({
                 title: '刷新太频繁啦'
@@ -95,6 +94,7 @@ Page({
 
     onPullDownRefresh:function () {
         this.refresh();
+        wx.stopPullDownRefresh();
     },
 
     onReachBottom:function () {

@@ -1,9 +1,0 @@
-<input type="text" placeholder="请输入社团id" bindinput="id"/>
-
-<input type="text" placeholder="请输入社团QQ" bindinput="qq"/>
-
-<input type="text" placeholder="请输入社团公众号" bindinput="official"/>
-
-<button bindtap="submit">提交QQ</button>
-
-<button bindtap="submit2">提交公众号</button>

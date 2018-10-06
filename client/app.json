@@ -2,14 +2,11 @@
   "pages":[
     "pages/loginPage/loginPage",
     "pages/newsPage/newsPage",
-    "pages/newsDetailPage/newsDetailPage",
-    "pages/newsWritePage/newsWritePage",
     "pages/articleDetailPage/articleDetailPage",
     "pages/associationPage/associationPage",
     "pages/associationCategoryPage/associationCategoryPage",
     "pages/associationDetailPage/associationDetailPage",
     "pages/associationCreatePage/associationCreatePage",
-    "pages/associationAddContactPage/associationAddContactPage",
     "pages/associationQRcodePage/associationQRcodePage",
     "pages/activityDetailPage/activityDetailPage",
     "pages/managePage/managePage",
@@ -36,10 +33,9 @@
     "pages/adminAssociationOptionsPage/adminAssociationOptionsPage",
     "pages/adminAssociationManagerPage/adminAssociationManagerPage",
     "pages/adminUserSearchPage/adminUserSearchPage",
+    "pages/adminPosterPage/adminPosterPage",
     "pages/morePage/morePage",
-    "pages/activityPage/activityPage",
-    "pages/index/index",
-    "pages/addCgi/addCgi"
+    "pages/activityPage/activityPage"
   ],
   "window":{
     "backgroundColor":"#F6F6F6",

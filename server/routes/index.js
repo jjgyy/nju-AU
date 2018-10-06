@@ -13,8 +13,6 @@ const { auth: { authorizationMiddleware, validationMiddleware } } = require('../
 // --- 登录与授权 Demo --- //
 // 登录接口
 router.get('/login', authorizationMiddleware, controllers.login);
-// 用户信息接口（可以用来验证登录态）
-router.get('/user', validationMiddleware, controllers.user);
 
 // --- 图片上传 Demo --- //
 // 图片上传接口，小程序端可以直接将 url 填入 wx.uploadFile 中
@@ -34,14 +32,6 @@ router.post('/message', controllers.message.post);
 
 
 //无需验证
-router.get('/demo', controllers.demo);
-
-router.get('/addNews', controllers.addNews);
-
-router.get('/getNewsList', controllers.getNewsList);
-
-router.get('/getNewsDetail', controllers.getNewsDetail);
-
 router.get('/getAssociationListByCategory', controllers.getAssociationListByCategory);
 
 router.get('/getAssociationDetail', controllers.getAssociationDetail);
@@ -93,6 +83,8 @@ router.get('/getAuditAssociationDetail', controllers.getAuditAssociationDetail);
 router.get('/addAuditAssociation', controllers.addAuditAssociation);
 
 router.get('/getUserWhetherJoin', controllers.getUserWhetherJoin);
+
+router.get('/getHomePosterList', controllers.getHomePosterList);
 
 
 //仅验证登录态
@@ -146,6 +138,10 @@ router.get('/addAssociationNormalManagerByAdmin', validationMiddleware, controll
 router.get('/deleteAssociationNormalManagerByAdmin', validationMiddleware, controllers.validateAdmin, controllers.deleteAssociationNormalManager);
 
 router.get('/updateAssociationChiefByAdmin', validationMiddleware, controllers.validateAdmin, controllers.updateAssociationChief);
+
+router.get('/addHomePoster', validationMiddleware, controllers.validateAdmin, controllers.addHomePoster);
+
+router.get('/deleteHomePoster', validationMiddleware, controllers.validateAdmin, controllers.deleteHomePoster);
 
 
 

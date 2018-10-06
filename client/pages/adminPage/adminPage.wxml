@@ -1,23 +1,30 @@
-<view class="weui-cells__title">入驻社团审批</view>
+<view class="weui-cells__title">社团管理</view>
 <view class="weui-cells weui-cells_after-title">
+
     <view bindtap="toAdminAuditAssociationPage" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
         <view class="weui-cell__bd">入驻社团审批</view>
         <view class="weui-cell__ft weui-cell__ft_in-access">前往</view>
     </view>
-</view>
 
-<view class="weui-cells__title">社团管理</view>
-<view class="weui-cells weui-cells_after-title">
     <view bindtap="toAdminAssociationPage" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
         <view class="weui-cell__bd">社团管理</view>
         <view class="weui-cell__ft weui-cell__ft_in-access">前往</view>
     </view>
+
 </view>
 
 <view class="weui-cells__title">用户管理</view>
 <view class="weui-cells weui-cells_after-title">
     <view bindtap="toAdminUserSearchPage" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
         <view class="weui-cell__bd">用户管理</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access">前往</view>
+    </view>
+</view>
+
+<view class="weui-cells__title">置顶管理</view>
+<view class="weui-cells weui-cells_after-title">
+    <view bindtap="toAdminPosterPage" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__bd">首页海报管理</view>
         <view class="weui-cell__ft weui-cell__ft_in-access">前往</view>
     </view>
 </view>

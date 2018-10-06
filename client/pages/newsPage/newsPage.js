@@ -5,8 +5,7 @@ var util = require('../../utils/util.js');
 Page({
     data:{
         requestResult: '',
-        posterTexts:["一柒一会，我们收获了什么","创投干货：对话投资人"],
-        posterImage:["./poster1.jpeg","./poster2.jpg"],
+        posterList: null,
 
         articleList: null,
         offset: 0,
@@ -14,6 +13,12 @@ Page({
         canLoadMore: true,
 
         canRefresh: true
+    },
+
+    toActivityDetailPage: function (e) {
+        wx.navigateTo({
+            url: '../activityDetailPage/activityDetailPage?' + 'activity_id=' + e.currentTarget.dataset.id
+        })
     },
 
     toArticleDetailPage: function (e) {
@@ -40,7 +45,6 @@ Page({
 
 
     refresh: function () {
-        wx.stopPullDownRefresh();
         if (!this.data.canRefresh) {
             wx.showLoading({
                 title: '刷新太频繁啦'
@@ -90,6 +94,20 @@ Page({
         var that = this;
 
         wx.request({
+            url: `${config.service.host}/weapp/getHomePosterList`,
+            success (result) {
+
+                that.setData({
+                    posterList: result.data
+                });
+
+            },
+            fail (error) {
+                console.log('request fail', error);
+            }
+        });
+
+        wx.request({
             url: `${config.service.host}/weapp/getAllArticleList`,
             success (res) {
                 var articleList = res.data.data;
@@ -106,7 +124,7 @@ Page({
                 console.log('request fail', error);
                 util.showModel('出错了', error.message);
             }
-        })
+        });
 
     },
     onReady:function(){
@@ -124,6 +142,7 @@ Page({
 
     onPullDownRefresh:function () {
         this.refresh();
+        wx.stopPullDownRefresh();
     },
 
     onReachBottom:function () {

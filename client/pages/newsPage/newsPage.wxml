@@ -1,11 +1,11 @@
 <swiper class="topPoster" indicator-dots="true" indicator-color="rgba(255,255,255,0.3)"
-  autoplay="true" interval="8000" duration="1000">
-  <block wx:for="{{posterTexts}}">
-    <swiper-item>
-      <image src="{{posterImage[index]}}"/>
-			<view>“{{item}}”</view>
-    </swiper-item>
-  </block>
+        autoplay="true" interval="4000" duration="1000">
+    <block wx:for="{{posterList}}" wx:key="{{item.activity_id}}">
+        <swiper-item bindtap="toActivityDetailPage" data-id="{{item.activity_id}}">
+            <image src="{{item.image_src}}" mode="aspectFill"/>
+            <view class="topPoster__title">“{{item.activity_name}}”</view>
+        </swiper-item>
+    </block>
 </swiper>
 
 
