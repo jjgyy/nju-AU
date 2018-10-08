@@ -45,3 +45,7 @@
 <view class="bottom-fixed-container" wx:if="{{!activityDetail.ticket}}">
     <view class="bottom-info-cannot">本活动无电子票</view>
 </view>
+
+<view class="bottom-fixed-container" wx:if="{{activityDetail.delete}}">
+    <view class="bottom-info-cannot">活动已取消</view>
+</view>

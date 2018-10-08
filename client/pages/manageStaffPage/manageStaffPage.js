@@ -51,9 +51,7 @@ Page({
         var that = this;
         wx.scanCode({
             success: (res) => {
-                that.setData({
-                    search_id: res.result
-                });
+                that.setData( {search_id: res.result} );
                 that.search();
             }
         });
@@ -67,7 +65,7 @@ Page({
             itemList: ['移除此管理员', '转让组长'],
             success: function(res) {
                 if (!res.cancel) {
-                    if (res.tapIndex == 0){
+                    if (res.tapIndex === 0){
                         that.openDeleteConfirm(open_id);
                     } else {
                         that.openUpConfirm(open_id);

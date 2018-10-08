@@ -117,6 +117,10 @@ router.get('/addAssociationMoment', validationMiddleware, controllers.validateMa
 
 router.get('/addAssociationActivity', validationMiddleware, controllers.validateManager, controllers.addAssociationActivity);
 
+router.get('/deleteAssociationActivity', validationMiddleware, controllers.validateManager, controllers.deleteAssociationActivity);
+
+router.get('/updateAssociationActivity', validationMiddleware, controllers.validateManager, controllers.updateAssociationActivity);
+
 
 //验证社团主席（管理组长）
 router.get('/updateAssociationChief', validationMiddleware, controllers.validateChief, controllers.updateAssociationChief);

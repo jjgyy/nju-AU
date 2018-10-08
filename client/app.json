@@ -20,6 +20,7 @@
     "pages/manageWriteMomentPage/manageWriteMomentPage",
     "pages/manageWriteArticlePage/manageWriteArticlePage",
     "pages/manageWriteActivityPage/manageWriteActivityPage",
+    "pages/manageUpdateActivityPage/manageUpdateActivityPage",
     "pages/manageStaffPage/manageStaffPage",
     "pages/mePage/mePage",
     "pages/meQRcodePage/meQRcodePage",

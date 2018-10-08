@@ -9,10 +9,16 @@ Page({
         categories: null,
         categoryIndex: 0,
 
-        name: null,
-        name_english: null,
-        intro: null,
-        imgUrl: null
+        name: '',
+        name_english: '',
+        intro: '',
+        imgUrl: ''
+    },
+
+    checkInput: function() {
+        if (!!(this.data.name && this.data.name_english && this.data.intro && this.data.imgUrl)) { return true; }
+        util.showModel('有信息没有填写', '请认真检查并仔细填写所有信息');
+        return false;
     },
 
     name: function(e){
@@ -28,6 +34,7 @@ Page({
     },
 
     submit: function(){
+        if (!this.checkInput()) { return; }
         this.openConfirm()
     },
     openConfirm: function () {

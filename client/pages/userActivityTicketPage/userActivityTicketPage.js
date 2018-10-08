@@ -32,6 +32,7 @@ Page({
                 console.log('request fail', error);
             }
         });
+
     },
     onReady: function () {
 

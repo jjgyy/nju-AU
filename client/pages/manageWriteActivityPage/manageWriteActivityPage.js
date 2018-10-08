@@ -12,15 +12,25 @@ Page({
         categories: null,
         categoryIndex: 0,
 
-        location: null,
-
-        activity_name: null,
-        activity_intro: null,
-
-        imgUrl: null,
+        activity_name: '',
+        activity_intro: '',
+        location: '',
+        imgUrl: '',
         ticket: false,
         ticket_num: 0,
         offline: false
+    },
+
+    checkInput: function () {
+        if (!!(this.data.activity_name && this.data.activity_intro && this.data.location && this.data.imgUrl)) { return true; }
+        util.showModel('有信息没有填写', '请认真检查并仔细填写所有信息');
+        return false;
+    },
+
+    checkTicket: function () {
+        if ( !this.data.ticket || this.data.ticket_num ) { return true; }
+        util.showModel('电子票数不可为0', '请认真检查并仔细填写所有信息');
+        return false;
     },
 
     activity_name: function(e){
@@ -114,7 +124,9 @@ Page({
 
 
     submit: function(){
-        this.openConfirm()
+        if (!this.checkInput()) { return; }
+        if (!this.checkTicket()) { return; }
+        this.openConfirm();
     },
     openConfirm: function () {
         var that = this;
@@ -144,7 +156,6 @@ Page({
                         },
                         login: true,
                         success (res) {
-                            console.log(res);
                             wx.navigateBack();
                             util.showSuccess('创建成功');
                         },

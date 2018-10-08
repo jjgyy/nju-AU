@@ -6,7 +6,10 @@ module.exports = async (ctx) => {
 
     ctx.body = await mysql('activity')
         .select('*')
-        .where('association_id', association_id)
+        .where({
+            association_id: association_id,
+            delete: 0
+        })
         .orderBy('activity_id','desc');
 
 };
