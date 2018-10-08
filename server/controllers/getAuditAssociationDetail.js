@@ -1,6 +1,6 @@
 const {mysql} = require('../qcloud');
 
-module.exports = async (ctx, next) => {
+module.exports = async (ctx) => {
 
     const id = ctx.query.id;
 
