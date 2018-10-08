@@ -28,11 +28,21 @@ module.exports = async (ctx) => {
                     activity_name: activity_name,
                     activity_intro: activity_intro,
                     image_src: image_src,
-                    ticket: ticket,
-                    ticket_num: ticket_num,
+                    //ticket: ticket,
                     offline: offline,
                     thisKeyIsSkipped: undefined
                 });
+
+
+            if (parseInt(ticket) === 0) { return; }
+
+            await mysql('activity_ticket')
+                .where('activity_id', activity_id)
+                .update({
+                    total: ticket_num,
+                    thisKeyIsSkipped: undefined
+                });
+
 
         } catch (e) {
             ctx.state = {

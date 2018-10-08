@@ -172,7 +172,6 @@ Page({
     },
 
 
-
     onLoad: function (options) {
         var date = new Date();
         this.setData({

@@ -70,7 +70,7 @@
 <view class="weui-cells__title">电子入场券</view>
 <view class="weui-cells weui-cells_after-title">
     <view bindtap="bindTicketChange" class="weui-cell weui-check__label">
-        <checkbox class="weui-check" checked="{{ticket}}"/>
+        <checkbox class="weui-check" checked="{{ticket}}" disabled="true"/>
 
         <view class="weui-cell__bd">生成电子入场券</view>
     </view>
