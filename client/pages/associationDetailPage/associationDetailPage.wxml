@@ -42,6 +42,9 @@
             <view bindtap="clickArticleTab" class="tab-word">
                 <text style="color: {{tabWordColor[2]}}">新闻</text>
             </view>
+            <view bindtap="clickActivityTab" class="tab-word">
+                <text style="color: {{tabWordColor[3]}}">活动</text>
+            </view>
         </view>
 
         <view class="tab-line-container">
@@ -53,6 +56,9 @@
             </view>
             <view bindtap="clickArticleTab" class="tab-line">
                 <text style="color: {{tabLineColor[2]}}">——</text>
+            </view>
+            <view bindtap="clickActivityTab" class="tab-line">
+                <text style="color: {{tabLineColor[3]}}">——</text>
             </view>
         </view>
     </view>
@@ -161,6 +167,34 @@
                     <view class="newsCell-right">
                         <view class="newsCell-image" style="background-image:url({{item.image_src}})"></view>
                     </view>
+                </view>
+
+            </view>
+        </scroll-view>
+    </swiper-item>
+
+
+    <swiper-item>
+        <scroll-view scroll-y="true" class="scoll-y">
+            <view class="page-container" style="margin-top: 394rpx">
+
+
+                <view class="activity__container">
+
+                    <view bindtap="toActivityDetailPage" data-id="{{item.activity_id}}" class="activity__cell fly_from_bottom" wx:for="{{activityList}}" wx:key="{{item.activity_id}}" style="background-image: url({{item.image_src}})">
+                        <view class="activity__from">
+                            <text>{{item.association_name}}</text>
+                        </view>
+
+                        <view class="activity__name">
+                            <text>{{item.activity_name}}</text>
+                        </view>
+
+                        <view hidden="{{!item.ticket}}" class="activity__ticket">
+                            <text>票</text>
+                        </view>
+                    </view>
+
                 </view>
 
             </view>

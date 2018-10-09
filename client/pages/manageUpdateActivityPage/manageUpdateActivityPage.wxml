@@ -104,7 +104,7 @@
             <image src="../../icon/ticket.svg" style="margin-right:10px;vertical-align:middle;width:50rpx;height:50rpx;border-radius:25rpx"></image>
         </view>
         <view class="weui-cell__bd">生成电子入场券</view>
-        <checkbox class="weui-check" checked="{{ticket}}"/>
+        <checkbox class="weui-check" checked="{{ticket}}" disabled="true"/>
     </view>
 
     <view hidden="{{!ticket}}" class="weui-cell weui-cell_input">

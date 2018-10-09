@@ -101,9 +101,8 @@
 .tab-word-container {
     display: flex;
     flex-direction: row;
-    width: 70%;
+    width: 80%;
     height: 70rpx;
-    padding: 0 50rpx;
 }
 .tab-word {
     display: flex;
@@ -117,9 +116,8 @@
 .tab-line-container {
     display: flex;
     flex-direction: row;
-    width: 70%;
+    width: 80%;
     height: 5rpx;
-    padding: 0 50rpx;
     border-bottom: 1rpx solid #eee;
 }
 .tab-line {

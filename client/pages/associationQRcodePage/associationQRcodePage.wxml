@@ -1,3 +1,19 @@
-<view class="center__box">
+<view class="association-cell">
+    <view class="association-image-container">
+        <image src="{{associationDetail.image_src}}" style="width: 70rpx; height: 100rpx; border-radius: 10rpx" mode="aspectFill" />
+    </view>
+    <view class="association-info-container">
+        <view class="association-name">{{associationDetail.name}}</view>
+        <view class="association-tags-container">
+            <view class="association-tag">
+                <image wx:if="{{associationDetail}}" src="../../icon/associationCategories/{{associationDetail.category}}.svg" style="margin-right: 10rpx;vertical-align: middle;width:30rpx; height: 30rpx;" />
+                {{associationDetail.category}}
+            </view>
+        </view>
+    </view>
+</view>
+
+<view class="center__box" style="margin-top: 40rpx">
     <canvas style="width: 200px; height: 200px" canvas-id="associationQrcode"></canvas>
+    <view class="QRcode-notice">请使用小程序"南京大学社团"内置的扫码功能</view>
 </view>

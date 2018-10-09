@@ -4,36 +4,57 @@
         <view class="poster-name">{{activityDetail.activity_name}}</view>
     </view>
 
-    <view class="activity-info-title" style="margin-top: 30rpx">
+
+    <view class="activity-info-title" style="margin-top: 50rpx">
         <text>时间</text>
     </view>
     <view class="activity-info-time">
-        <text>{{activityDetail.date}} 当天 {{activityDetail.time}}</text>
+        <text style="color:#007AFF;font-weight:500">{{activityDetail.date}} </text>
+        <text> 当天 </text>
+        <text style="color:#007AFF;font-weight:500"> {{activityDetail.time}}</text>
+        <view bindtap="openCalendar" wx:if="{{activityDetail.wx_location}}" class="activity-info-btn">
+            <image src="../../icon/calendar.svg" style="margin-right:2rpx;vertical-align:middle;width:40rpx;height:40rpx;"/>
+            在日历上查看活动日期
+        </view>
+        <calendar wx:if="{{showCalendar}}" calendar-style="calendar" year="{{year}}" month="{{month}}" day="{{day}}" weeks-type="cn" next="{{false}}" prev="{{false}}" days-color="{{calendarColorArray}}"/>
     </view>
+
 
     <view class="activity-info-title" style="margin-top: 30rpx">
         <text>地点</text>
     </view>
     <view class="activity-info-text">
-        <text>{{activityDetail.location}}\n</text>
+        <text style="color:#007AFF;font-weight:500">{{activityDetail.location}}\n</text>
         <text wx:if="{{activityDetail.wx_location}}" style="font-size: 24rpx">{{activityDetail.wx_location.name}}（{{activityDetail.wx_location.address}}）</text>
-        <view bindtap="openLocation" wx:if="{{activityDetail.wx_location}}" class="activity-info-location-btn">
-            <image src="../../icon/location.svg" style="margin-right:2rpx;vertical-align:middle;width:40rpx;height:40rpx;"/>在地图上查看详细地址
+        <view bindtap="openLocation" wx:if="{{activityDetail.wx_location}}" class="activity-info-btn">
+            <image src="../../icon/location.svg" style="margin-right:2rpx;vertical-align:middle;width:40rpx;height:40rpx;"/>
+            在地图上查看详细地址
         </view>
     </view>
+
 
     <view class="activity-info-title" style="margin-top: 50rpx">
         <text>主办</text>
     </view>
     <view bindtap="toAssociationDetailPage" class="activity-info-text">
-        <text style="color: #3170c7">{{activityDetail.association_name}}</text>
+        <text style="color:#007AFF;font-weight:500;">• {{activityDetail.association_name}}</text>
     </view>
 
-    <view class="activity-info-title" style="margin-top: 30rpx">
+
+    <view class="activity-info-title" style="margin-top: 50rpx">
         <text>活动简介</text>
     </view>
     <view class="activity-info-content">
         <text>{{activityDetail.activity_intro}}</text>
+    </view>
+
+
+    <view class="activity-info-title" style="margin-top: 50rpx">
+        <text>二维码</text>
+        <view bindtap="toActivityQRcodePage" wx:if="{{activityDetail.wx_location}}" class="activity-info-btn">
+            <image src="../../icon/QRcode.svg" style="margin-right:2rpx;vertical-align:middle;width:40rpx;height:40rpx;"/>
+            快速生成捷径二维码
+        </view>
     </view>
 
 </view>

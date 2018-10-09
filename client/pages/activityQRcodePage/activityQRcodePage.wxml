@@ -1,0 +1,6 @@
+
+
+<view class="center__box" style="margin-top: 40rpx">
+    <canvas style="width: 200px; height: 200px" canvas-id="activityQrcode"></canvas>
+    <view class="QRcode-notice">请使用小程序"南京大学社团"内置的扫码功能</view>
+</view>

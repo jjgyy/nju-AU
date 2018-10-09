@@ -9,7 +9,9 @@ Page({
         associationDetail: {},
         associationQQList: [],
         associationOfficialList: [],
+        momentList: null,
         articleList: null,
+        activityList: null,
 
         likeDic: {},
 
@@ -19,11 +21,12 @@ Page({
 
         needGetMoments: true,
         needGetArticles: true,
+        needGetActivities: true,
 
         currentTab: 0,
         clientHeight: null,
-        tabWordColor: ['#097aff', '#bbbbbb', '#bbbbbb'],
-        tabLineColor: ['#097aff', 'rgba(0,0,0,0)', 'rgba(0,0,0,0)']
+        tabWordColor: ['#097aff', '#bbbbbb', '#bbbbbb', '#bbbbbb'],
+        tabLineColor: ['#097aff', 'rgba(0,0,0,0)', 'rgba(0,0,0,0)', 'rgba(0,0,0,0)']
     },
 
     toArticleDetailPage: function (e) {
@@ -105,6 +108,13 @@ Page({
         this.lazyGetArticles();
     },
 
+    clickActivityTab: function () {
+        this.setData({
+            currentTab: 3
+        });
+        this.lazyGetActivities();
+    },
+
 
     switchPage: function (e) {
         this.setData({
@@ -114,23 +124,30 @@ Page({
         switch (this.data.currentTab) {
             case 0:
                 this.setData({
-                    tabWordColor: ['#097aff', '#bbbbbb', '#bbbbbb'],
-                    tabLineColor: ['#097aff', 'rgba(0,0,0,0)', 'rgba(0,0,0,0)']
+                    tabWordColor: ['#097aff', '#bbbbbb', '#bbbbbb', '#bbbbbb'],
+                    tabLineColor: ['#097aff', 'rgba(0,0,0,0)', 'rgba(0,0,0,0)', 'rgba(0,0,0,0)']
                 });
                 break;
             case 1:
                 this.setData({
-                    tabWordColor: ['#bbbbbb', '#097aff', '#bbbbbb'],
-                    tabLineColor: ['rgba(0,0,0,0)', '#097aff', 'rgba(0,0,0,0)']
+                    tabWordColor: ['#bbbbbb', '#097aff', '#bbbbbb', '#bbbbbb'],
+                    tabLineColor: ['rgba(0,0,0,0)', '#097aff', 'rgba(0,0,0,0)', 'rgba(0,0,0,0)']
                 });
                 this.lazyGetMoments();
                 break;
             case 2:
                 this.setData({
-                    tabWordColor: ['#bbbbbb', '#bbbbbb', '#097aff'],
-                    tabLineColor: ['rgba(0,0,0,0)', 'rgba(0,0,0,0)', '#097aff']
+                    tabWordColor: ['#bbbbbb', '#bbbbbb', '#097aff', '#bbbbbb'],
+                    tabLineColor: ['rgba(0,0,0,0)', 'rgba(0,0,0,0)', '#097aff', 'rgba(0,0,0,0)']
                 });
                 this.lazyGetArticles();
+                break;
+            case 3:
+                this.setData({
+                    tabWordColor: ['#bbbbbb', '#bbbbbb', '#bbbbbb', '#097aff'],
+                    tabLineColor: ['rgba(0,0,0,0)', 'rgba(0,0,0,0)', 'rgba(0,0,0,0)', '#097aff']
+                });
+                this.lazyGetActivities();
                 break;
         }
 
@@ -205,6 +222,26 @@ Page({
                 util.showModel('出错了', error.message);
             }
         })
+    },
+
+    lazyGetActivities: function () {
+        if (!this.data.needGetActivities) { return; }
+        var that = this;
+        wx.request({
+            url: `${config.service.host}/weapp/getAssociationActivityList`,
+            data: {
+                association_id: that.data.association_id
+            },
+            success (res) {
+                that.setData({
+                    activityList: res.data
+                });
+            },
+            fail (error) {
+                console.log('request fail', error);
+                util.showModel('出错了', error.message);
+            }
+        });
     },
 
 

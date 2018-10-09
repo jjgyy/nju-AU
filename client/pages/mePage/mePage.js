@@ -32,6 +32,12 @@ Page({
                         wx.navigateTo({
                             url: '../associationDetailPage/associationDetailPage?' + 'id=' + json.id
                         });
+                        break;
+                    case 'activity':
+                        wx.navigateTo({
+                            url: '../activityDetailPage/activityDetailPage?' + 'activity_id=' + json.id
+                        });
+                        break;
                 }
             }
         })

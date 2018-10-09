@@ -9,6 +9,13 @@ Page({
         activityDetail: null,
         ticketDetail: null,
 
+        showCalendar: false,
+        date: null,
+        year: 2000,
+        month: 1,
+        day: 1,
+        calendarColorArray: [],
+
         ownTicket: false
     },
 
@@ -19,13 +26,26 @@ Page({
         })
     },
 
+    toActivityQRcodePage: function (e) {
+        var that = this;
+        wx.navigateTo({
+            url: '../activityQRcodePage/activityQRcodePage?' + 'id=' + that.data.activity_id
+        })
+    },
+
     openLocation: function () {
         var that = this;
         wx.openLocation({
             latitude: that.data.activityDetail.wx_location.latitude,
             longitude: that.data.activityDetail.wx_location.longitude,
-            scale: 14
+            scale: 14,
+            name: that.data.activityDetail.wx_location.name,
+            address: that.data.activityDetail.wx_location.address
         });
+    },
+
+    openCalendar: function () {
+        this.setData( {showCalendar: !this.data.showCalendar} );
     },
 
     openConfirm: function () {
@@ -105,6 +125,25 @@ Page({
         });
     },
 
+
+    calendarColorArray: function (date) {
+        const days_count = new Date(date.getFullYear(), date.getMonth()+1, 0).getDate();
+        let calendarColorArray = [];
+        for (let i = 1; i <= days_count; i++) {
+            if (i === date.getDate()-1) {
+                calendarColorArray.push({
+                    month: 'current', day: i, color: 'white', background: '#e1574c'
+                });
+            } else {
+                calendarColorArray.push({
+                    month: 'current', day: i, color: '#000'
+                });
+            }
+        }
+        return calendarColorArray;
+    },
+
+
     onLoad: function (options) {
         this.setData({
             activity_id: options.activity_id
@@ -118,13 +157,21 @@ Page({
                 activity_id: that.data.activity_id
             },
             success (result) {
-                result.data.date = result.data.date.substr(0,10);
+                //日历参数
+                that.setData( {date: new Date(result.data.date)} );
+                that.setData({
+                    year: that.data.date.getFullYear(),
+                    month: that.data.date.getMonth() + 1,
+                    day: that.data.date.getDate(),
+                    calendarColorArray: that.calendarColorArray(that.data.date)
+                });
+
+                result.data.date = result.data.date.substr(0, 10);
+                result.data.time = result.data.time.substr(0, 5);
 
                 result.data.wx_location = result.data.wx_location ? JSON.parse(result.data.wx_location) : '';
 
-                that.setData({
-                    activityDetail: result.data
-                });
+                that.setData( {activityDetail: result.data} );
 
             },
             fail (error) {

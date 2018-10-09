@@ -39,6 +39,7 @@
     justify-content: center;
     width: 100%;
     height: 300rpx;
+    font-size: 32rpx;
 }
 
 .content text {
