@@ -15,6 +15,7 @@ Page({
         activity_name: '',
         activity_intro: '',
         location: '',
+        wx_location: '',
         imgUrl: '',
         ticket: false,
         ticket_num: 0,
@@ -54,24 +55,39 @@ Page({
             date: e.detail.value
         })
     },
+
     bindTimeChange: function (e) {
         this.setData({
             time: e.detail.value
         })
     },
+
     bindCategoryChange: function(e) {
         this.setData({
             categoryIndex: e.detail.value
         })
     },
+
     bindTicketChange: function(e) {
         this.setData({
             ticket: !this.data.ticket
         });
     },
+
     bindOfflineChange: function(e) {
         this.setData({
             offline: !this.data.offline
+        });
+    },
+
+    chooseLocation: function () {
+        var that = this;
+        wx.chooseLocation({
+            success: function (res) {
+                delete res.errMsg;
+                console.log(res);
+                that.setData({ wx_location: res })
+            }
         });
     },
 
@@ -144,6 +160,7 @@ Page({
                         data: {
                             id: that.data.association_id,//社团id，只能叫id，中间键变量没写好
                             location: that.data.location,
+                            wx_location: that.data.wx_location,
                             date: that.data.date,
                             time: that.data.time + ':00',
                             category: that.data.categories[that.data.categoryIndex],

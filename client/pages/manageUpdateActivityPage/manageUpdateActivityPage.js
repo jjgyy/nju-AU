@@ -20,6 +20,7 @@ Page({
         date: '',
         time: '',
         location: '',
+        wx_location: '',
         imgUrl: '',
         ticket: false,
         ticket_num: 0,
@@ -80,6 +81,17 @@ Page({
     bindOfflineChange: function(e) {
         this.setData({
             offline: !this.data.offline
+        });
+    },
+
+    chooseLocation: function () {
+        var that = this;
+        wx.chooseLocation({
+            success: function (res) {
+                delete res.errMsg;
+                console.log(res);
+                that.setData({ wx_location: res })
+            }
         });
     },
 
@@ -153,6 +165,7 @@ Page({
                             id: that.data.association_id,//社团id，只能叫id，中间键变量没写好
                             activity_id: that.data.activity_id,
                             location: that.data.location,
+                            wx_location: that.data.wx_location,
                             date: that.data.date,
                             time: that.data.time + ':00',
                             category: that.data.categories[that.data.categoryIndex],
@@ -192,8 +205,6 @@ Page({
             date_end: (date.getFullYear() + 1) + '-' + 12 + '-' + 31
         });
 
-        console.log(that.data);
-
         wx.request({
             url: `${config.service.host}/weapp/getActivityDetail`,
             data: {
@@ -212,6 +223,8 @@ Page({
                     }
                 }
 
+                result.data.wx_location = result.data.wx_location ? JSON.parse(result.data.wx_location) : '';
+
                 that.setData({
                     activity_name: result.data.activity_name,
                     activity_intro: result.data.activity_intro,
@@ -219,6 +232,7 @@ Page({
                     date: result.data.date,
                     time: result.data.time,
                     location: result.data.location,
+                    wx_location: result.data.wx_location,
                     imgUrl: result.data.image_src,
                     ticket: !!(result.data.ticket),
                     offline: !!(result.data.offline)
@@ -230,12 +244,14 @@ Page({
             }
         });
 
+
         wx.request({
             url: `${config.service.host}/weapp/getActivityTicketDetail`,
             data: {
                 activity_id: that.data.activity_id
             },
             success (result) {
+                if (result.data.total === undefined) { return; }
 
                 that.setData({
                     ticket_num_origin: result.data.total,

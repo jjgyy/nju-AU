@@ -22,9 +22,12 @@
 </view>
 
 
-<view class="weui-cells__title">文章封面上传</view>
+<view class="weui-cells__title" style="margin-top: 60rpx">文章封面上传</view>
 <view class="weui-cells weui-cells_after-title">
   <view bindtap="doUpload" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+    <view class="weui-cell__hd">
+      <image src="../../icon/picture.svg" style="margin-right:10px;vertical-align:middle;width:50rpx;height:50rpx;border-radius:25rpx"></image>
+    </view>
     <view class="uploader-text">
       <text>上传图片</text>
     </view>
@@ -40,6 +43,6 @@
   ></image>
 </view>
 
-<view class="weui-btn-area">
+<view class="weui-btn-area" style="margin-top: 60rpx">
   <button class="weui-btn" type="primary" bindtap="submit">提交</button>
 </view>

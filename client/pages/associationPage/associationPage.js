@@ -30,16 +30,8 @@ Page({
 
     toAssociationDetailPage: function (e) {
         var id = e.currentTarget.dataset.id;
-        var hasJoined = false;
-        if(this.data.userAssociationList.length != null) {
-            for (var i = 0, length = this.data.userAssociationList.length; i < length; i++) {
-                if (id === this.data.userAssociationList[i].id) {
-                    hasJoined = true;
-                }
-            }
-        }
         wx.navigateTo({
-            url: '../associationDetailPage/associationDetailPage?' + 'id=' + id + '&hasJoined=' + hasJoined
+            url: '../associationDetailPage/associationDetailPage?' + 'id=' + id
         })
     },
 

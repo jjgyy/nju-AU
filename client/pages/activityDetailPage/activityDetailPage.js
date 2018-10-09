@@ -12,6 +12,22 @@ Page({
         ownTicket: false
     },
 
+    toAssociationDetailPage: function (e) {
+        var that = this;
+        wx.navigateTo({
+            url: '../associationDetailPage/associationDetailPage?' + 'id=' + that.data.activityDetail.association_id
+        })
+    },
+
+    openLocation: function () {
+        var that = this;
+        wx.openLocation({
+            latitude: that.data.activityDetail.wx_location.latitude,
+            longitude: that.data.activityDetail.wx_location.longitude,
+            scale: 14
+        });
+    },
+
     openConfirm: function () {
         var that = this;
         wx.showModal({
@@ -102,8 +118,9 @@ Page({
                 activity_id: that.data.activity_id
             },
             success (result) {
-
                 result.data.date = result.data.date.substr(0,10);
+
+                result.data.wx_location = result.data.wx_location ? JSON.parse(result.data.wx_location) : '';
 
                 that.setData({
                     activityDetail: result.data

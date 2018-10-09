@@ -1,4 +1,4 @@
-<view class="weui-cells__title">活动基本信息</view>
+<view class="weui-cells__title">活动基本信息（必填）</view>
 <view class="weui-cells weui-cells_after-title">
 
     <view class="weui-cell weui-cell_input">
@@ -22,14 +22,13 @@
         <view class="weui-cell__ft weui-cell__ft_in-access"></view>
     </view>
 
-    <view class="weui-cell weui-cell_input">
-        <view class="weui-cell__hd">
-            <view class="weui-label">地点</view>
-        </view>
-        <view class="weui-cell__bd">
-            <input class="weui-input" bindinput="location" value="{{location}}" placeholder="请输入举办地点" type="text" maxlength="200"/>
-        </view>
-    </view>
+</view>
+
+
+
+
+<view class="weui-cells__title" style="margin-top: 60rpx">活动时间（必填）</view>
+<view class="weui-cells weui-cells_after-title">
 
     <view class="weui-cell weui-cell_input">
         <view class="weui-cell__hd">
@@ -40,6 +39,7 @@
                 <view class="weui-input">{{date}}</view>
             </picker>
         </view>
+        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
     </view>
 
     <view class="weui-cell weui-cell_input">
@@ -51,28 +51,60 @@
                 <view class="weui-input">{{time}}</view>
             </picker>
         </view>
+        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
     </view>
 
 </view>
 
 
-<view class="weui-cells__title">活动简介</view>
+
+
+<view class="weui-cells__title" style="margin-top: 60rpx">活动地点（必填）</view>
 <view class="weui-cells weui-cells_after-title">
+
+    <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+            <view class="weui-label">地点</view>
+        </view>
+        <view class="weui-cell__bd">
+            <input class="weui-input" bindinput="location" value="{{location}}" placeholder="请输入举办地点" type="text" maxlength="200"/>
+        </view>
+    </view>
+
+    <view bindtap="chooseLocation" class="weui-cell" hover-class="weui-cell_active">
+        <view class="weui-cell__hd">
+            <image src="../../icon/location.svg" style="margin-right:10px;vertical-align:middle;width:50rpx;height:50rpx;border-radius:25rpx"></image>
+        </view>
+        <view class="weui-cell__bd" style="color: #007AFF;">{{wx_location ? wx_location.address : '地图辅助标记地点'}}</view>
+    </view>
+
+</view>
+
+
+
+<view class="weui-cells__title" style="margin-top: 60rpx">活动简介（必填）</view>
+<view class="weui-cells weui-cells_after-title">
+
     <view class="weui-cell">
         <view class="weui-cell__bd">
             <textarea value="{{activity_intro}}" bindblur="activity_intro" class="weui-textarea" placeholder="请输入活动简介" style="height: 11.3em" maxlength="3000"/>
             <view class="weui-textarea-counter">限3000字</view>
         </view>
     </view>
+
 </view>
 
 
-<view class="weui-cells__title">电子入场券</view>
-<view class="weui-cells weui-cells_after-title">
-    <view bindtap="bindTicketChange" class="weui-cell weui-check__label">
-        <checkbox class="weui-check" checked="{{ticket}}" disabled="true"/>
 
+<view class="weui-cells__title" style="margin-top: 60rpx">电子入场券</view>
+<view class="weui-cells weui-cells_after-title">
+
+    <view bindtap="bindTicketChange" class="weui-cell weui-check__label">
+        <view class="weui-cell__hd">
+            <image src="../../icon/ticket.svg" style="margin-right:10px;vertical-align:middle;width:50rpx;height:50rpx;border-radius:25rpx"></image>
+        </view>
         <view class="weui-cell__bd">生成电子入场券</view>
+        <checkbox class="weui-check" checked="{{ticket}}"/>
     </view>
 
     <view hidden="{{!ticket}}" class="weui-cell weui-cell_input">
@@ -93,14 +125,19 @@
 </view>
 
 
-<view class="weui-cells__title">活动海报</view>
+<view class="weui-cells__title" style="margin-top: 60rpx">活动海报（必填）</view>
 <view class="weui-cells weui-cells_after-title">
+
     <view bindtap="doUpload" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__hd">
+            <image src="../../icon/picture.svg" style="margin-right:10px;vertical-align:middle;width:50rpx;height:50rpx;border-radius:25rpx"></image>
+        </view>
         <view class="uploader-text">
             <text>上传图片</text>
         </view>
         <view class="weui-cell__ft weui-cell__ft_in-access"></view>
     </view>
+
 </view>
 <view class="uploader-container" wx:if="{{imgUrl}}">
     <image
@@ -113,6 +150,6 @@
 
 
 
-<view class="weui-btn-area">
+<view class="weui-btn-area" style="margin-top: 60rpx">
     <button class="weui-btn" type="primary" bindtap="submit">提交</button>
 </view>
