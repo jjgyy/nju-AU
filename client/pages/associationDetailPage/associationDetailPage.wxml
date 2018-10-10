@@ -74,12 +74,20 @@
 
             <view class="page-container fly_from_bottom" style="margin-top: 394rpx">
 
+                <view wx:if="{{vid}}" class="association-intro-title">
+                    <text>社团宣传片</text>
+                </view>
+                <view wx:if="{{vid}}" bindtap="toVideoPage" class="association-info-btn">
+                    <image src="../../icon/tencentVideo.svg" style="margin-right:2rpx;vertical-align:middle;width:40rpx;height:40rpx;"/>
+                    观看社团宣传片
+                </view>
+
                 <view class="association-contact-title" style="margin-top: 30rpx;">
                     <text>公众号</text>
                 </view>
                 <view class="association-contact-container">
                     <view class="association-contact-cell" wx:for="{{associationOfficialList}}" wx:key="*this">
-                        <p>{{item.official}}</p>
+                        <p style="font-weight:500">{{item.official}}</p>
                         <view bindtap="copy" data-copydata="{{item.official}}" class="copy-btn">复制</view>
                     </view>
                 </view>
@@ -89,7 +97,7 @@
                 </view>
                 <view class="association-contact-container">
                     <view class="association-contact-cell" wx:for="{{associationQQList}}" wx:key="*this">
-                        <p>{{item.qq}}</p>
+                        <p style="font-weight:500">{{item.qq}}</p>
                         <view bindtap="copy" data-copydata="{{item.qq}}" class="copy-btn">复制</view>
                     </view>
                 </view>

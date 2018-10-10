@@ -18,6 +18,11 @@ Page({
             url: '../manageQQPage/manageQQPage?' + 'id=' + this.data.association_id
         })
     },
+    toManageVideoPage: function (){
+        wx.navigateTo({
+            url: '../manageVideoPage/manageVideoPage?' + 'id=' + this.data.association_id
+        })
+    },
     toManageMomentPage: function (){
         wx.navigateTo({
             url: '../manageMomentPage/manageMomentPage?' + 'id=' + this.data.association_id

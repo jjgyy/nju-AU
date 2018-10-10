@@ -13,6 +13,10 @@ Page({
         articleList: null,
         activityList: null,
 
+        vid: '',
+
+        showVideo: false,
+
         likeDic: {},
 
         hasJoined: false,
@@ -31,13 +35,20 @@ Page({
 
     toArticleDetailPage: function (e) {
         wx.navigateTo({
-            url: '../articleDetailPage/articleDetailPage?' + 'url=' + e.currentTarget.dataset.url,
+            url: '../articleDetailPage/articleDetailPage?' + 'url=' + e.currentTarget.dataset.url
         })
     },
 
     toAssociationQRcodePage: function (e) {
         wx.navigateTo({
-            url: '../associationQRcodePage/associationQRcodePage?' + 'id=' + e.currentTarget.dataset.id,
+            url: '../associationQRcodePage/associationQRcodePage?' + 'id=' + e.currentTarget.dataset.id
+        })
+    },
+
+    toVideoPage: function () {
+        var that = this;
+        wx.navigateTo({
+            url: '../videoPage/videoPage?' + 'vid=' + that.data.vid
         })
     },
 
@@ -296,6 +307,19 @@ Page({
                     associationQQList: res.data.data.associationQQList,
                     associationOfficialList: res.data.data.associationOfficialList
                 })
+            }
+        });
+
+        wx.request({
+            url: `${config.service.host}/weapp/getAssociationVideo`,
+            data: {
+                association_id: options.id
+            },
+            header: {
+                'content-type': 'application/x-www-form-urlencoded'
+            },
+            success: function(res) {
+                res.data.vid !== undefined && that.setData( {vid: res.data.vid} )
             }
         });
 

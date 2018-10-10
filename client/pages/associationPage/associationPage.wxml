@@ -148,6 +148,7 @@
                 <text style="font-size: 42rpx; color: #bbbbbb; font-weight: 500">即将开放，敬请期待</text>
             </view>
 
+
             <!--
             <view class="moment__container under_tab">
                 <view class="moment__cell fly_from_bottom" wx:for="{{momentList}}" wx:for-item="moment" wx:for-index="momentIndex" wx:key="{{moment.moment_id}}" style="margin-top: 0;">

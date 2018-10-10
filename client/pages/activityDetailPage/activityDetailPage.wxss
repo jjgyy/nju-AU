@@ -71,6 +71,12 @@
     font-size: 34rpx;
     font-weight: 500;
 }
+.activity-info-title__right {
+    float: right;
+    font-size: 26rpx;
+    font-weight: 500;
+    color: #bbb;
+}
 
 .activity-info-content {
     display: block;
@@ -109,7 +115,7 @@
     justify-content: center;
     width: 75%;
     height: 100%;
-    background: whitesmoke;
+    background: #ebebeb;
     font-size: 34rpx;
     font-weight: 500;
 }

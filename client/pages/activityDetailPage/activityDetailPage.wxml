@@ -5,8 +5,9 @@
     </view>
 
 
-    <view class="activity-info-title" style="margin-top: 50rpx">
+    <view class="activity-info-title" style="margin-top: 20rpx">
         <text>时间</text>
+        <view bindtap="openCalendar" class="activity-info-title__right">详情 ></view>
     </view>
     <view class="activity-info-time">
         <text style="color:#007AFF;font-weight:500">{{activityDetail.date}} </text>
@@ -20,8 +21,9 @@
     </view>
 
 
-    <view class="activity-info-title" style="margin-top: 30rpx">
+    <view class="activity-info-title" style="margin-top: 70rpx">
         <text>地点</text>
+        <view bindtap="openLocation" class="activity-info-title__right">详情 ></view>
     </view>
     <view class="activity-info-text">
         <text style="color:#007AFF;font-weight:500">{{activityDetail.location}}\n</text>
@@ -33,7 +35,7 @@
     </view>
 
 
-    <view class="activity-info-title" style="margin-top: 50rpx">
+    <view class="activity-info-title" style="margin-top: 70rpx">
         <text>主办</text>
     </view>
     <view bindtap="toAssociationDetailPage" class="activity-info-text">
@@ -41,7 +43,7 @@
     </view>
 
 
-    <view class="activity-info-title" style="margin-top: 50rpx">
+    <view class="activity-info-title" style="margin-top: 70rpx">
         <text>活动简介</text>
     </view>
     <view class="activity-info-content">
@@ -49,7 +51,7 @@
     </view>
 
 
-    <view class="activity-info-title" style="margin-top: 50rpx">
+    <view class="activity-info-title" style="margin-top: 10rpx">
         <text>二维码</text>
         <view bindtap="toActivityQRcodePage" wx:if="{{activityDetail.wx_location}}" class="activity-info-btn">
             <image src="../../icon/QRcode.svg" style="margin-right:2rpx;vertical-align:middle;width:40rpx;height:40rpx;"/>
@@ -62,7 +64,7 @@
 <view class="bottom-fixed-container" wx:if="{{activityDetail.ticket && ticketDetail.remain != 0}}">
     <view class="bottom-info-can">电子入场券剩余 {{ticketDetail.remain}} / {{ticketDetail.total}} 张</view>
     <view class="bottom-btn" bindtap="openConfirm" hidden="{{ownTicket}}">抢票</view>
-    <view class="bottom-btn-disabled" hidden="{{!ownTicket}}">已拥有</view>
+    <view bindtap="toUserActivityTicketPage" class="bottom-btn-disabled" hidden="{{!ownTicket}}">已拥有</view>
 </view>
 
 <view class="bottom-fixed-container" wx:if="{{activityDetail.ticket && ticketDetail.remain <= 0}}">

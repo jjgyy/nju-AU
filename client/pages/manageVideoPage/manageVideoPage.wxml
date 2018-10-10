@@ -1,0 +1,16 @@
+<view class="weui-cells__title">社团宣传视频</view>
+<view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+            <view class="weui-label" style="color: #007AFF">腾讯视频vid</view>
+        </view>
+        <view class="weui-cell__bd">
+            <input class="weui-input" bindinput="vid" value="{{vid}}" placeholder="请输入vid" type="text" maxlength="100"/>
+        </view>
+    </view>
+</view>
+
+
+<view class="weui-btn-area">
+    <button class="weui-btn" type="primary" bindtap="submit">提交</button>
+</view>

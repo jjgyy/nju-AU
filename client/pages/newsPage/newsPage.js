@@ -12,7 +12,7 @@ Page({
 
         canLoadMore: true,
 
-        canRefresh: true
+        canRefresh: true,
     },
 
     toActivityDetailPage: function (e) {
@@ -22,6 +22,7 @@ Page({
     },
 
     toArticleDetailPage: function (e) {
+        this.updateArticleRead(e.currentTarget.dataset.id);
         wx.navigateTo({
             url: '../articleDetailPage/articleDetailPage?' + 'url=' + e.currentTarget.dataset.url,
         })
@@ -87,6 +88,24 @@ Page({
                 util.showModel('出错了', error.message);
             }
         })
+    },
+
+
+    updateArticleRead: function (article_id) {
+
+        wx.request({
+            url: `${config.service.host}/weapp/updateArticleRead`,
+            data: {
+                article_id: article_id
+            },
+            success (res) {
+            },
+            fail (error) {
+                console.log('request fail', error);
+                util.showModel('出错了', error.message);
+            }
+        });
+
     },
 
 

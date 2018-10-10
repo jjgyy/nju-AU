@@ -86,6 +86,10 @@ router.get('/getUserWhetherJoin', controllers.getUserWhetherJoin);
 
 router.get('/getHomePosterList', controllers.getHomePosterList);
 
+router.get('/getAssociationVideo', controllers.getAssociationVideo);
+
+router.get('/updateArticleRead', controllers.updateArticleRead);
+
 
 //仅验证登录态
 
@@ -120,6 +124,8 @@ router.get('/addAssociationActivity', validationMiddleware, controllers.validate
 router.get('/deleteAssociationActivity', validationMiddleware, controllers.validateManager, controllers.deleteAssociationActivity);
 
 router.get('/updateAssociationActivity', validationMiddleware, controllers.validateManager, controllers.updateAssociationActivity);
+
+router.get('/updateAssociationVideo', validationMiddleware, controllers.validateManager, controllers.updateAssociationVideo);
 
 
 //验证社团主席（管理组长）

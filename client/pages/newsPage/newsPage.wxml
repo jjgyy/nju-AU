@@ -1,5 +1,5 @@
 <swiper class="topPoster" indicator-dots="true" indicator-color="rgba(255,255,255,0.3)"
-        autoplay="true" interval="4000" duration="1000">
+        autoplay="{{true}}" interval="4000" duration="1000" circular="{{true}}">
     <block wx:for="{{posterList}}" wx:key="{{item.activity_id}}">
         <swiper-item bindtap="toActivityDetailPage" data-id="{{item.activity_id}}">
             <image src="{{item.image_src}}" mode="aspectFill"/>
@@ -9,7 +9,7 @@
 </swiper>
 
 
-<view bindtap="toArticleDetailPage" data-url="{{item.url}}" class="newsCell fly_from_bottom" wx:for="{{articleList}}" wx:key="item.id">
+<view bindtap="toArticleDetailPage" data-id="{{item.id}}" data-url="{{item.url}}" class="newsCell fly_from_bottom" wx:for="{{articleList}}" wx:key="item.id">
     <view class="newsCell-left">
         <view class="newsCell-left-title">
             <text>{{item.title}}</text>

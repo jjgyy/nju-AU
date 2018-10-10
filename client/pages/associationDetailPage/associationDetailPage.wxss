@@ -146,7 +146,7 @@
     width: 50%;
     overflow: hidden;
 }
-.association-contact-cell .copy-btn{
+.copy-btn{
     display: flex;
     height: 40rpx;
     align-items: center;
@@ -154,10 +154,27 @@
     padding: 5rpx 20rpx;
     border: 1rpx solid #dddddd;
     border-radius: 5rpx;
-    background: #f3f3f3;
-    color: #000000;
+    background: #ebebeb;
+    color: #000;
     font-size: 22rpx;
     font-weight: 450;
+}
+
+.association-info-btn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 300rpx;
+    height: 60rpx;
+    background: #fff;
+    margin-left: 30rpx;
+    border: 1rpx solid #ddd;
+    border-radius: 10rpx;
+    font-size: 28rpx;
+    font-weight: 500;
+    color: #007AFF;
+    margin-top: 20rpx;
 }
 
 

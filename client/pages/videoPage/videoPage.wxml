@@ -1,0 +1,1 @@
+<txv-video wx:if="{{vid}}" vid="{{vid}}" playerid="txv1" autoplay="{{false}}" style="width: 100%;height:100%;top:0;"></txv-video>
