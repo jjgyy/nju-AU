@@ -6,8 +6,11 @@ Page({
     data:{
         associationList: [],
         userAssociationList: null,
+        recommendAssociationList: null,
         momentList: [],
         activityList: [],
+
+        expand: false,
 
         likeDic: {},
 
@@ -38,8 +41,12 @@ Page({
     toAssociationCategoryPage: function (e) {
         var category = e.currentTarget.dataset.id;
         wx.navigateTo({
-            url: '../associationCategoryPage/associationCategoryPage?' + 'category=' + category + '&joinedAssociationList=' + this.data.userAssociationList
+            url: '../associationCategoryPage/associationCategoryPage?' + 'category=' + category
         })
+    },
+
+    expand: function () {
+        this.setData( {expand: !this.data.expand} )
     },
 
 
@@ -155,6 +162,7 @@ Page({
 
 
     lazyGetAssociations: function () {
+
         if (!this.data.needGetAssociations) { return; }
         var that = this;
 
@@ -164,6 +172,18 @@ Page({
                 that.setData({
                     associationList: result.data.data,
                     needGetAssociations: false
+                })
+            },
+            fail(error) {
+                console.log('request fail', error);
+            }
+        });
+
+        wx.request({
+            url: `${config.service.host}/weapp/getRecommendAssociationList`,
+            success(result) {
+                that.setData({
+                    recommendAssociationList: result.data.data,
                 })
             },
             fail(error) {

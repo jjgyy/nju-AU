@@ -12,7 +12,7 @@ Page({
 
 
     checkInput: function() {
-        if (!!(this.data.qq)) { return true; }
+        if (!!(this.data.official)) { return true; }
         util.showModel('新增公众号不可为空', '请认真检查并仔细填写所有信息');
         return false;
     },

@@ -34,6 +34,7 @@ Page({
     },
 
     toArticleDetailPage: function (e) {
+        this.updateArticleRead(e.currentTarget.dataset.id);
         wx.navigateTo({
             url: '../articleDetailPage/articleDetailPage?' + 'url=' + e.currentTarget.dataset.url
         })
@@ -58,6 +59,24 @@ Page({
         wx.setClipboardData({
             data: copydata
         })
+    },
+
+
+    like: function (e) {
+
+        var likeWhich = 'likeDic[' + e.currentTarget.dataset.id + ']';
+        //赞过的就取消赞
+        if (this.data.likeDic[e.currentTarget.dataset.id]) {
+            this.setData({
+                [likeWhich]: false
+            });
+            return;
+        }
+        //没赞过的点赞
+        this.setData({
+            [likeWhich]: true
+        });
+
     },
 
 
@@ -165,24 +184,6 @@ Page({
     },
 
 
-    like: function (e) {
-
-        var likeWhich = 'likeDic[' + e.currentTarget.dataset.id + ']';
-        //赞过的就取消赞
-        if (this.data.likeDic[e.currentTarget.dataset.id]) {
-            this.setData({
-                [likeWhich]: false
-            });
-            return;
-        }
-        //没赞过的点赞
-        this.setData({
-            [likeWhich]: true
-        });
-
-    },
-
-
     lazyGetMoments: function () {
         if (!this.data.needGetMoments) { return; }
         var that = this;
@@ -256,6 +257,26 @@ Page({
     },
 
 
+
+    updateArticleRead: function (article_id) {
+
+        wx.request({
+            url: `${config.service.host}/weapp/updateArticleRead`,
+            data: {
+                article_id: article_id
+            },
+            success (res) {
+            },
+            fail (error) {
+                console.log('request fail', error);
+                util.showModel('出错了', error.message);
+            }
+        });
+
+    },
+
+
+
     onShareAppMessage: function () {
         return {
             title: this.data.associationDetail.association_name,
@@ -284,9 +305,6 @@ Page({
             data: {
                 id: options.id
             },
-            header: {
-                'content-type': 'application/x-www-form-urlencoded'
-            },
             success: function(res) {
                 that.setData({
                     associationDetail: res.data.data
@@ -298,9 +316,6 @@ Page({
             url: `${config.service.host}/weapp/getAssociationContact`,
             data: {
                 id: options.id
-            },
-            header: {
-                'content-type': 'application/x-www-form-urlencoded'
             },
             success: function(res) {
                 that.setData({
@@ -315,9 +330,6 @@ Page({
             data: {
                 association_id: options.id
             },
-            header: {
-                'content-type': 'application/x-www-form-urlencoded'
-            },
             success: function(res) {
                 res.data.vid !== undefined && that.setData( {vid: res.data.vid} )
             }
@@ -328,9 +340,6 @@ Page({
             data: {
                 open_id: getApp().data.userInfo.openId,
                 association_id: that.data.association_id
-            },
-            header: {
-                'content-type': 'application/x-www-form-urlencoded'
             },
             success: function(res) {
                 if (res.data === true) {
@@ -354,5 +363,8 @@ Page({
     },
     onUnload:function(){
         // 页面关闭
+    },
+    onReachBottom:function () {
+
     }
 });

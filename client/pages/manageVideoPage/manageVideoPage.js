@@ -14,6 +14,10 @@ Page({
 
 
     submit: function(){
+        if (this.data.vid.substr(-5, 5) == '.html') {
+            this.setData( {vid: this.data.vid.substr(-16, 11)} );
+            console.log(this.data.vid);
+        }
         this.openConfirm()
     },
     openConfirm: function () {

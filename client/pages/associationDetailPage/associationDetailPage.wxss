@@ -20,10 +20,10 @@
     margin: 2% 2%;
     border-radius: 10rpx;
     overflow: hidden;
-    background-color: whitesmoke;
+    background-color: white;
     background-origin:border-box;                /*从content区域开始显示背景*/
     background-position:50% 50%;              /*图片上下左右居中*/
-    background-size: cover;                  /*保持图像本身的宽高比例，将图片缩放到宽度或高度正好适应定义背景的区域*/
+    background-size: contain;                  /*保持图像本身的宽高比例，将图片缩放到宽度或高度正好适应定义背景的区域*/
     background-repeat:no-repeat;
 }
 

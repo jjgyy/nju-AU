@@ -5,7 +5,7 @@
             <view class="weui-label" style="color: #007AFF">腾讯视频vid</view>
         </view>
         <view class="weui-cell__bd">
-            <input class="weui-input" bindinput="vid" value="{{vid}}" placeholder="请输入vid" type="text" maxlength="100"/>
+            <input class="weui-input" bindinput="vid" value="{{vid}}" placeholder="腾讯视频地址或者vid" type="text" maxlength="100"/>
         </view>
     </view>
 </view>

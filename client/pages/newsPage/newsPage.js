@@ -8,6 +8,7 @@ Page({
         posterList: null,
 
         articleList: null,
+        articleReadList: null,
         offset: 0,
 
         canLoadMore: true,
@@ -22,10 +23,13 @@ Page({
     },
 
     toArticleDetailPage: function (e) {
-        this.updateArticleRead(e.currentTarget.dataset.id);
         wx.navigateTo({
             url: '../articleDetailPage/articleDetailPage?' + 'url=' + e.currentTarget.dataset.url,
-        })
+        });
+        this.updateArticleRead(e.currentTarget.dataset.id);
+        this.setData({
+            ['articleReadList[' + e.currentTarget.dataset.index + '].read']: this.data.articleReadList[e.currentTarget.dataset.index].read + 1
+        });
     },
 
 
@@ -41,7 +45,7 @@ Page({
         if ((interval/86400) < 4) {
             return parseInt(interval/86400) + '天前';
         }
-        return timestamp.substr(0, 10);
+        return timestamp.substr(5, 5);
     },
 
 
@@ -87,7 +91,23 @@ Page({
                 console.log('request fail', error);
                 util.showModel('出错了', error.message);
             }
-        })
+        });
+
+        wx.request({
+            url: `${config.service.host}/weapp/getAllArticleReadList`,
+            success (res) {
+
+                that.setData({
+                    articleReadList: res.data
+                });
+
+            },
+            fail (error) {
+                console.log('request fail', error);
+                util.showModel('出错了', error.message);
+            }
+        });
+
     },
 
 
@@ -145,6 +165,21 @@ Page({
             }
         });
 
+        wx.request({
+            url: `${config.service.host}/weapp/getAllArticleReadList`,
+            success (res) {
+
+                that.setData({
+                    articleReadList: res.data
+                });
+
+            },
+            fail (error) {
+                console.log('request fail', error);
+                util.showModel('出错了', error.message);
+            }
+        });
+
     },
     onReady:function(){
         // 页面渲染完成
@@ -167,12 +202,13 @@ Page({
     onReachBottom:function () {
         if (!this.data.canLoadMore) { return; }
 
-        var that = this;
+        var that = this,
+            offset = this.data.offset;
 
         wx.request({
             url: `${config.service.host}/weapp/getAllArticleList`,
             data: {
-                offset: that.data.offset
+                offset: offset
             },
             success (res) {
                 if (res.data.data.length === 0) {
@@ -193,6 +229,27 @@ Page({
                 util.showModel('出错了', error.message);
             }
         });
+
+
+        if (!that.data.canLoadMore) { return; }
+
+
+        wx.request({
+            url: `${config.service.host}/weapp/getAllArticleReadList`,
+            data: {
+                offset: offset
+            },
+            success (res) {
+                that.setData({
+                    articleReadList: that.data.articleReadList.concat(res.data),
+                });
+            },
+            fail (error) {
+                console.log('request fail', error);
+                util.showModel('出错了', error.message);
+            }
+        });
+
 
     }
 

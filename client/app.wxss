@@ -137,6 +137,7 @@
     justify-content: flex-start;
     width: 100%;
     height: auto;
+    overflow: hidden;
     border-bottom: 1rpx solid #ddd;
 }
 .association-cell {
@@ -214,25 +215,36 @@
 .newsCell-left-title {
     display: flex;
     width: 100%;
-    height: 70%;
+    height: 60%;
 }
-.newsCell-left-title text{
+.newsCell-left-title text {
     display: block;
     margin: 18rpx 36rpx;
     font-size: 34rpx;
     font-weight: 400;
 }
-.newsCell-left-subInfo{
+.newsCell-left-subInfo {
     display: flex;
-    flex-flow: row;
+    flex-direction: row;
+    align-items: flex-end;
     width: 100%;
-    height: 30%;
+    height: 20%;
     padding-left: 35rpx;
 }
 .newsCell-left-subInfo text{
     margin-right: 25rpx;
     font-size: 24rpx;
     color: #7d7d7d;
+}
+.newsCell-left-bottom {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    height: 20%;
+    font-size: 24rpx;
+    color: #9b9b9b;
 }
 .newsCell-right{
     display: flex;

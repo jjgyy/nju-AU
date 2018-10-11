@@ -90,6 +90,10 @@ router.get('/getAssociationVideo', controllers.getAssociationVideo);
 
 router.get('/updateArticleRead', controllers.updateArticleRead);
 
+router.get('/getAllArticleReadList', controllers.getAllArticleReadList);
+
+router.get('/getRecommendAssociationList', controllers.getRecommendAssociationList);
+
 
 //仅验证登录态
 

@@ -13,6 +13,14 @@ module.exports = async (ctx) => {
                     delete: 1,
                     thisKeyIsSkipped: undefined
                 });
+
+            await mysql('article_read')
+                .where('article_id', article_id)
+                .update({
+                    delete: 1,
+                    thisKeyIsSkipped: undefined
+                });
+
         } catch (e) {
             ctx.state = {
                 code: -1,
