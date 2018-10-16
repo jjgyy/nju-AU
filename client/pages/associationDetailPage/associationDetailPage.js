@@ -1,7 +1,7 @@
 var qcloud = require('../../vendor/wafer2-client-sdk/index');
 var config = require('../../config');
 var util = require('../../utils/util.js');
-import drawQrcode from '../../utils/weapp.qrcode.min.js';
+
 
 Page({
     data:{
@@ -12,6 +12,8 @@ Page({
         momentList: null,
         articleList: null,
         activityList: null,
+
+        joinerCondition: null,
 
         vid: '',
 
@@ -91,18 +93,19 @@ Page({
             confirmText: "确认",
             cancelText: "取消",
             success: function (res) {
+
                 if (res.confirm) {
                     that.setData({
                         hasJoined: true,
                         joinBtnText: '已关注'
                     });
+
                     wx.request({
                         url: `${config.service.host}/weapp/addAssociationJoiner`,
                         data: {
                             association_id: id,
                             open_id: getApp().data.userInfo.openId
                         },
-                        login: true,
                         success () {
                             getApp().data.needRefreshJoined = true; // 有修改后将全局变量置为true
                         },
@@ -110,7 +113,36 @@ Page({
                             console.log('request fail', error);
                             util.showModel('出错了', error.message);
                         }
-                    })
+                    });
+
+
+                    wx.request({
+                        url: `${config.service.host}/weapp/updateAssociationJoinerCondition`,
+                        data: {
+                            association_id: id,
+                            gender: getApp().data.userInfo.gender
+                        },
+                        success (res) {
+                            console.log(res);
+                        },
+                        fail (error) {
+                            console.log('request fail', error);
+                            util.showModel('出错了', error.message);
+                        }
+                    });
+
+
+                    if (getApp().data.userInfo.gender == 1) {
+                        that.setData({
+                            ['joinerCondition.male']: (that.data.joinerCondition.male + 1)
+                        })
+                    } else {
+                        that.setData({
+                            ['joinerCondition.female']: (that.data.joinerCondition.female + 1)
+                        })
+                    }
+
+
                 }else{
                 }
             }
@@ -334,6 +366,19 @@ Page({
                 res.data.vid !== undefined && that.setData( {vid: res.data.vid} )
             }
         });
+
+
+        wx.request({
+            url: `${config.service.host}/weapp/getAssociationJoinerCondition`,
+            data: {
+                association_id: that.data.association_id
+            },
+            success: function(res) {
+                that.setData( {joinerCondition: res.data} );
+            }
+        });
+
+
 
         wx.request({
             url: `${config.service.host}/weapp/getUserWhetherJoin`,

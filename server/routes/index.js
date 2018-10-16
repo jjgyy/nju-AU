@@ -94,6 +94,10 @@ router.get('/getAllArticleReadList', controllers.getAllArticleReadList);
 
 router.get('/getRecommendAssociationList', controllers.getRecommendAssociationList);
 
+router.get('/updateAssociationJoinerCondition', controllers.updateAssociationJoinerCondition);
+
+router.get('/getAssociationJoinerCondition', controllers.getAssociationJoinerCondition);
+
 
 //仅验证登录态
 

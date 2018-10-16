@@ -102,11 +102,25 @@
                     </view>
                 </view>
 
+
                 <view class="association-intro-title">
                     <text>社团简介</text>
                 </view>
                 <view class="association-intro-container">
                     <text>{{associationDetail.intro}}</text>
+                </view>
+
+
+                <view class="association-intro-title">
+                    <text>关注热度</text>
+                </view>
+                <view class="association-intro-container">
+                    <text>总热度：</text>
+                    <text style="margin-right: 20px">{{joinerCondition.male + joinerCondition.female}}</text>
+                    <image src="icon/male.svg" style="margin-right: 10px;vertical-align: middle;width:22px; height: 22px;"></image>
+                    <text style="margin-right: 20px">{{joinerCondition.male}}</text>
+                    <image src="icon/female.svg" style="margin-right: 10px;vertical-align: middle;width:22px; height: 22px;"></image>
+                    <text style="margin-right: 20px">{{joinerCondition.female}}</text>
                 </view>
 
             </view>
