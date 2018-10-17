@@ -70,7 +70,7 @@
 <swiper current="{{currentTab}}" duration="300" bindchange="switchPage" style="height: {{clientHeight?clientHeight + 'px':'auto'}}">
 
     <swiper-item>
-        <scroll-view scroll-y="true" class="scoll-y">
+        <scroll-view scroll-y="true" class="scroll-y">
 
             <view class="page-container fly_from_bottom" style="margin-top: 394rpx">
 
@@ -129,7 +129,7 @@
 
 
     <swiper-item>
-        <scroll-view scroll-y="true" class="scoll-y">
+        <scroll-view scroll-y="true" class="scroll-y">
 
             <view class="moment__container" style="margin-top: 394rpx">
                 <view class="moment__cell fly_from_bottom" wx:for="{{momentList}}" wx:for-item="moment" wx:for-index="momentIndex" wx:key="{{moment.moment_id}}" style="margin-top: 0;">
@@ -172,7 +172,7 @@
 
 
     <swiper-item>
-        <scroll-view scroll-y="true" class="scoll-y">
+        <scroll-view scroll-y="true" class="scroll-y">
             <view class="page-container" style="margin-top: 394rpx">
 
 
@@ -197,7 +197,7 @@
 
 
     <swiper-item>
-        <scroll-view scroll-y="true" class="scoll-y">
+        <scroll-view scroll-y="true" class="scroll-y">
             <view class="page-container" style="margin-top: 394rpx">
 
 

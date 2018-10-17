@@ -1,3 +1,7 @@
 {
-  "enablePullDownRefresh": true
+  "usingComponents": {
+    "wux-tabs": "../../utils/WuxUI/tabs/index",
+    "wux-tab": "../../utils/WuxUI/tab/index",
+    "wux-badge": "../../utils/WuxUI/badge/index"
+  }
 }

@@ -11,10 +11,6 @@ page {
     font-size: 28rpx;
 }
 
-.under_tab {
-    margin-top: 76rpx;
-}
-
 .sub__info {
     margin-left: 40rpx;
     color: #bbb;

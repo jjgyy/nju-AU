@@ -1,3 +1,12 @@
 page {
     background: #f7f7f7;
 }
+
+.big_tab_word {
+    font-size: 28rpx;
+}
+
+.big_tab_line {
+    font-size: 28rpx;
+
+}

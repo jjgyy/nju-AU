@@ -20,14 +20,10 @@ Page({
 
         canRefresh: true,
 
-        currentTab: 0,
-        clientHeight: null,
-        tabWordColor: ['#097aff', '#bbbbbb'],
-        tabLineColor: ['#097aff', 'rgba(0,0,0,0)'],
-
         inputShowed: false,
         inputVal: "",
-        searchResult: []
+        searchResult: [],
+
     },
 
 
@@ -50,43 +46,7 @@ Page({
     },
 
 
-    clickSearchTab: function () {
-        this.setData({
-            currentTab: 0
-        });
-        this.lazyLoad();
-    },
 
-    clickMomentTab: function () {
-        this.setData({
-            currentTab: 1
-        });
-        this.lazyLoad();
-    },
-
-
-    switchPage: function (e) {
-        this.setData({
-            currentTab: e.detail.current
-        });
-
-        switch (this.data.currentTab) {
-            case 0:
-                this.setData({
-                    tabWordColor: ['#097aff', '#bbbbbb'],
-                    tabLineColor: ['#097aff', 'rgba(0,0,0,0)']
-                });
-                break;
-            case 1:
-                this.setData({
-                    tabWordColor: ['#bbbbbb', '#097aff'],
-                    tabLineColor: ['rgba(0,0,0,0)', '#097aff']
-                });
-                break;
-        }
-
-        this.lazyLoad();
-    },
 
 
     showInput: function () {
@@ -124,73 +84,6 @@ Page({
         this.setData({
             searchResult: searchResult
         });
-    },
-
-    lazyLoad: function () {
-        switch (this.data.currentTab) {
-            case 0:
-                this.lazyGetAssociations();
-                break;
-            case 1:
-                this.lazyGetMoments();
-                break;
-        }
-    },
-
-
-    lazyGetMoments: function () {
-        if (!this.data.needGetMoments) { return; }
-        var that = this;
-
-        wx.request({
-            url: `${config.service.host}/weapp/getAllMomentList`,
-            success(result) {
-                var momentList = result.data;
-                for (var i=0, len=momentList.length; i<len; i++) {
-                    momentList[i].image_list = JSON.parse(momentList[i].image_list);
-                    momentList[i].date = momentList[i].date.substr(0, 10);
-                }
-                that.setData({
-                    momentList: momentList
-                });
-            },
-            fail(error) {
-                console.log('request fail', error);
-            }
-        });
-    },
-
-
-    lazyGetAssociations: function () {
-
-        if (!this.data.needGetAssociations) { return; }
-        var that = this;
-
-        wx.request({
-            url: `${config.service.host}/weapp/getAssociationList`,
-            success(result) {
-                that.setData({
-                    associationList: result.data.data,
-                    needGetAssociations: false
-                })
-            },
-            fail(error) {
-                console.log('request fail', error);
-            }
-        });
-
-        wx.request({
-            url: `${config.service.host}/weapp/getRecommendAssociationList`,
-            success(result) {
-                that.setData({
-                    recommendAssociationList: result.data.data,
-                })
-            },
-            fail(error) {
-                console.log('request fail', error);
-            }
-        });
-
     },
 
 
@@ -270,15 +163,32 @@ Page({
         // 页面初始化 options为页面跳转所带来的参数
         var that = this;
 
-        wx.getSystemInfo({
-            success: function (res) {
+        wx.request({
+            url: `${config.service.host}/weapp/getAssociationList`,
+            success(result) {
                 that.setData({
-                    clientHeight: res.windowHeight
-                });
+                    associationList: result.data.data,
+                    needGetAssociations: false
+                })
+            },
+            fail(error) {
+                console.log('request fail', error);
             }
         });
 
-        this.lazyLoad();
+
+        wx.request({
+            url: `${config.service.host}/weapp/getRecommendAssociationList`,
+            success(result) {
+                that.setData({
+                    recommendAssociationList: result.data.data,
+                })
+            },
+            fail(error) {
+                console.log('request fail', error);
+            }
+        });
+
     },
 
     onReady:function(){

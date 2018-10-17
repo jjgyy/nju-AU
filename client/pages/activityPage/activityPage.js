@@ -7,8 +7,14 @@ Page({
         activityList: null,
         offset: 0,
 
-        canLoadMore: true,
-        canRefresh: true
+        currentTab: 0,
+        clientHeight: null,
+
+        needGetMoments: true,
+        needGetActivities: true,
+
+        canLoadMoreActivities: true,
+        canRefreshActivities: true
     },
 
     toActivityDetailPage: function (e) {
@@ -17,8 +23,104 @@ Page({
         })
     },
 
+
+
+    switchPage: function (e) {
+
+        this.setData({
+            currentTab: e.detail.current
+        });
+
+        this.lazyLoad();
+
+    },
+
+    switchTab(e) {
+
+        this.setData({
+            currentTab: e.detail.key,
+        })
+
+    },
+
+
+
+
+    lazyLoad: function () {
+        switch (this.data.currentTab) {
+            case 0:
+                this.lazyGetMoments();
+                break;
+            case 1:
+                this.lazyGetActivities();
+                break;
+        }
+    },
+
+
+    lazyGetMoments: function () {
+        if (!this.data.needGetMoments) { return; }
+        var that = this;
+
+        wx.request({
+            url: `${config.service.host}/weapp/getAllMomentList`,
+            success(result) {
+                var momentList = result.data;
+                for (var i=0, len=momentList.length; i<len; i++) {
+                    momentList[i].image_list = JSON.parse(momentList[i].image_list);
+                    momentList[i].date = momentList[i].date.substr(0, 10);
+                }
+                that.setData({
+                    momentList: momentList
+                });
+            },
+            fail(error) {
+                console.log('request fail', error);
+            }
+        });
+    },
+
+
+    lazyGetActivities: function () {
+
+        if (!this.data.needGetActivities) { return; }
+
+        var that = this;
+
+        wx.request({
+            url: `${config.service.host}/weapp/getAllActivityList`,
+            success (result) {
+
+                that.setData({
+                    activityList: result.data,
+                    offset: result.data[result.data.length-1].activity_id,
+                    needGetActivities: false
+                });
+
+            },
+            fail (error) {
+                console.log('request fail', error);
+            }
+        });
+
+    },
+
+
+
     refresh: function () {
-        if (!this.data.canRefresh) {
+        switch (this.data.currentTab) {
+            case 0:
+                break;
+            case 1:
+                this.refreshActivities();
+                break;
+        }
+    },
+
+
+    refreshActivities: function () {
+
+        if (!this.data.canRefreshActivities) {
             wx.showLoading({
                 title: '刷新太频繁啦'
             });
@@ -28,12 +130,12 @@ Page({
         var that = this;
 
         this.setData({
-            canRefresh: false
+            canRefreshActivities: false
         });
 
         setTimeout(function () {
             that.setData({
-                canRefresh: true
+                canRefreshActivities: true
             })
         }, 10000);
 
@@ -48,7 +150,7 @@ Page({
                 that.setData({
                     activityList: result.data,
                     offset: result.data[result.data.length-1].activity_id,
-                    canLoadMore: true
+                    canLoadMoreActivities: true
                 });
                 util.showSuccess('刷新成功');
 
@@ -61,44 +163,10 @@ Page({
     },
 
 
-    onLoad: function (options) {
-        var that = this;
 
-        wx.request({
-            url: `${config.service.host}/weapp/getAllActivityList`,
-            success (result) {
+    loadMoreActivities:function () {
 
-                that.setData({
-                    activityList: result.data,
-                    offset: result.data[result.data.length-1].activity_id
-                });
-
-            },
-            fail (error) {
-                console.log('request fail', error);
-            }
-        });
-    },
-    onReady: function () {
-
-    },
-    onShow: function () {
-
-    },
-    onHide: function () {
-
-    },
-    onUnload: function () {
-
-    },
-
-    onPullDownRefresh:function () {
-        this.refresh();
-        wx.stopPullDownRefresh();
-    },
-
-    onReachBottom:function () {
-        if (!this.data.canLoadMore) { return; }
+        if (!this.data.canLoadMoreActivities) { return; }
 
         var that = this;
 
@@ -109,7 +177,7 @@ Page({
             },
             success (result) {
                 if (result.data.length === 0) {
-                    that.setData( {canLoadMore: false} );
+                    that.setData( {canLoadMoreActivities: false} );
                     return;
                 }
 
@@ -123,6 +191,34 @@ Page({
                 console.log('request fail', error);
             }
         });
+
+    },
+
+
+
+    onLoad: function (options) {
+        var that = this;
+
+        wx.getSystemInfo({
+            success: function (res) {
+                that.setData({
+                    clientHeight: res.windowHeight
+                });
+            }
+        });
+
+        this.lazyLoad();
+    },
+    onReady: function () {
+
+    },
+    onShow: function () {
+
+    },
+    onHide: function () {
+
+    },
+    onUnload: function () {
 
     }
 

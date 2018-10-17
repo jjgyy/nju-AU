@@ -52,8 +52,6 @@ Page({
             });
         }
 
-        console.log(getApp().data)
-
     },
     onReady:function(){
         // 页面渲染完成
