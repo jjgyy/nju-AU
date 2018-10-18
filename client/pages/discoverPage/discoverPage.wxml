@@ -1,25 +1,22 @@
-<view class="page">
-    <view class="page__bd">
-        <view class="weui-tab">
-
-            <view class="fixed__container">
-                <view class="weui-navbar" style="background: #fff">
-                    <block wx:for-items="{{ tabs}}" wx:key="{{ index }}">
-                        <view data-id="{{ index }}" class="weui-navbar__item {{ activeIndex == index ? 'weui-bar__item_on' : '' }}" bindtap="tabClick">
-                            <view class="weui-navbar__title">{{ item }}</view>
-                        </view>
-                    </block>
-                    <view class="weui-navbar__slider" style="left: {{ sliderLeft }}px; transform: translateX({{ sliderOffset }}px); -webkit-transform: translateX({{ sliderOffset }}px);"></view>
-                </view>
+<view class="fixed__container">
+    <view class="weui-navbar" style="background: #fff">
+        <block wx:for-items="{{ tabs}}" wx:key="{{ index }}">
+            <view data-id="{{ index }}" class="weui-navbar__item {{ activeIndex == index ? 'weui-bar__item_on' : '' }}" bindtap="tabClick">
+                <view class="weui-navbar__title">{{ item }}</view>
             </view>
+        </block>
+        <view class="weui-navbar__slider" style="left: {{ sliderLeft }}px; transform: translateX({{ sliderOffset }}px); -webkit-transform: translateX({{ sliderOffset }}px);"></view>
+    </view>
+</view>
+
+<wux-refresher id="wux-refresher" bind:refresh="pullDownRefresh">
+        <view class="weui-tab">
 
             <view class="weui-tab__panel">
 
-                <wux-refresher id="wux-refresher" bind:refresh="pullDownRefresh">
-
                     <view class="weui-tab__content" hidden="{{ activeIndex !== 0 }}">
 
-                        <view class="moment__container under_tab" style="margin-top: 40rpx">
+                        <view class="moment__container" style="margin-top: 40rpx">
                             <view class="moment {{ (momentIndex%2 === 0) ? 'left__moment fly_from_left' : 'right__moment fly_from_right'}}" wx:for="{{momentList}}" wx:for-item="moment" wx:for-index="momentIndex" wx:key="{{moment.moment_id}}">
 
                                 <view class="moment__avatar__flex {{ (momentIndex%2 === 0) ? 'left__moment__avatar__flex' : 'right__moment__avatar__flex'}}">
@@ -103,16 +100,13 @@
 
                 </view>
 
-                </wux-refresher>
-
 
 
             </view>
 
 
         </view>
-    </view>
-</view>
+</wux-refresher>
 <!--
 <view class="fixed__container">
 
