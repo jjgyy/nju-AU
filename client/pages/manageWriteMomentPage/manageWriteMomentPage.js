@@ -11,7 +11,24 @@ Page({
 
         content: null,
 
-        files: []
+        files: [],
+
+        fileList: [{
+            uid: 0,
+            status: 'uploading',
+            url: 'http://pbqg2m54r.bkt.clouddn.com/qrcode.jpg',
+        },
+            {
+                uid: 1,
+                status: 'done',
+                url: 'http://pbqg2m54r.bkt.clouddn.com/qrcode.jpg',
+            },
+            {
+                uid: 2,
+                status: 'error',
+                url: 'http://pbqg2m54r.bkt.clouddn.com/qrcode.jpg',
+            }
+        ]
     },
 
     content: function(e){
@@ -66,7 +83,7 @@ Page({
     },
 
 
-    chooseImage: function (e) {
+    /*chooseImage: function (e) {
         var that = this;
         wx.chooseImage({
             count: 4,
@@ -104,6 +121,59 @@ Page({
             current: e.currentTarget.id, // 当前显示图片的http链接
             urls: this.data.files // 需要预览的图片http链接列表
         })
+    },*/
+
+
+    onChange(e) {
+        console.log('onChange', e)
+        const { file } = e.detail
+        if (file.status === 'uploading') {
+            this.setData({
+                progress: 0,
+            })
+            wx.showLoading()
+        } else if (file.status === 'done') {
+            this.setData({
+                imageUrl: file.url,
+            })
+        }
+    },
+    onSuccess(e) {
+        console.log('onSuccess', e)
+    },
+    onFail(e) {
+        console.log('onFail', e)
+    },
+    onComplete(e) {
+        console.log('onComplete', e)
+        wx.hideLoading()
+    },
+    onProgress(e) {
+        console.log('onProgress', e)
+        this.setData({
+            progress: e.detail.file.progress,
+        })
+    },
+    onPreview(e) {
+        console.log('onPreview', e)
+        const { file, fileList } = e.detail
+        wx.previewImage({
+            current: file.url,
+            urls: fileList.map((n) => n.url),
+        })
+    },
+    onRemove(e) {
+        const { file, fileList } = e.detail
+        wx.showModal({
+            content: '确定删除？',
+            success: (res) => {
+                if (res.confirm) {
+                    this.setData({
+                        fileList: fileList.filter((n) => n.uid !== file.uid),
+                    })
+                }
+            },
+        })
     },
 
 
@@ -113,17 +183,6 @@ Page({
             association_id: options.id,
             categories: getApp().data.moment_categories
         })
-    },
-    onReady:function(){
-        // 页面渲染完成
-    },
-    onShow:function(){
-        // 页面显示
-    },
-    onHide:function(){
-        // 页面隐藏
-    },
-    onUnload:function(){
-        // 页面关闭
     }
+
 })

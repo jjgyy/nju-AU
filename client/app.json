@@ -36,7 +36,7 @@
     "pages/adminUserSearchPage/adminUserSearchPage",
     "pages/adminPosterPage/adminPosterPage",
     "pages/morePage/morePage",
-    "pages/activityPage/activityPage",
+    "pages/discoverPage/discoverPage",
     "pages/activityQRcodePage/activityQRcodePage",
     "pages/videoPage/videoPage",
     "pages/manageVideoPage/manageVideoPage"
@@ -58,7 +58,7 @@
       "iconPath": "icon/tabBar/news-unselected.png",
       "selectedIconPath": "icon/tabBar/news-selected.png"
     },{
-      "pagePath": "pages/activityPage/activityPage",
+      "pagePath": "pages/discoverPage/discoverPage",
       "text": "发现",
       "iconPath": "icon/tabBar/discover-unselected.png",
       "selectedIconPath": "icon/tabBar/discover-selected.png"

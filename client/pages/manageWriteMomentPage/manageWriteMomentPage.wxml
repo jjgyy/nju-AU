@@ -26,30 +26,9 @@
 
 
 <view class="weui-cells__title" style="margin-top: 60rpx">配图</view>
-<view class="weui-cells weui-cells_after-title">
-    <view class="weui-cell">
-        <view class="weui-cell__bd">
-            <view class="weui-uploader">
-                <view class="weui-uploader__hd">
-                    <view class="weui-uploader__title">图片上传</view>
-                    <view class="weui-uploader__info">{{files.length}}/4</view>
-                </view>
-                <view class="weui-uploader__bd">
-                    <view class="weui-uploader__files" id="uploaderFiles">
-                        <block wx:for="{{files}}" wx:key="*this">
-                            <view class="weui-uploader__file" bindtap="previewImage" id="{{item}}">
-                                <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
-                            </view>
-                        </block>
-                    </view>
-                    <view class="weui-uploader__input-box">
-                        <view class="weui-uploader__input" bindtap="chooseImage"></view>
-                    </view>
-                </view>
-            </view>
-        </view>
-    </view>
-</view>
+<wux-upload count="3" sizeType="{{['compressed']}}" list-type="picture-card" file-list="{{ fileList }}" url="{{ uploadUrl }}" bind:change="onChange" bind:success="onSuccess" bind:fail="onFail" bind:complete="onComplete" bind:preview="onPreview">
+    <image src="../../icon/addImage.svg" style="vertical-align: middle;width:40px; height: 40px;"></image>
+</wux-upload>
 
 
 <view class="weui-btn-area" style="margin-top: 60rpx">

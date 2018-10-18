@@ -36,22 +36,6 @@ Page({
     },
 
 
-    dateParser: function (timestamp) {
-        var interval = ( Date.parse(new Date()) - Date.parse(timestamp) ) / 1000;
-
-        if (interval < 3600) {
-            return '刚刚';
-        }
-        if ((interval/3600) < 24) {
-            return parseInt(interval/3600) + '小时前';
-        }
-        if ((interval/86400) < 4) {
-            return parseInt(interval/86400) + '天前';
-        }
-        return timestamp.substr(5, 5);
-    },
-
-
     refresh: function () {
         if (!this.data.canRefresh) { return; }
 
@@ -123,7 +107,6 @@ Page({
 
 
     onLoad:function(options){
-
         var that = this;
 
         wx.request({
@@ -147,7 +130,6 @@ Page({
                 for (var i=0, len=articleList.length; i<len; i++) {
                     articleList[i].date = that.dateParser(articleList[i].date);
                 }
-
                 that.setData({
                     articleList: articleList,
                     offset: articleList[articleList.length-1].id
@@ -162,11 +144,9 @@ Page({
         wx.request({
             url: `${config.service.host}/weapp/getAllArticleReadList`,
             success (res) {
-
                 that.setData({
                     articleReadList: res.data
                 });
-
             },
             fail (error) {
                 console.log('request fail', error);
@@ -174,18 +154,6 @@ Page({
             }
         });
 
-    },
-    onReady:function(){
-        // 页面渲染完成
-    },
-    onShow:function(){
-        // 页面显示
-    },
-    onHide:function(){
-        // 页面隐藏
-    },
-    onUnload:function(){
-        // 页面关闭
     },
 
     pullDownRefresh:function () {
@@ -245,6 +213,24 @@ Page({
         });
 
     },
+
+
+
+
+    dateParser: function (timestamp) {
+        var interval = ( Date.parse(new Date()) - Date.parse(timestamp) ) / 1000;
+
+        if (interval < 3600) {
+            return '刚刚';
+        }
+        if ((interval/3600) < 24) {
+            return parseInt(interval/3600) + '小时前';
+        }
+        if ((interval/86400) < 8) {
+            return parseInt(interval/86400) + '天前';
+        }
+        return timestamp.substr(5, 5);
+    }
 
 
 
