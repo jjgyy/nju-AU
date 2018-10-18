@@ -20,14 +20,22 @@
         <scroll-view scroll-y="true" class="scroll-y">
 
 
-            <view class="moment__container under_tab" style="margin-top: 100rpx">
-                <view class="moment__cell fly_from_bottom" wx:for="{{momentList}}" wx:for-item="moment" wx:for-index="momentIndex" wx:key="{{moment.moment_id}}" style="margin-top: 0;">
+            <view class="moment__container under_tab" style="margin-top: 130rpx">
+                <view class="moment {{ (momentIndex%2 === 0) ? 'left__moment' : 'right__moment'}} fly_from_bottom" wx:for="{{momentList}}" wx:for-item="moment" wx:for-index="momentIndex" wx:key="{{moment.moment_id}}">
+
+                    <view class="moment__avatar__flex {{ (momentIndex%2 === 0) ? 'left__moment__avatar__flex' : 'right__moment__avatar__flex'}}">
+                        <view class="moment__avatar {{ (momentIndex%2 === 0) ? 'left__moment__avatar' : 'right__moment__avatar'}} " style="background-image: url({{moment.association_image}})">
+                        </view>
+
+                        <view class="moment__avatar__name">
+                            <text bindtap="toAssociationDetailPage" data-id="{{moment.association_id}}">{{moment.association_name}}</text>
+                        </view>
+                    </view>
+
+
                     <view class="weui-cell">
 
                         <view class="weui-cell__bd" style="width: 80%">
-                            <view class="moment__from">
-                                <text bindtap="toAssociationDetailPage" data-id="{{moment.association_id}}">{{moment.association_name}}</text>
-                            </view>
 
                             <view class="moment__content">
                                 <text>{{moment.content}}</text>
@@ -53,6 +61,7 @@
 
                         </view>
                     </view>
+
                 </view>
             </view>
 

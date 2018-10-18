@@ -5,7 +5,6 @@
 .weui-btn{margin-top:15px}.weui-btn:first-child{margin-top:0}.weui-btn-area{margin:1.17647059em 15px .3em}
 .weui-cell_vcode{padding-right:0}.weui-vcode-btn,.weui-vcode-img{margin-left:5px;height:2.58823529em;vertical-align:middle}.weui-vcode-btn{display:inline-block;padding:0 .6em 0 .7em;border-left:1px solid #e5e5e5;line-height:2.58823529em;font-size:17px;color:#3cc51f;white-space:nowrap}.weui-vcode-btn:active{color:#52a341}
 .weui-uploader__hd{display:-webkit-box;display:-webkit-flex;display:flex;padding-bottom:10px;-webkit-box-align:center;-webkit-align-items:center;align-items:center}.weui-uploader__title{-webkit-box-flex:1;-webkit-flex:1;flex:1}.weui-uploader__info{color:#b2b2b2}.weui-uploader__bd{margin-bottom:-4px;margin-right:-9px;overflow:hidden}.weui-uploader__file{float:left;margin-right:9px;margin-bottom:9px}.weui-uploader__img{display:block;width:79px;height:79px}.weui-uploader__file_status{position:relative}.weui-uploader__file_status:before{content:" ";position:absolute;top:0;right:0;bottom:0;left:0;background-color:rgba(0,0,0,.5)}.weui-uploader__file-content{position:absolute;top:50%;left:50%;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%);color:#fff}.weui-uploader__input-box{float:left;position:relative;margin-right:9px;margin-bottom:9px;width:77px;height:77px;border:1px solid #d9d9d9}.weui-uploader__input-box:after,.weui-uploader__input-box:before{content:" ";position:absolute;top:50%;left:50%;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%);background-color:#d9d9d9}.weui-uploader__input-box:before{width:2px;height:39.5px}.weui-uploader__input-box:after{width:39.5px;height:2px}.weui-uploader__input-box:active{border-color:#999}.weui-uploader__input-box:active:after,.weui-uploader__input-box:active:before{background-color:#999}.weui-uploader__input{position:absolute;z-index:1;top:0;left:0;width:100%;height:100%;opacity:0}
-.weui-navbar{display:-webkit-box;display:-webkit-flex;display:flex;position:absolute;z-index:500;top:0;width:100%;border-bottom:1rpx solid #ccc}.weui-navbar__item{position:relative;display:block;-webkit-box-flex:1;-webkit-flex:1;flex:1;padding:13px 0;text-align:center;font-size:0}.weui-navbar__item.weui-bar__item_on{color:#1aad19}.weui-navbar__slider{position:absolute;content:" ";left:0;bottom:0;width:6em;height:3px;background-color:#1aad19;-webkit-transition:-webkit-transform .3s;transition:-webkit-transform .3s;transition:transform .3s;transition:transform .3s,-webkit-transform .3s}.weui-navbar__title{display:inline-block;font-size:15px;max-width:8em;width:auto;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;word-wrap:normal}
 .uploader-text{
     width: 100%;
     font-size: 34rpx;
@@ -266,6 +265,8 @@
 }
 
 
+
+
 .moment__container {
     display: flex;
     flex-direction: column;
@@ -273,19 +274,62 @@
     width: 100%;
     height: auto;
 }
-.moment__cell {
+.moment {
     display: flex;
     flex-direction: column;
+    width: 80%;
+    height: auto;
+    padding: 10rpx 10rpx;
+    margin: 40rpx 0;
+    background: #fff;
+    border: 1px solid #cdcdcd;
+}
+.left__moment {
+    margin-left: 60rpx;
+}
+.right__moment {
+    margin-left: -60rpx;
+}
+.moment__avatar__flex {
+    display: flex;
     width: 100%;
     height: auto;
-    border-bottom: 1rpx solid #dddddd;
-    padding: 10rpx 10rpx;
-    background: #fff;
 }
-.moment__from {
+.left__moment__avatar__flex {
+    flex-direction: row;
+    justify-content: flex-start;
+}
+.right__moment__avatar__flex {
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+}
+.moment__avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120rpx;
+    height: 120rpx;
+    margin-top: -60rpx;
+    border-radius: 0;
+    border: 1px solid #d7d7d7;
+    background-color: whitesmoke;
+    background-origin:border-box;
+    background-position:50% 50%;
+    background-size: cover;
+    background-repeat:no-repeat;
+}
+.left__moment__avatar {
+    margin-left: -60rpx;
+    margin-right: 20rpx;
+}
+.right__moment__avatar {
+    margin-right: -60rpx;
+    margin-left: 20rpx;
+}
+.moment__avatar__name {
     font-size: 34rpx;
     font-weight: 500;
-    color: #4779ba;
+    color: #4586f6;
 }
 .moment__images__container {
     display: flex;
