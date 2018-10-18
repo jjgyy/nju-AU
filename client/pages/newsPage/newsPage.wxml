@@ -1,35 +1,42 @@
-<swiper class="topPoster" indicator-dots="true" indicator-color="rgba(255,255,255,0.3)"
-        autoplay="{{true}}" interval="4000" duration="1000" circular="{{true}}">
-    <block wx:for="{{posterList}}" wx:key="{{item.activity_id}}">
-        <swiper-item bindtap="toActivityDetailPage" data-id="{{item.activity_id}}">
-            <image src="{{item.image_src}}" mode="aspectFill"/>
-            <view class="topPoster__title">“{{item.activity_name}}”</view>
-        </swiper-item>
-    </block>
-</swiper>
+
+<wux-refresher id="wux-refresher" bind:refresh="pullDownRefresh">
+
+    <swiper class="topPoster" indicator-dots="true" indicator-color="rgba(255,255,255,0.3)"
+            autoplay="{{true}}" interval="4000" duration="1000" circular="{{true}}">
+        <block wx:for="{{posterList}}" wx:key="{{item.activity_id}}">
+            <swiper-item bindtap="toActivityDetailPage" data-id="{{item.activity_id}}">
+                <image src="{{item.image_src}}" mode="aspectFill"/>
+                <view class="topPoster__title">“{{item.activity_name}}”</view>
+            </swiper-item>
+        </block>
+    </swiper>
 
 
-<view bindtap="toArticleDetailPage" data-id="{{item.id}}" data-url="{{item.url}}" data-index="{{index}}" class="newsCell fly_from_bottom" wx:for="{{articleList}}" wx:key="item.id">
-    <view class="newsCell-left">
-        <view class="newsCell-left-title">
-            <text>{{item.title}}</text>
+
+    <view bindtap="toArticleDetailPage" data-id="{{item.id}}" data-url="{{item.url}}" data-index="{{index}}" class="newsCell fly_from_bottom" wx:for="{{articleList}}" wx:key="item.id">
+        <view class="newsCell-left">
+            <view class="newsCell-left-title">
+                <text>{{item.title}}</text>
+            </view>
+            <view class="newsCell-left-subInfo">
+                <text style="color: #4779ba;font-weight: 500">{{item.association_name}}</text>
+                <text style="font-weight: 500">{{item.date}}</text>
+            </view>
+            <view class="newsCell-left-bottom">
+                <image src="../../icon/readNum.svg" style="margin-right: 10rpx;vertical-align: middle;width:30rpx; height: 30rpx;" />
+                <text>{{articleReadList[index].read}}</text>
+            </view>
         </view>
-        <view class="newsCell-left-subInfo">
-            <text style="color: #4779ba;font-weight: 500">{{item.association_name}}</text>
-            <text style="font-weight: 500">{{item.date}}</text>
-        </view>
-        <view class="newsCell-left-bottom">
-            <image src="../../icon/readNum.svg" style="margin-right: 10rpx;vertical-align: middle;width:30rpx; height: 30rpx;" />
-            <text>{{articleReadList[index].read}}</text>
+        <view class="newsCell-right">
+            <view class="newsCell-image" style="background-image:url({{item.image_src}})"></view>
         </view>
     </view>
-    <view class="newsCell-right">
-        <view class="newsCell-image" style="background-image:url({{item.image_src}})"></view>
-    </view>
-</view>
+
+</wux-refresher>
 
 
 <view class="center__box">
-    <text hidden="{{!canLoadMore}}" style="color: #ccc;font-size: 34rpx;font-weight: 500;margin: 20rpx 0;">上滑加载更多</text>
-    <text hidden="{{canLoadMore}}" style="color: #ccc;font-size: 34rpx;font-weight: 500;margin: 20rpx 0;">滑到了世界尽头</text>
+    <text hidden="{{!canLoadMore}}" style="color: #ccc;font-size: 30rpx;font-weight: 500;margin: 20rpx 0;">上滑加载更多</text>
+    <text hidden="{{canLoadMore}}" style="color: #ccc;font-size: 30rpx;font-weight: 500;margin: 20rpx 0;">滑到了世界尽头</text>
 </view>
+

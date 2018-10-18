@@ -1,3 +1,5 @@
 {
-  "enablePullDownRefresh": true
+  "usingComponents": {
+    "wux-refresher": "../../utils/WuxUI/refresher/index"
+  }
 }

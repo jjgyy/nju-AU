@@ -20,8 +20,7 @@
         <scroll-view scroll-y="true" class="scroll-y">
 
 
-            <!--
-            <view class="moment__container under_tab">
+            <view class="moment__container under_tab" style="margin-top: 100rpx">
                 <view class="moment__cell fly_from_bottom" wx:for="{{momentList}}" wx:for-item="moment" wx:for-index="momentIndex" wx:key="{{moment.moment_id}}" style="margin-top: 0;">
                     <view class="weui-cell">
 
@@ -56,14 +55,12 @@
                     </view>
                 </view>
             </view>
-            -->
 
         </scroll-view>
     </swiper-item>
 
 
     <swiper-item>
-
         <scroll-view scroll-y="true" class="scroll-y" enable-back-to-top="true" bindscrolltolower="loadMoreActivities">
 
             <view class="activity__container" style="margin-top: 100rpx">
@@ -84,14 +81,13 @@
 
             </view>
 
-
             <view class="center__box">
-                <text hidden="{{!canLoadMoreActivities}}" style="color: #ccc;font-size: 34rpx;font-weight: 500;margin: 10rpx 0;">上滑加载更多</text>
-                <text hidden="{{canLoadMoreActivities}}" style="color: #ccc;font-size: 34rpx;font-weight: 500;margin: 10rpx 0;">没有更多了</text>
+                <text hidden="{{!canLoadMoreActivities}}" style="color: #ccc;font-size: 30rpx;font-weight: 500;margin: 10rpx 0;">上滑加载更多</text>
+                <text hidden="{{canLoadMoreActivities}}" style="color: #ccc;font-size: 30rpx;font-weight: 500;margin: 10rpx 0;">没有更多了</text>
             </view>
-
 
         </scroll-view>
     </swiper-item>
+
 
 </swiper>

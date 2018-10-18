@@ -21,13 +21,13 @@ module.exports = async (ctx) => {
                 })
                 .returning('id');
 
-            ctx.state.data = ids;
 
             await mysql('association_joiner_condition')
                 .insert({
-                    association_id: ids[0].id,
-                })
+                    association_id: ids[0],
+                });
 
+            ctx.state.data = ids;
 
         } catch (e) {
             ctx.state = {

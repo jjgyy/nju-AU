@@ -2,6 +2,8 @@ var qcloud = require('../../vendor/wafer2-client-sdk/index');
 var config = require('../../config');
 var util = require('../../utils/util.js');
 
+import { $stopWuxRefresher } from '../../utils/WuxUI/index.js'
+
 Page({
     data:{
         requestResult: '',
@@ -13,7 +15,8 @@ Page({
 
         canLoadMore: true,
 
-        canRefresh: true,
+        canRefresh: true
+
     },
 
     toActivityDetailPage: function (e) {
@@ -50,13 +53,8 @@ Page({
 
 
     refresh: function () {
-        if (!this.data.canRefresh) {
-            wx.showLoading({
-                title: '刷新太频繁啦'
-            });
-            setTimeout(() => {wx.hideLoading()}, 500);
-            return;
-        }
+        if (!this.data.canRefresh) { return; }
+
         var that = this;
 
         this.setData({
@@ -68,10 +66,6 @@ Page({
                 canRefresh: true
             })
         }, 10000);
-
-        wx.showLoading({
-            title: '刷新中...'
-        });
 
         wx.request({
             url: `${config.service.host}/weapp/getAllArticleList`,
@@ -85,7 +79,6 @@ Page({
                     offset: articleList[articleList.length-1].id,
                     canLoadMore: true
                 });
-                util.showSuccess('刷新成功');
             },
             fail (error) {
                 console.log('request fail', error);
@@ -130,6 +123,7 @@ Page({
 
 
     onLoad:function(options){
+
         var that = this;
 
         wx.request({
@@ -194,9 +188,9 @@ Page({
         // 页面关闭
     },
 
-    onPullDownRefresh:function () {
+    pullDownRefresh:function () {
         this.refresh();
-        wx.stopPullDownRefresh();
+        $stopWuxRefresher();
     },
 
     onReachBottom:function () {
@@ -250,8 +244,10 @@ Page({
             }
         });
 
+    },
 
-    }
+
+
 
 
 });

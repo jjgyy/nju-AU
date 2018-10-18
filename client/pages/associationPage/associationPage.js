@@ -12,8 +12,6 @@ Page({
 
         expand: false,
 
-        likeDic: {},
-
         needGetAssociations: true,
         needGetActivities: true,
         needGetMoments: true,
@@ -87,14 +85,6 @@ Page({
     },
 
 
-    previewImage: function(e){
-        var that = this;
-        console.log(that.data.momentList[e.currentTarget.dataset.index]);
-        wx.previewImage({
-            current: e.currentTarget.id, // 当前显示图片的http链接
-            urls: that.data.momentList[e.currentTarget.dataset.index].image_list // 需要预览的图片http链接列表
-        })
-    },
 
 
     refresh: function () {
@@ -140,23 +130,6 @@ Page({
         });
     },
 
-
-    like: function (e) {
-
-        var likeWhich = 'likeDic[' + e.currentTarget.dataset.id + ']';
-        //赞过的就取消赞
-        if (this.data.likeDic[e.currentTarget.dataset.id]) {
-            this.setData({
-                [likeWhich]: false
-            });
-            return;
-        }
-        //没赞过的点赞
-        this.setData({
-            [likeWhich]: true
-        });
-
-    },
 
 
     onLoad:function(options){

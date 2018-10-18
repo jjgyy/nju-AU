@@ -1,22 +1,22 @@
-import { isPresetColor } from '../helpers/colors'
+import { isPresetColor } from '../../../component/WuxUI/helpers/colors'
 
 Component({
     externalClasses: ['wux-class'],
     relations: {
-        '../checkbox-group/index': {
+        '../radio-group/index': {
             type: 'parent',
         },
     },
     properties: {
+        thumb: {
+            type: String,
+            value: '',
+        },
         title: {
             type: String,
             value: '',
         },
         label: {
-            type: String,
-            value: '',
-        },
-        extra: {
             type: String,
             value: '',
         },
@@ -37,7 +37,7 @@ Component({
             value: 'balanced',
             observer(newVal) {
                 this.setData({
-                    checkboxColor: isPresetColor(newVal),
+                    radioColor: isPresetColor(newVal),
                 })
             },
         },
@@ -46,9 +46,9 @@ Component({
         index: 0,
     },
     methods: {
-        checkboxChange() {
+        radioChange() {
             const { value, checked, index, disabled } = this.data
-            const parent = this.getRelationNodes('../checkbox-group/index')[0]
+            const parent = this.getRelationNodes('../radio-group/index')[0]
             const item = {
                 checked: !checked,
                 value,
@@ -70,7 +70,7 @@ Component({
     },
     attached() {
         this.setData({
-            checkboxColor: isPresetColor(this.data.color),
+            radioColor: isPresetColor(this.data.color),
         })
     },
 })

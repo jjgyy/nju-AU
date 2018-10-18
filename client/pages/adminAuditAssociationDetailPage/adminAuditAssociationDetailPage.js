@@ -64,6 +64,7 @@ Page({
                         },
                         login: true,
                         success (result) {
+
                             qcloud.request({
                                 url: `${config.service.host}/weapp/addAssociationChief`,
                                 data: {

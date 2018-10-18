@@ -1,12 +1,7 @@
-page {
-    background: #f7f7f7;
-}
-
-.big_tab_word {
-    font-size: 28rpx;
-}
-
-.big_tab_line {
-    font-size: 28rpx;
-
+/* pages/prompt/index.wxss */
+.page,
+.page__bd,
+.weui-tab__content {
+    height: 100%;
+    padding-bottom: 0;
 }

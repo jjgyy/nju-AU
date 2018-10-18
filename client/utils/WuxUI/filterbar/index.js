@@ -1,5 +1,5 @@
-import baseBehavior from '../helpers/baseBehavior'
-import { $wuxBackdrop } from '../index'
+import baseBehavior from '../../../component/WuxUI/helpers/baseBehavior'
+import { $wuxBackdrop } from '../../../component/WuxUI/index'
 
 Component({
     behaviors: [baseBehavior],
@@ -207,7 +207,7 @@ Component({
                 }
             })
         },
-        /** 
+        /**
          * 关闭下拉框
          */
         onCloseSelect() {

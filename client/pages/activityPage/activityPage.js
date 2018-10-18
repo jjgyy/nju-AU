@@ -2,10 +2,14 @@ var qcloud = require('../../vendor/wafer2-client-sdk/index');
 var config = require('../../config');
 var util = require('../../utils/util.js');
 
+import { $stopWuxRefresher } from '../../utils/WuxUI/index.js'
+
 Page({
     data: {
         activityList: null,
         offset: 0,
+
+        likeDic: {},
 
         currentTab: 0,
         clientHeight: null,
@@ -73,6 +77,8 @@ Page({
                 that.setData({
                     momentList: momentList
                 });
+
+                console.log(that.data.momentList)
             },
             fail(error) {
                 console.log('request fail', error);
@@ -107,26 +113,39 @@ Page({
 
 
 
-    refresh: function () {
-        switch (this.data.currentTab) {
-            case 0:
-                break;
-            case 1:
-                this.refreshActivities();
-                break;
+
+    like: function (e) {
+
+        var likeWhich = 'likeDic[' + e.currentTarget.dataset.id + ']';
+        //赞过的就取消赞
+        if (this.data.likeDic[e.currentTarget.dataset.id]) {
+            this.setData({
+                [likeWhich]: false
+            });
+            return;
         }
+        //没赞过的点赞
+        this.setData({
+            [likeWhich]: true
+        });
+
     },
+
+
+    previewImage: function(e){
+        var that = this;
+        console.log(that.data.momentList[e.currentTarget.dataset.index]);
+        wx.previewImage({
+            current: e.currentTarget.id, // 当前显示图片的http链接
+            urls: that.data.momentList[e.currentTarget.dataset.index].image_list // 需要预览的图片http链接列表
+        })
+    },
+
+
 
 
     refreshActivities: function () {
 
-        if (!this.data.canRefreshActivities) {
-            wx.showLoading({
-                title: '刷新太频繁啦'
-            });
-            setTimeout(() => {wx.hideLoading()}, 500);
-            return;
-        }
         var that = this;
 
         this.setData({
@@ -139,9 +158,6 @@ Page({
             })
         }, 10000);
 
-        wx.showLoading({
-            title: '刷新中...'
-        });
 
         wx.request({
             url: `${config.service.host}/weapp/getAllActivityList`,
@@ -152,7 +168,6 @@ Page({
                     offset: result.data[result.data.length-1].activity_id,
                     canLoadMoreActivities: true
                 });
-                util.showSuccess('刷新成功');
 
             },
             fail (error) {
@@ -208,18 +223,6 @@ Page({
         });
 
         this.lazyLoad();
-    },
-    onReady: function () {
-
-    },
-    onShow: function () {
-
-    },
-    onHide: function () {
-
-    },
-    onUnload: function () {
-
     }
 
 });

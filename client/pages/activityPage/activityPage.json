@@ -2,6 +2,8 @@
   "usingComponents": {
     "wux-tabs": "../../utils/WuxUI/tabs/index",
     "wux-tab": "../../utils/WuxUI/tab/index",
-    "wux-badge": "../../utils/WuxUI/badge/index"
+    "wux-badge": "../../utils/WuxUI/badge/index",
+    "wux-card": "../../utils/WuxUI/card/index",
+    "wux-wing-blank": "../../utils/WuxUI/wing-blank/index"
   }
 }

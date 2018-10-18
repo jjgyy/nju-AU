@@ -1,4 +1,4 @@
-import baseBehavior from '../helpers/baseBehavior'
+import baseBehavior from '../../../component/WuxUI/helpers/baseBehavior'
 
 Component({
     behaviors: [baseBehavior],

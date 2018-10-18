@@ -58,15 +58,15 @@
       "iconPath": "icon/tabBar/news-unselected.png",
       "selectedIconPath": "icon/tabBar/news-selected.png"
     },{
-      "pagePath": "pages/associationPage/associationPage",
-      "text": "社团",
-      "iconPath": "icon/tabBar/association-unselected.png",
-      "selectedIconPath": "icon/tabBar/association-selected.png"
-    },{
       "pagePath": "pages/activityPage/activityPage",
       "text": "发现",
       "iconPath": "icon/tabBar/discover-unselected.png",
       "selectedIconPath": "icon/tabBar/discover-selected.png"
+    },{
+      "pagePath": "pages/associationPage/associationPage",
+      "text": "社团",
+      "iconPath": "icon/tabBar/association-unselected.png",
+      "selectedIconPath": "icon/tabBar/association-selected.png"
     },{
       "pagePath": "pages/mePage/mePage",
       "text": "我",
