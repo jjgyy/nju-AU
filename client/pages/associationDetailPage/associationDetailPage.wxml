@@ -37,7 +37,7 @@
                 <text style="color: {{tabWordColor[0]}}">简介</text>
             </view>
             <view bindtap="clickMomentTab" class="tab-word">
-                <text style="color: {{tabWordColor[1]}}">动态</text>
+                <text style="color: {{tabWordColor[1]}}">新鲜事</text>
             </view>
             <view bindtap="clickArticleTab" class="tab-word">
                 <text style="color: {{tabWordColor[2]}}">新闻</text>
@@ -52,7 +52,7 @@
                 <text style="color: {{tabLineColor[0]}}">——</text>
             </view>
             <view bindtap="clickMomentTab" class="tab-line">
-                <text style="color: {{tabLineColor[1]}}">——</text>
+                <text style="color: {{tabLineColor[1]}}">———</text>
             </view>
             <view bindtap="clickArticleTab" class="tab-line">
                 <text style="color: {{tabLineColor[2]}}">——</text>
@@ -72,7 +72,7 @@
     <swiper-item>
         <scroll-view scroll-y="true" class="scroll-y">
 
-            <view class="page-container fly_from_bottom" style="margin-top: 394rpx">
+            <view class="page-container fly_from_bottom" style="padding-top: 394rpx">
 
                 <view wx:if="{{vid}}" class="association-intro-title">
                     <text>社团宣传片</text>
@@ -129,16 +129,25 @@
 
 
     <swiper-item>
-        <scroll-view scroll-y="true" class="scroll-y">
+        <scroll-view scroll-y="true" class="scroll-y" bindscrolltolower="loadMoreMoments">
 
-            <view class="moment__container" style="margin-top: 394rpx">
-                <view class="moment__cell fly_from_bottom" wx:for="{{momentList}}" wx:for-item="moment" wx:for-index="momentIndex" wx:key="{{moment.moment_id}}" style="margin-top: 0;">
+
+            <view class="moment__container" style="padding-top: 420rpx">
+                <view class="moment {{ (momentIndex%2 === 0) ? 'left__moment fly_from_left blue__moment' : 'right__moment fly_from_right purple__moment'}}" wx:for="{{momentList}}" wx:for-item="moment" wx:for-index="momentIndex" wx:key="{{moment.moment_id}}">
+
+                    <view class="moment__avatar__flex {{ (momentIndex%2 === 0) ? 'left__moment__avatar__flex' : 'right__moment__avatar__flex'}}">
+                        <view class="moment__avatar {{ (momentIndex%2 === 0) ? 'left__moment__avatar' : 'right__moment__avatar'}} " style="background-image: url({{moment.association_image}})">
+                        </view>
+
+                        <view class="moment__avatar__name">
+                            <text>@{{moment.association_name}}</text>
+                        </view>
+                    </view>
+
+
                     <view class="weui-cell">
 
                         <view class="weui-cell__bd" style="width: 80%">
-                            <view class="moment__from">
-                                <text bindtap="toAssociationDetailPage" data-id="{{moment.association_id}}">{{moment.association_name}}</text>
-                            </view>
 
                             <view class="moment__content">
                                 <text>{{moment.content}}</text>
@@ -155,35 +164,45 @@
                             <view class="moment__sub">
                                 <text>{{moment.date}}</text>
                                 <view class="moment__sub__btn__container">
-                                    <view bindtap="like" data-id="{{moment.moment_id}}" class="moment__sub__btn">
-                                        <image hidden="{{likeDic[moment.moment_id]}}" src="../../icon/like-before.svg" style="width: 30rpx; height: 30rpx"/>
-                                        <image hidden="{{!likeDic[moment.moment_id]}}" src="../../icon/like-after.svg" style="width: 30rpx; height: 30rpx;"/>
+                                    <view bindtap="like" data-id="{{moment.moment_id}}" data-index="{{momentIndex}}" class="moment__sub__btn">
+                                        <image hidden="{{momentLikeDic[moment.moment_id]}}" src="../../icon/like-before.svg" style="width: 30rpx; height: 30rpx"/>
+                                        <image hidden="{{!momentLikeDic[moment.moment_id]}}" src="../../icon/like-after.svg" style="width: 30rpx; height: 30rpx;"/>
                                     </view>
+                                    <view bindtap="like" class="moment__sub__num"><text style="margin-top: 10rpx">{{momentLikeList[momentIndex].like}}</text></view>
                                 </view>
                             </view>
 
                         </view>
                     </view>
+
                 </view>
             </view>
+
 
         </scroll-view>
     </swiper-item>
 
 
     <swiper-item>
-        <scroll-view scroll-y="true" class="scroll-y">
-            <view class="page-container" style="margin-top: 394rpx">
+        <scroll-view scroll-y="true" class="scroll-y" bindscrolltolower="loadMoreArticles">
+            <view class="page-container" style="padding-top: 394rpx">
 
 
-                <view bindtap="toArticleDetailPage" data-url="{{item.url}}" class="newsCell fly_from_bottom" wx:for="{{articleList}}" wx:key="item.id">
+                <view bindtap="toArticleDetailPage" data-id="{{item.id}}" data-url="{{item.url}}" data-index="{{index}}" class="newsCell fly_from_bottom" wx:for="{{articleList}}" wx:key="item.id">
                     <view class="newsCell-left">
                         <view class="newsCell-left-title">
-                            <text>{{item.title}}</text>
+                            <view>
+                                <text>{{item.title}}</text>
+                                <image wx:if="{{articleReadList[index].read >= 30}}" src="../../icon/hot.svg" style="margin-left: 10rpx;vertical-align: middle;width:40rpx; height: 40rpx;" />
+                            </view>
                         </view>
                         <view class="newsCell-left-subInfo">
-                            <text>{{item.association_name}}</text>
-                            <text>{{item.date}}</text>
+                            <text style="color: #4779ba;font-weight: 500">{{item.association_name}}</text>
+                            <text style="font-weight: 500">{{item.date}}</text>
+                        </view>
+                        <view class="newsCell-left-bottom">
+                            <image src="../../icon/readNum.svg" style="margin-right: 10rpx;vertical-align: middle;width:30rpx; height: 30rpx;" />
+                            <text>{{articleReadList[index].read}}</text>
                         </view>
                     </view>
                     <view class="newsCell-right">
@@ -198,7 +217,7 @@
 
     <swiper-item>
         <scroll-view scroll-y="true" class="scroll-y">
-            <view class="page-container" style="margin-top: 394rpx">
+            <view class="page-container" style="padding-top: 394rpx">
 
 
                 <view class="activity__container">

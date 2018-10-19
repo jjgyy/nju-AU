@@ -243,13 +243,10 @@
     height: 100%;
 }
 .newsCell-left-title {
-    display: flex;
-    width: 100%;
-    height: 60%;
-}
-.newsCell-left-title text {
     display: block;
-    margin: 18rpx 36rpx;
+    width: auto;
+    height: 60%;
+    padding: 18rpx 36rpx;
     font-size: 34rpx;
     font-weight: 400;
 }
@@ -312,7 +309,13 @@
     padding: 10rpx 10rpx;
     margin: 40rpx 0;
     background: #fff;
-
+    box-shadow: 0 0 10rpx 10rpx #eee;
+}
+.blue__moment {
+    background: linear-gradient(#fff, #ecf0ff);
+}
+.purple__moment {
+    background: linear-gradient(#fff, #ebe6ee);
 }
 .left__moment {
     margin-left: 60rpx;
@@ -394,7 +397,7 @@
 .moment__sub__btn__container {
     display: flex;
     flex-direction: row-reverse;
-    width: 500rpx;
+    flex-grow: 3;
     height: 100%;
 }
 .moment__sub__btn {
@@ -402,6 +405,13 @@
     align-items: center;
     justify-content: center;
     width: 60rpx;
+    height: 100%;
+}
+.moment__sub__num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
     height: 100%;
 }
 

@@ -17,14 +17,14 @@
                     <view class="weui-tab__content" hidden="{{ activeIndex !== 0 }}">
 
                         <view class="moment__container" style="margin-top: 40rpx">
-                            <view class="moment {{ (momentIndex%2 === 0) ? 'left__moment fly_from_left' : 'right__moment fly_from_right'}}" wx:for="{{momentList}}" wx:for-item="moment" wx:for-index="momentIndex" wx:key="{{moment.moment_id}}">
+                            <view class="moment {{ (momentIndex%2 === 0) ? 'left__moment fly_from_left blue__moment' : 'right__moment fly_from_right purple__moment'}}" wx:for="{{momentList}}" wx:for-item="moment" wx:for-index="momentIndex" wx:key="{{moment.moment_id}}">
 
                                 <view class="moment__avatar__flex {{ (momentIndex%2 === 0) ? 'left__moment__avatar__flex' : 'right__moment__avatar__flex'}}">
-                                    <view class="moment__avatar {{ (momentIndex%2 === 0) ? 'left__moment__avatar' : 'right__moment__avatar'}} " style="background-image: url({{moment.association_image}})">
+                                    <view bindtap="toAssociationDetailPage" data-id="{{moment.association_id}}" class="moment__avatar {{ (momentIndex%2 === 0) ? 'left__moment__avatar' : 'right__moment__avatar'}} " style="background-image: url({{moment.association_image}})">
                                     </view>
 
                                     <view class="moment__avatar__name">
-                                        <text bindtap="toAssociationDetailPage" data-id="{{moment.association_id}}">{{moment.association_name}}</text>
+                                        <text bindtap="toAssociationDetailPage" data-id="{{moment.association_id}}">@{{moment.association_name}}</text>
                                     </view>
                                 </view>
 
@@ -48,10 +48,11 @@
                                         <view class="moment__sub">
                                             <text>{{moment.date}}</text>
                                             <view class="moment__sub__btn__container">
-                                                <view bindtap="like" data-id="{{moment.moment_id}}" class="moment__sub__btn">
-                                                    <image hidden="{{likeDic[moment.moment_id]}}" src="../../icon/like-before.svg" style="width: 30rpx; height: 30rpx"/>
-                                                    <image hidden="{{!likeDic[moment.moment_id]}}" src="../../icon/like-after.svg" style="width: 30rpx; height: 30rpx;"/>
+                                                <view bindtap="like" data-id="{{moment.moment_id}}" data-index="{{momentIndex}}" class="moment__sub__btn">
+                                                    <image hidden="{{momentLikeDic[moment.moment_id]}}" src="../../icon/like-before.svg" style="width: 30rpx; height: 30rpx"/>
+                                                    <image hidden="{{!momentLikeDic[moment.moment_id]}}" src="../../icon/like-after.svg" style="width: 30rpx; height: 30rpx;"/>
                                                 </view>
+                                                <view bindtap="like" class="moment__sub__num"><text style="margin-top: 10rpx">{{momentLikeList[momentIndex].like}}</text></view>
                                             </view>
                                         </view>
 
@@ -76,7 +77,7 @@
 
                         <view class="activity__container" style="margin-top: 0">
 
-                            <view bindtap="toActivityDetailPage" data-id="{{item.activity_id}}" class="activity__cell fly_from_bottom" wx:for="{{activityList}}" wx:key="{{item.activity_id}}" style="background-image: url({{item.image_src}})">
+                            <view bindtap="toActivityDetailPage" data-id="{{item.activity_id}}" class="activity__cell {{ index%2 === 0 ? 'fly_from_left' : 'fly_from_right' }}" wx:for="{{activityList}}" wx:key="{{item.activity_id}}" style="background-image: url({{item.image_src}})">
                                 <view class="activity__from">
                                     <text>{{item.association_name}}</text>
                                 </view>

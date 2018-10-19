@@ -16,7 +16,10 @@
     <view bindtap="toArticleDetailPage" data-id="{{item.id}}" data-url="{{item.url}}" data-index="{{index}}" class="newsCell fly_from_bottom" wx:for="{{articleList}}" wx:key="item.id">
         <view class="newsCell-left">
             <view class="newsCell-left-title">
-                <text>{{item.title}}</text>
+                <view>
+                    <text>{{item.title}}</text>
+                    <image wx:if="{{articleReadList[index].read >= 30}}" src="../../icon/hot.svg" style="margin-left: 10rpx;vertical-align: middle;width:40rpx; height: 40rpx;" />
+                </view>
             </view>
             <view class="newsCell-left-subInfo">
                 <text style="color: #4779ba;font-weight: 500">{{item.association_name}}</text>
@@ -30,6 +33,7 @@
         <view class="newsCell-right">
             <view class="newsCell-image" style="background-image:url({{item.image_src}})"></view>
         </view>
+
     </view>
 
 </wux-refresher>

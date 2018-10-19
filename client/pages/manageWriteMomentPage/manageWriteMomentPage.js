@@ -6,29 +6,19 @@ Page({
     data:{
         association_id: null,
 
-        categories: null,
-        categoryIndex: 0,
+        uploadUrl: config.service.uploadUrl,
 
-        content: null,
+        content: '',
 
         files: [],
 
-        fileList: [{
-            uid: 0,
-            status: 'uploading',
-            url: 'http://pbqg2m54r.bkt.clouddn.com/qrcode.jpg',
-        },
-            {
-                uid: 1,
-                status: 'done',
-                url: 'http://pbqg2m54r.bkt.clouddn.com/qrcode.jpg',
-            },
-            {
-                uid: 2,
-                status: 'error',
-                url: 'http://pbqg2m54r.bkt.clouddn.com/qrcode.jpg',
-            }
-        ]
+        fileList: []
+    },
+
+    checkInput: function () {
+        if (!!(this.data.content)) { return true; }
+        util.showModel('有信息没有填写', '请认真检查并仔细填写所有信息');
+        return false;
     },
 
     content: function(e){
@@ -37,7 +27,8 @@ Page({
 
 
     submit: function(){
-        this.openConfirm()
+        if (!this.checkInput()) { return; }
+        this.openConfirm();
     },
     openConfirm: function () {
         var that = this;
@@ -48,13 +39,15 @@ Page({
             confirmText: "确认",
             cancelText: "取消",
             success: function (res) {
+                console.log(that.data.association_id);
+                console.log(that.data.content);
+                console.log(JSON.stringify(that.data.files));
                 if (res.confirm) {
                     util.showBusy('正在提交...');
                     qcloud.request({
                         url: `${config.service.host}/weapp/addAssociationMoment`,
                         data: {
                             id: that.data.association_id,//社团id，只能叫id，中间键变量没写好
-                            category: that.data.categories[that.data.categoryIndex],
                             content: that.data.content,
                             image_list: JSON.stringify(that.data.files)
                         },
@@ -73,13 +66,6 @@ Page({
                 }
             }
         });
-    },
-
-
-    bindCategoryChange: function(e) {
-        this.setData({
-            categoryIndex: e.detail.value
-        })
     },
 
 
@@ -145,17 +131,20 @@ Page({
         console.log('onFail', e)
     },
     onComplete(e) {
-        console.log('onComplete', e)
-        wx.hideLoading()
+        console.log('onComplete', e);
+        const res = JSON.parse(e.detail.data);
+        this.data.files.push(res.data.imgUrl);
+        console.log(this.data.files);
+        wx.hideLoading();
     },
     onProgress(e) {
-        console.log('onProgress', e)
+        console.log('onProgress', e);
         this.setData({
             progress: e.detail.file.progress,
         })
     },
     onPreview(e) {
-        console.log('onPreview', e)
+        console.log('onPreview', e);
         const { file, fileList } = e.detail
         wx.previewImage({
             current: file.url,
@@ -163,17 +152,8 @@ Page({
         })
     },
     onRemove(e) {
-        const { file, fileList } = e.detail
-        wx.showModal({
-            content: '确定删除？',
-            success: (res) => {
-                if (res.confirm) {
-                    this.setData({
-                        fileList: fileList.filter((n) => n.uid !== file.uid),
-                    })
-                }
-            },
-        })
+        this.data.files.splice(e.detail.index, 1);
+        console.log(this.data.files);
     },
 
 

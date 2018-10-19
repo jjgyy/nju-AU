@@ -13,7 +13,8 @@ Page({
         sliderOffset: 0,
         sliderLeft: 0,
 
-        likeDic: {},
+        momentLikeDic: {},
+        momentLikeList: null,
 
         currentTab: 0,
         clientHeight: null,
@@ -34,6 +35,12 @@ Page({
 
     },
 
+    toAssociationDetailPage: function (e) {
+        wx.navigateTo({
+            url: '../associationDetailPage/associationDetailPage?' + 'id=' + e.currentTarget.dataset.id
+        })
+    },
+
     toActivityDetailPage: function (e) {
         wx.navigateTo({
             url: '../activityDetailPage/activityDetailPage?' + 'activity_id=' + e.currentTarget.dataset.id
@@ -42,18 +49,34 @@ Page({
 
 
     like: function (e) {
+        if (this.data.momentLikeDic[e.currentTarget.dataset.id]) { return; }
 
-        var likeWhich = 'likeDic[' + e.currentTarget.dataset.id + ']';
-        //赞过的就取消赞
-        if (this.data.likeDic[e.currentTarget.dataset.id]) {
-            this.setData({
-                [likeWhich]: false
-            });
-            return;
-        }
+        const that = this;
+
         //没赞过的点赞
         this.setData({
-            [likeWhich]: true
+            ['momentLikeDic[' + e.currentTarget.dataset.id + ']']: true
+        });
+
+        this.setData({
+            ['momentLikeList[' + e.currentTarget.dataset.index + '].like']: this.data.momentLikeList[e.currentTarget.dataset.index].like + 1
+        });
+
+        wx.setStorage({
+            key: 'momentLikeDic',
+            data: that.data.momentLikeDic
+        });
+
+        wx.request({
+            url: `${config.service.host}/weapp/updateMomentLike`,
+            data: {
+                moment_id: e.currentTarget.dataset.id
+            },
+            success(result) {
+            },
+            fail(error) {
+                console.log('request fail', error);
+            }
         });
 
     },
@@ -84,7 +107,7 @@ Page({
 
     //页面加载
     onLoad: function () {
-        var that = this;
+        const that = this;
 
         wx.getSystemInfo({
             success(res) {
@@ -94,9 +117,20 @@ Page({
             }
         });
 
+        wx.getStorage({
+            key: 'momentLikeDic',
+            success: function (res) {
+                that.setData({
+                    momentLikeDic: res.data
+                })
+            }
+        });
+
         this.lazyLoad();
     },
 
+
+    //懒加载
 
     lazyLoad: function () {
         switch (this.data.activeIndex) {
@@ -112,7 +146,7 @@ Page({
 
     lazyGetMoments: function () {
         if (!this.data.needGetMoments) { return; }
-        var that = this;
+        const that = this;
 
         wx.request({
             url: `${config.service.host}/weapp/getAllMomentList`,
@@ -127,13 +161,25 @@ Page({
                     momentsOffset: result.data[result.data.length-1].moment_id,
                     needGetMoments: false,
                 });
-
-                console.log(that.data.momentList)
             },
             fail(error) {
                 console.log('request fail', error);
             }
         });
+
+        wx.request({
+            url: `${config.service.host}/weapp/getAllMomentLikeList`,
+            success (res) {
+                that.setData({
+                    momentLikeList: res.data
+                })
+            },
+            fail (error) {
+                console.log('request fail', error);
+                util.showModel('出错了', error.message);
+            }
+        });
+
     },
 
 
@@ -158,6 +204,8 @@ Page({
     },
 
 
+    //下拉刷新操作
+
     pullDownRefresh: function () {
         switch (this.data.activeIndex) {
             case 0:
@@ -168,18 +216,6 @@ Page({
                 break;
         }
         $stopWuxRefresher();
-    },
-
-
-    onReachBottom:function () {
-        switch (this.data.activeIndex) {
-            case 0:
-                this.loadMoreMoments();
-                break;
-            case 1:
-                this.loadMoreActivities();
-                break;
-        }
     },
 
 
@@ -253,6 +289,20 @@ Page({
     },
 
 
+    //触底加载更多
+
+    onReachBottom:function () {
+        switch (this.data.activeIndex) {
+            case 0:
+                this.loadMoreMoments();
+                break;
+            case 1:
+                this.loadMoreActivities();
+                break;
+        }
+    },
+
+
     loadMoreActivities: function () {
         if (!this.data.canLoadMoreActivities) { return; }
         var that = this;
@@ -283,7 +333,7 @@ Page({
 
     loadMoreMoments: function () {
         if (!this.data.canLoadMoreMoments) { return; }
-        var that = this;
+        const that = this;
 
         wx.request({
             url: `${config.service.host}/weapp/getAllMomentList`,
@@ -308,6 +358,22 @@ Page({
             },
             fail (error) {
                 console.log('request fail', error);
+            }
+        });
+
+        wx.request({
+            url: `${config.service.host}/weapp/getAllMomentLikeList`,
+            data: {
+                offset: that.data.momentsOffset
+            },
+            success (res) {
+                that.setData({
+                    momentLikeList: that.data.momentLikeList.concat(res.data)
+                });
+            },
+            fail (error) {
+                console.log('request fail', error);
+                util.showModel('出错了', error.message);
             }
         });
 
@@ -338,7 +404,7 @@ Page({
         activityList: null,
         activitiesOffset: 0,
 
-        likeDic: {},
+        momentLikeDic: {},
 
         currentTab: 0,
         clientHeight: null,
@@ -445,9 +511,9 @@ Page({
 
     like: function (e) {
 
-        var likeWhich = 'likeDic[' + e.currentTarget.dataset.id + ']';
+        var likeWhich = 'momentLikeDic[' + e.currentTarget.dataset.id + ']';
         //赞过的就取消赞
-        if (this.data.likeDic[e.currentTarget.dataset.id]) {
+        if (this.data.momentLikeDic[e.currentTarget.dataset.id]) {
             this.setData({
                 [likeWhich]: false
             });

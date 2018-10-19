@@ -19,7 +19,8 @@ Page({
 
         showVideo: false,
 
-        likeDic: {},
+        momentLikeDic: {},
+        momentLikeList: null,
 
         hasJoined: false,
 
@@ -29,6 +30,12 @@ Page({
         needGetArticles: true,
         needGetActivities: true,
 
+        canLoadMoreMoments: true,
+        momentsOffset: 0,
+
+        canLoadMoreArticles: true,
+        articlesOffset: 0,
+
         currentTab: 0,
         clientHeight: null,
         tabWordColor: ['#097aff', '#bbbbbb', '#bbbbbb', '#bbbbbb'],
@@ -36,10 +43,13 @@ Page({
     },
 
     toArticleDetailPage: function (e) {
-        this.updateArticleRead(e.currentTarget.dataset.id);
         wx.navigateTo({
-            url: '../articleDetailPage/articleDetailPage?' + 'url=' + e.currentTarget.dataset.url
-        })
+            url: '../articleDetailPage/articleDetailPage?' + 'url=' + e.currentTarget.dataset.url,
+        });
+        this.updateArticleRead(e.currentTarget.dataset.id);
+        this.setData({
+            ['articleReadList[' + e.currentTarget.dataset.index + '].read']: this.data.articleReadList[e.currentTarget.dataset.index].read + 1
+        });
     },
 
     toAssociationQRcodePage: function (e) {
@@ -65,18 +75,34 @@ Page({
 
 
     like: function (e) {
+        if (this.data.momentLikeDic[e.currentTarget.dataset.id]) { return; }
 
-        var likeWhich = 'likeDic[' + e.currentTarget.dataset.id + ']';
-        //赞过的就取消赞
-        if (this.data.likeDic[e.currentTarget.dataset.id]) {
-            this.setData({
-                [likeWhich]: false
-            });
-            return;
-        }
+        const that = this;
+
         //没赞过的点赞
         this.setData({
-            [likeWhich]: true
+            ['momentLikeDic[' + e.currentTarget.dataset.id + ']']: true
+        });
+
+        this.setData({
+            ['momentLikeList[' + e.currentTarget.dataset.index + '].like']: this.data.momentLikeList[e.currentTarget.dataset.index].like + 1
+        });
+
+        wx.setStorage({
+            key: 'momentLikeDic',
+            data: that.data.momentLikeDic
+        });
+
+        wx.request({
+            url: `${config.service.host}/weapp/updateMomentLike`,
+            data: {
+                moment_id: e.currentTarget.dataset.id
+            },
+            success(result) {
+            },
+            fail(error) {
+                console.log('request fail', error);
+            }
         });
 
     },
@@ -93,7 +119,6 @@ Page({
             confirmText: "确认",
             cancelText: "取消",
             success: function (res) {
-
                 if (res.confirm) {
                     that.setData({
                         hasJoined: true,
@@ -115,7 +140,6 @@ Page({
                         }
                     });
 
-
                     wx.request({
                         url: `${config.service.host}/weapp/updateAssociationJoinerCondition`,
                         data: {
@@ -131,7 +155,6 @@ Page({
                         }
                     });
 
-
                     if (getApp().data.userInfo.gender == 1) {
                         that.setData({
                             ['joinerCondition.male']: (that.data.joinerCondition.male + 1)
@@ -142,13 +165,13 @@ Page({
                         })
                     }
 
-
-                }else{
                 }
             }
         });
     },
 
+
+    //切换tab
 
     clickIntroTab: function () {
         this.setData({
@@ -216,6 +239,8 @@ Page({
     },
 
 
+    //懒加载
+
     lazyGetMoments: function () {
         if (!this.data.needGetMoments) { return; }
         var that = this;
@@ -228,20 +253,44 @@ Page({
                 var momentList = result.data;
                 for (var i=0, len=momentList.length; i<len; i++) {
                     momentList[i].image_list = JSON.parse(momentList[i].image_list);
-                    momentList[i].date = momentList[i].date.substr(0, 10);
-                    momentList[i].like = false;
+                    momentList[i].date = that.dateParser(momentList[i].date);
                 }
                 that.setData({
                     momentList: momentList,
-                    needGetMoments: false
+                    needGetMoments: false,
+                    momentsOffset: result.data[result.data.length-1].moment_id
                 });
             },
             fail(error) {
                 console.log('request fail', error);
             }
         });
-    },
 
+        wx.request({
+            url: `${config.service.host}/weapp/getAssociationMomentLikeList`,
+            data: {
+                association_id: that.data.association_id
+            },
+            success (res) {
+                that.setData({
+                    momentLikeList: res.data
+                })
+            },
+            fail (error) {
+                console.log('request fail', error);
+                util.showModel('出错了', error.message);
+            }
+        });
+
+        wx.getStorage({
+            key: 'momentLikeDic',
+            success: function (res) {
+                that.setData({
+                    momentLikeDic: res.data
+                })
+            }
+        });
+    },
 
     lazyGetArticles: function () {
         if (!this.data.needGetArticles) { return; }
@@ -254,7 +303,7 @@ Page({
             success (res) {
                 var articleList = res.data.data;
                 for (var i=0, len=articleList.length; i<len; i++) {
-                    articleList[i].date = articleList[i].date.substr(0, 10);
+                    articleList[i].date = that.dateParser(articleList[i].date);
                 }
                 that.setData({
                     articleList: articleList,
@@ -265,7 +314,26 @@ Page({
                 console.log('request fail', error);
                 util.showModel('出错了', error.message);
             }
-        })
+        });
+
+        wx.request({
+            url: `${config.service.host}/weapp/getAssociationArticleReadList`,
+            data: {
+                association_id: that.data.association_id
+            },
+            success (res) {
+
+                that.setData({
+                    articleReadList: res.data
+                });
+
+            },
+            fail (error) {
+                console.log('request fail', error);
+                util.showModel('出错了', error.message);
+            }
+        });
+
     },
 
     lazyGetActivities: function () {
@@ -289,7 +357,113 @@ Page({
     },
 
 
+    //加载更多
 
+    loadMoreMoments: function () {
+        if (!this.data.canLoadMoreMoments) { return; }
+        var that = this;
+
+        wx.request({
+            url: `${config.service.host}/weapp/getAssociationMomentList`,
+            data: {
+                association_id: that.data.association_id,
+                offset: that.data.momentsOffset
+            },
+            success (result) {
+                if (result.data.length === 0) {
+                    that.setData( {canLoadMoreMoments: false} );
+                    return;
+                }
+
+                var momentList = result.data;
+                for (var i=0, len=momentList.length; i<len; i++) {
+                    momentList[i].image_list = JSON.parse(momentList[i].image_list);
+                    momentList[i].date = that.dateParser(momentList[i].date);
+                }
+                that.setData({
+                    momentList: that.data.momentList.concat(momentList),
+                    momentsOffset: result.data[result.data.length-1].moment_id
+                });
+            },
+            fail (error) {
+                console.log('request fail', error);
+            }
+        });
+
+        wx.request({
+            url: `${config.service.host}/weapp/getAssociationMomentLikeList`,
+            data: {
+                offset: that.data.momentsOffset,
+                association_id: that.data.association_id
+            },
+            success (res) {
+                that.setData({
+                    momentLikeList: that.data.momentLikeList.concat(res.data)
+                });
+            },
+            fail (error) {
+                console.log('request fail', error);
+                util.showModel('出错了', error.message);
+            }
+        });
+
+    },
+
+
+    //加载更多
+
+    loadMoreArticles: function () {
+        if (!this.data.canLoadMoreArticles) { return; }
+        var that = this;
+
+        wx.request({
+            url: `${config.service.host}/weapp/getAssociationArticleList`,
+            data: {
+                association_id: that.data.association_id,
+                offset: that.data.articlesOffset
+            },
+            success (result) {
+                if (result.data.length === 0) {
+                    that.setData( {canLoadMoreArticles: false} );
+                    return;
+                }
+
+                var articleList = result.data.data;
+                for (var i=0, len=articleList.length; i<len; i++) {
+                    articleList[i].date = that.dateParser(articleList[i].date);
+                }
+                that.setData({
+                    articleList: that.data.articleList.concat(articleList),
+                    articlesOffset: result.data[result.data.length-1].id
+                });
+            },
+            fail (error) {
+                console.log('request fail', error);
+            }
+        });
+
+        wx.request({
+            url: `${config.service.host}/weapp/getAssociationArticleReadList`,
+            data: {
+                offset: that.data.articlesOffset,
+                association_id: that.data.association_id
+            },
+            success (res) {
+                that.setData({
+                    articleReadList: that.data.articleReadList.concat(res.data)
+                });
+            },
+            fail (error) {
+                console.log('request fail', error);
+                util.showModel('出错了', error.message);
+            }
+        });
+
+    },
+
+
+
+    //更新文章阅读数
     updateArticleRead: function (article_id) {
 
         wx.request({
@@ -379,7 +553,6 @@ Page({
         });
 
 
-
         wx.request({
             url: `${config.service.host}/weapp/getUserWhetherJoin`,
             data: {
@@ -397,19 +570,22 @@ Page({
         });
 
     },
-    onReady:function(){
-        // 页面渲染完成
-    },
-    onShow:function(){
-        // 页面显示
-    },
-    onHide:function(){
-        // 页面隐藏
-    },
-    onUnload:function(){
-        // 页面关闭
-    },
-    onReachBottom:function () {
 
+
+
+    dateParser: function (timestamp) {
+        var interval = ( Date.parse(new Date()) - Date.parse(timestamp) ) / 1000;
+
+        if (interval < 3600) {
+            return '刚刚';
+        }
+        if ((interval/3600) < 24) {
+            return parseInt(interval/3600) + '小时前';
+        }
+        if ((interval/86400) < 8) {
+            return parseInt(interval/86400) + '天前';
+        }
+        return timestamp.substr(5, 5);
     }
+
 });
